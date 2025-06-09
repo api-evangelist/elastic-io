@@ -37,6 +37,56 @@ maintainers:
     email: info@apievangelist.com
 specificationVersion: '0.19'
 common:
+  - name: Features
+    type: Features
+    data:
+      - SDKs
+      - Documentation
+      - Samples
+      - Unlimited component repositories
+      - Integration flows
+      - Unlimited data records
+      - Graphical integration designer
+      - Centralised credential management
+      - 24/7 monitoring, logging and tracking
+      - Step-by-step executions
+      - Users
+      - Active steps
+      - Resource quota
+      - Webhook limit
+      - Fair use quota policy
+      - Contracts
+      - Production Workspaces
+      - Development workspaces
+      - Application support
+      - Support channel
+      - ISO 27001 compliant
+      - Unlimited API calls
+      - Pre-Built Connectors
+      - SSO
+      - Role-based access
+      - Customizable executions
+      - Real-time execution monitoring
+      - Access to the Elastic.io API
+      - Software developer kit
+      - On-premises integration agent
+      - Onboarding
+      - Embedding "Recipes"
+      - Enhanced Support
+      - Whitelabeling
+      - OEM
+      - Multi-tenancy
+  - name: Use Cases
+    type: UseCases
+    data:
+      - Cloud Integration
+      - Hybrid Integration
+      - API Integration
+      - Data Migration
+      - Data Analytics
+      - B2B Integration
+      - Mobile Integration
+      - IoT Integration
   - name: Enterprise Integration Platform by elastic.io
     url: https://www.elastic.io/enterprise-integration-platform/
     type: Integrations
