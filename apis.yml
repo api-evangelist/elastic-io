@@ -10,6 +10,10 @@ apis:
     properties:
       - url: ' https://www.elastic.io/'
         type: Documentation
+      - name: elastic.io
+        description: 'null'
+        url: https://api.elastic.io/docs/v2/
+        type: Documentation
     description: >-
       elastic.io iPaaS platform gives you the tools for integration
       visualisation, intuitive data mapping and easy troubleshooting, so that
@@ -448,3 +452,67 @@ common:
       - name: eCommerceOnline store
       - name: Custom API
       - name: Custom connectors
+  - name: iPaaS Platform by elastic.io | The only low-code iPaaS youll need
+    description: 'null'
+    url: https://www.elastic.io/
+    type: Website
+  - name: elastic.io | Pricing
+    description: 'null'
+    url: https://www.elastic.io/plans/
+    type: Pricing
+  - name: elastic.io Documentation | Getting Started
+    description: 'null'
+    url: https://docs.elastic.io/getting-started/
+    type: GettingStarted
+  - name: elastic.io Documentation | Quota
+    description: 'null'
+    url: https://docs.elastic.io/getting-started/quota-overview.html
+    type: RateLimits
+  - name: elastic.io Documentation | OpenID
+    description: 'null'
+    url: https://docs.elastic.io/getting-started/openid.html
+    type: OpenIDConnect
+  - name: elastic.io Documentation | Welcome, choose your path!
+    description: 'null'
+    url: https://docs.elastic.io/
+    type: Documentation
+  - name: elastic.io Documentation | Support and Administration
+    description: 'null'
+    url: https://docs.elastic.io/admin/
+    type: Support
+  - name: elastic.io Integration Platform as a Service | Resources Page
+    description: 'null'
+    url: https://www.elastic.io/resources/#casestudies
+    type: CaseStudies
+  - name: Join the elastic.io integration partner program to grow your business
+    description: 'null'
+    url: https://www.elastic.io/integration-partner-program/
+    type: Partners
+  - name: Looking for a good integration software? Heres what our customers say.
+    description: 'null'
+    url: https://www.elastic.io/customers/
+    type: Customers
+  - name: elastic.io Integration Blog | Trends, new findings, use cases
+    description: 'null'
+    url: https://www.elastic.io/blog/
+    type: Blog
+  - name: About us | Short history of elastic.io and its integration platform
+    description: 'null'
+    url: https://www.elastic.io/team/
+    type: About
+  - name: Login
+    description: 'null'
+    url: https://app.elastic.io/login
+    type: Login
+  - name: Registration
+    description: 'null'
+    url: https://app.elastic.io/register
+    type: SignUp
+  - name: Book a 30-min live product tour of the elastic.io iPaaS
+    description: 'null'
+    url: https://www.elastic.io/book-demo-elasticio-ipaas/
+    type: RequestDemo
+  - name: elastic.io Documentation | Software Development Kit - SDK
+    description: 'null'
+    url: https://docs.elastic.io/developers/sdk.html
+    type: SDKs
