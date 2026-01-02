@@ -26,7 +26,7 @@ tags:
   - Integrations
   - iPaaS
   - SaaS Integration
-type: Index
+type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
@@ -456,9 +456,9 @@ common:
     description: 'null'
 created: '2025-06-06'
 modified: '2026-01-02'
-position: Consumer
+position: Consuming
 description: >-
-  Elastic.io is a cloud-based integration platform that helps businesses
+  Elastic IO is a cloud-based integration platform that helps businesses
   effortlessly connect their various applications, systems, and services. By
   providing a user-friendly interface and a wide range of pre-built connectors,
   elastic.io allows organizations to automate and streamline their data
