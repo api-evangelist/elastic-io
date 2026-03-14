@@ -1,0 +1,348 @@
+asyncapi: '2.6.0'
+info:
+  title: elastic.io Platform Events API
+  version: 1.0.0
+  description: >-
+    The elastic.io Platform Events API describes the asynchronous event-driven
+    interactions of the elastic.io iPaaS platform. This includes webhook
+    triggers that initiate integration flows when external systems send HTTP
+    requests, pub/sub topic messaging for inter-flow communication, and
+    platform event notifications for flow execution lifecycle, error handling,
+    and workspace activity.
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+
+servers:
+  webhooks:
+    url: https://in.elastic.io
+    protocol: https
+    description: >-
+      Webhook trigger endpoint that receives inbound HTTP requests to
+      start integration flows.
+  platform:
+    url: https://api.elastic.io
+    protocol: https
+    description: >-
+      Platform event notifications for flow executions, errors, and
+      lifecycle events.
+  amqp:
+    url: amqp://mq.elastic.io
+    protocol: amqp
+    description: >-
+      AMQP message broker used for internal pub/sub topic messaging
+      between integration flows.
+
+channels:
+  webhook/flow/{flowId}:
+    description: >-
+      Inbound webhook channel that triggers a specific integration flow
+      when an external system sends an HTTP request.
+    parameters:
+      flowId:
+        description: The unique identifier of the integration flow to trigger.
+        schema:
+          type: string
+          format: uuid
+    publish:
+      operationId: receiveWebhookTrigger
+      summary: Receive a webhook trigger
+      description: >-
+        External systems publish HTTP payloads to this channel to trigger
+        an integration flow execution.
+      message:
+        $ref: '#/components/messages/WebhookTriggerMessage'
+
+  topic/{topicName}:
+    description: >-
+      Pub/sub topic channel for inter-flow messaging. Flows can publish
+      messages to a topic, and other flows subscribed to the same topic
+      will receive and process them.
+    parameters:
+      topicName:
+        description: The name of the pub/sub topic.
+        schema:
+          type: string
+    publish:
+      operationId: publishToTopic
+      summary: Publish a message to a topic
+      description: >-
+        An integration flow publishes a message to a named topic for
+        consumption by subscribing flows.
+      message:
+        $ref: '#/components/messages/TopicMessage'
+    subscribe:
+      operationId: subscribeToTopic
+      summary: Receive a message from a topic
+      description: >-
+        An integration flow subscribes to a named topic and receives
+        messages published by other flows.
+      message:
+        $ref: '#/components/messages/TopicMessage'
+
+  flow/{flowId}/execution:
+    description: >-
+      Channel for flow execution lifecycle events including start,
+      completion, and failure notifications.
+    parameters:
+      flowId:
+        description: The unique identifier of the integration flow.
+        schema:
+          type: string
+          format: uuid
+    subscribe:
+      operationId: receiveExecutionEvent
+      summary: Receive flow execution events
+      description: >-
+        Subscribe to execution lifecycle events for a specific flow,
+        including started, completed, and failed statuses.
+      message:
+        $ref: '#/components/messages/FlowExecutionEvent'
+
+  flow/{flowId}/error:
+    description: >-
+      Channel for flow error events emitted when a step within an
+      integration flow encounters a processing error.
+    parameters:
+      flowId:
+        description: The unique identifier of the integration flow.
+        schema:
+          type: string
+          format: uuid
+    subscribe:
+      operationId: receiveFlowError
+      summary: Receive flow error events
+      description: >-
+        Subscribe to error events for a specific integration flow to
+        monitor failures and trigger alerting.
+      message:
+        $ref: '#/components/messages/FlowErrorEvent'
+
+  workspace/{workspaceId}/activity:
+    description: >-
+      Channel for workspace-level activity events such as flow creation,
+      updates, deletion, and membership changes.
+    parameters:
+      workspaceId:
+        description: The unique identifier of the workspace.
+        schema:
+          type: string
+          format: uuid
+    subscribe:
+      operationId: receiveWorkspaceActivity
+      summary: Receive workspace activity events
+      description: >-
+        Subscribe to activity events within a workspace to track
+        changes to flows, credentials, and members.
+      message:
+        $ref: '#/components/messages/WorkspaceActivityEvent'
+
+components:
+  messages:
+    WebhookTriggerMessage:
+      name: WebhookTriggerMessage
+      title: Webhook Trigger Message
+      summary: An inbound HTTP payload that triggers an integration flow.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          headers:
+            type: object
+            description: HTTP headers from the inbound webhook request.
+            additionalProperties:
+              type: string
+          body:
+            type: object
+            description: The parsed JSON body of the webhook request.
+          queryParameters:
+            type: object
+            description: Query string parameters from the webhook URL.
+            additionalProperties:
+              type: string
+          method:
+            type: string
+            description: The HTTP method of the inbound request.
+            enum:
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
+
+    TopicMessage:
+      name: TopicMessage
+      title: Topic Message
+      summary: A message published to or received from a pub/sub topic.
+      contentType: application/json
+      payload:
+        type: object
+        required:
+          - id
+          - topicName
+          - data
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: Unique identifier for this message.
+          topicName:
+            type: string
+            description: The name of the topic this message belongs to.
+          data:
+            type: object
+            description: The message payload data.
+          metadata:
+            type: object
+            properties:
+              publishedAt:
+                type: string
+                format: date-time
+                description: Timestamp when the message was published.
+              sourceFlowId:
+                type: string
+                format: uuid
+                description: The flow that published this message.
+              correlationId:
+                type: string
+                description: Correlation ID for tracing message chains.
+
+    FlowExecutionEvent:
+      name: FlowExecutionEvent
+      title: Flow Execution Event
+      summary: Lifecycle event for flow execution status changes.
+      contentType: application/json
+      payload:
+        type: object
+        required:
+          - executionId
+          - flowId
+          - status
+          - timestamp
+        properties:
+          executionId:
+            type: string
+            format: uuid
+            description: Unique identifier for this execution.
+          flowId:
+            type: string
+            format: uuid
+            description: The flow being executed.
+          status:
+            type: string
+            enum:
+              - started
+              - completed
+              - failed
+              - suspended
+            description: Current execution status.
+          timestamp:
+            type: string
+            format: date-time
+            description: Timestamp of the status change.
+          duration:
+            type: integer
+            description: Execution duration in milliseconds (when completed).
+          stepCount:
+            type: integer
+            description: Number of steps executed.
+
+    FlowErrorEvent:
+      name: FlowErrorEvent
+      title: Flow Error Event
+      summary: Error event emitted when a flow step encounters a failure.
+      contentType: application/json
+      payload:
+        type: object
+        required:
+          - executionId
+          - flowId
+          - stepId
+          - error
+          - timestamp
+        properties:
+          executionId:
+            type: string
+            format: uuid
+            description: The execution during which the error occurred.
+          flowId:
+            type: string
+            format: uuid
+            description: The flow that encountered the error.
+          stepId:
+            type: string
+            description: The step within the flow that failed.
+          error:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Error type name.
+              message:
+                type: string
+                description: Human-readable error message.
+              stack:
+                type: string
+                description: Error stack trace if available.
+          timestamp:
+            type: string
+            format: date-time
+            description: Timestamp when the error occurred.
+          retryable:
+            type: boolean
+            description: Whether the failed step can be retried.
+
+    WorkspaceActivityEvent:
+      name: WorkspaceActivityEvent
+      title: Workspace Activity Event
+      summary: Activity event tracking changes within a workspace.
+      contentType: application/json
+      payload:
+        type: object
+        required:
+          - eventId
+          - workspaceId
+          - activityType
+          - resourceType
+          - timestamp
+        properties:
+          eventId:
+            type: string
+            format: uuid
+            description: Unique identifier for this activity event.
+          workspaceId:
+            type: string
+            format: uuid
+            description: The workspace where the activity occurred.
+          activityType:
+            type: string
+            enum:
+              - created
+              - updated
+              - deleted
+              - started
+              - stopped
+            description: Type of activity that occurred.
+          resourceType:
+            type: string
+            enum:
+              - flow
+              - credential
+              - component
+              - member
+              - recipe
+            description: Type of resource affected.
+          resourceId:
+            type: string
+            description: Identifier of the affected resource.
+          userId:
+            type: string
+            format: uuid
+            description: The user who performed the action.
+          timestamp:
+            type: string
+            format: date-time
+            description: Timestamp of the activity.

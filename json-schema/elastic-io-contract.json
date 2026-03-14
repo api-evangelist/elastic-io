@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/elastic-io/refs/heads/main/json-schema/elastic-io-contract.json",
+  "title": "elastic.io Contract",
+  "description": "Represents a contract (tenant) on the elastic.io iPaaS platform. A contract is the top-level organizational entity that contains workspaces, manages user memberships, controls quota allocations, and defines platform-level settings for an organization.",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "attributes"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the contract."
+    },
+    "type": {
+      "type": "string",
+      "const": "contract",
+      "description": "Resource type identifier."
+    },
+    "attributes": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Human-readable name of the contract."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "suspended",
+            "terminated"
+          ],
+          "description": "Current status of the contract."
+        },
+        "flow_count": {
+          "type": "integer",
+          "description": "Total number of flows across all workspaces in the contract."
+        },
+        "workspace_count": {
+          "type": "integer",
+          "description": "Number of workspaces in the contract."
+        },
+        "available_roles": {
+          "type": "array",
+          "description": "Roles available for assignment within this contract.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Role identifier."
+              },
+              "scope": {
+                "type": "string",
+                "enum": [
+                  "contracts",
+                  "workspaces"
+                ],
+                "description": "Scope at which this role applies."
+              },
+              "role": {
+                "type": "string",
+                "description": "Role name."
+              }
+            }
+          }
+        },
+        "support_user_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "User ID of the designated support contact."
+        },
+        "custom_data": {
+          "type": "object",
+          "description": "Custom metadata associated with the contract.",
+          "additionalProperties": true
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the contract was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the contract was last updated."
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "workspaces": {
+          "type": "object",
+          "description": "Workspaces belonging to this contract.",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "type": {
+                    "type": "string",
+                    "const": "workspace"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "members": {
+          "type": "object",
+          "description": "Users who are members of this contract.",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "type": {
+                    "type": "string",
+                    "const": "member"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -19,11 +19,26 @@ apis:
       - url: openapi/elastic-io-platform-api-openapi.yml
         name: elastic.io Platform REST API OpenAPI
         type: OpenAPI
+      - url: asyncapi/elastic-io-platform-events-asyncapi.yml
+        name: elastic.io Platform Events AsyncAPI
+        type: AsyncAPI
+      - url: json-schema/elastic-io-flow.json
+        name: elastic.io Flow JSON Schema
+        type: JSONSchema
+      - url: json-schema/elastic-io-workspace.json
+        name: elastic.io Workspace JSON Schema
+        type: JSONSchema
+      - url: json-schema/elastic-io-contract.json
+        name: elastic.io Contract JSON Schema
+        type: JSONSchema
+      - url: json-ld/elastic-io-context.jsonld
+        name: elastic.io JSON-LD Context
+        type: JSONLD
     description: >-
       elastic.io iPaaS platform gives you the tools for integration
       visualisation, intuitive data mapping and easy troubleshooting, so that
       you can generate more value from your data with less distraction from your
-      core business. 
+      core business.
 name: elastic.io
 tags:
   - Integrations

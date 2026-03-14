@@ -1,0 +1,131 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "elasticio": "https://api.elastic.io/v2/",
+    "flow": {
+      "@id": "elasticio:flows",
+      "@type": "@id",
+      "@context": {
+        "name": "https://schema.org/name",
+        "description": "https://schema.org/description",
+        "status": "https://schema.org/status",
+        "flowType": {
+          "@id": "elasticio:flowType",
+          "@type": "https://schema.org/Text"
+        },
+        "graph": {
+          "@id": "elasticio:graph",
+          "@type": "@id",
+          "@context": {
+            "nodes": {
+              "@id": "elasticio:nodes",
+              "@container": "@list"
+            },
+            "edges": {
+              "@id": "elasticio:edges",
+              "@container": "@list"
+            }
+          }
+        },
+        "cron": {
+          "@id": "elasticio:cron",
+          "@type": "https://schema.org/Text"
+        },
+        "workspace": {
+          "@id": "elasticio:workspaces",
+          "@type": "@id"
+        },
+        "createdAt": "https://schema.org/dateCreated",
+        "updatedAt": "https://schema.org/dateModified"
+      }
+    },
+    "workspace": {
+      "@id": "elasticio:workspaces",
+      "@type": "@id",
+      "@context": {
+        "name": "https://schema.org/name",
+        "description": "https://schema.org/description",
+        "workspaceType": {
+          "@id": "elasticio:workspaceType",
+          "@type": "https://schema.org/Text"
+        },
+        "contract": {
+          "@id": "elasticio:contracts",
+          "@type": "@id"
+        },
+        "members": {
+          "@id": "elasticio:members",
+          "@container": "@set"
+        },
+        "createdAt": "https://schema.org/dateCreated",
+        "updatedAt": "https://schema.org/dateModified"
+      }
+    },
+    "contract": {
+      "@id": "elasticio:contracts",
+      "@type": "@id",
+      "@context": {
+        "name": "https://schema.org/name",
+        "status": "https://schema.org/status",
+        "workspaces": {
+          "@id": "elasticio:workspaces",
+          "@container": "@set"
+        },
+        "members": {
+          "@id": "elasticio:members",
+          "@container": "@set"
+        },
+        "createdAt": "https://schema.org/dateCreated",
+        "updatedAt": "https://schema.org/dateModified"
+      }
+    },
+    "credential": {
+      "@id": "elasticio:credentials",
+      "@type": "@id",
+      "@context": {
+        "name": "https://schema.org/name",
+        "component": {
+          "@id": "elasticio:components",
+          "@type": "@id"
+        }
+      }
+    },
+    "component": {
+      "@id": "elasticio:components",
+      "@type": "@id",
+      "@context": {
+        "name": "https://schema.org/name",
+        "description": "https://schema.org/description",
+        "title": "https://schema.org/headline"
+      }
+    },
+    "execution": {
+      "@id": "elasticio:executions",
+      "@type": "@id",
+      "@context": {
+        "status": "https://schema.org/status",
+        "startedAt": "https://schema.org/startDate",
+        "finishedAt": "https://schema.org/endDate"
+      }
+    },
+    "topic": {
+      "@id": "elasticio:topics",
+      "@type": "@id",
+      "@context": {
+        "name": "https://schema.org/name",
+        "schema": {
+          "@id": "elasticio:topicSchema",
+          "@type": "@id"
+        }
+      }
+    },
+    "recipe": {
+      "@id": "elasticio:recipes",
+      "@type": "@id",
+      "@context": {
+        "title": "https://schema.org/headline",
+        "description": "https://schema.org/description"
+      }
+    }
+  }
+}

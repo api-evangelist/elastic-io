@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/elastic-io/refs/heads/main/json-schema/elastic-io-flow.json",
+  "title": "elastic.io Flow",
+  "description": "Represents an integration flow on the elastic.io iPaaS platform. A flow defines a sequence of steps that process and route data between connected systems, triggered by schedules, webhooks, or pub/sub messages.",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "attributes"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the flow."
+    },
+    "type": {
+      "type": "string",
+      "const": "flow",
+      "description": "Resource type identifier."
+    },
+    "attributes": {
+      "type": "object",
+      "required": [
+        "name",
+        "status",
+        "type"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Human-readable name of the integration flow."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description of the flow's purpose."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "inactive",
+            "suspended"
+          ],
+          "description": "Current operational status of the flow."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "ordinary",
+            "long_running"
+          ],
+          "description": "Execution type of the flow."
+        },
+        "graph": {
+          "type": "object",
+          "description": "The directed graph defining the flow's step topology.",
+          "properties": {
+            "nodes": {
+              "type": "array",
+              "description": "Steps in the integration flow.",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "componentId",
+                  "function"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Unique identifier for this step within the flow."
+                  },
+                  "componentId": {
+                    "type": "string",
+                    "description": "Identifier of the component used in this step."
+                  },
+                  "function": {
+                    "type": "string",
+                    "description": "The function or action to execute within the component."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Display name for the step."
+                  },
+                  "credentials_id": {
+                    "type": "string",
+                    "description": "Credential set used to authenticate with the component."
+                  },
+                  "fields": {
+                    "type": "object",
+                    "description": "Configuration fields for the step.",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            },
+            "edges": {
+              "type": "array",
+              "description": "Connections between steps defining data flow.",
+              "items": {
+                "type": "object",
+                "required": [
+                  "source",
+                  "target"
+                ],
+                "properties": {
+                  "source": {
+                    "type": "string",
+                    "description": "Source step identifier."
+                  },
+                  "target": {
+                    "type": "string",
+                    "description": "Target step identifier."
+                  },
+                  "config": {
+                    "type": "object",
+                    "properties": {
+                      "mapper": {
+                        "type": "object",
+                        "description": "Data mapping configuration between source and target.",
+                        "additionalProperties": true
+                      },
+                      "condition": {
+                        "type": "string",
+                        "description": "Optional routing condition expression."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "cron": {
+          "type": "string",
+          "description": "Cron expression for scheduled flow execution."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the flow was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the flow was last updated."
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "workspace": {
+          "type": "object",
+          "description": "The workspace this flow belongs to.",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "type": {
+                  "type": "string",
+                  "const": "workspace"
+                }
+              }
+            }
+          }
+        },
+        "user": {
+          "type": "object",
+          "description": "The user who created the flow.",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "type": {
+                  "type": "string",
+                  "const": "user"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

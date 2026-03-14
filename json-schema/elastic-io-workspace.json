@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/elastic-io/refs/heads/main/json-schema/elastic-io-workspace.json",
+  "title": "elastic.io Workspace",
+  "description": "Represents a workspace on the elastic.io iPaaS platform. A workspace is an organizational unit within a contract that contains integration flows, credentials, and team members. Workspaces provide isolation and access control for integration resources.",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "attributes"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the workspace."
+    },
+    "type": {
+      "type": "string",
+      "const": "workspace",
+      "description": "Resource type identifier."
+    },
+    "attributes": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Human-readable name of the workspace."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description of the workspace's purpose."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "full",
+            "limited"
+          ],
+          "description": "Workspace type controlling available features and quotas."
+        },
+        "flow_count": {
+          "type": "integer",
+          "description": "Number of integration flows in this workspace."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the workspace was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the workspace was last updated."
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "properties": {
+        "contract": {
+          "type": "object",
+          "description": "The contract (tenant) this workspace belongs to.",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "type": {
+                  "type": "string",
+                  "const": "contract"
+                }
+              }
+            }
+          }
+        },
+        "members": {
+          "type": "object",
+          "description": "Users who are members of this workspace.",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "type": {
+                    "type": "string",
+                    "const": "member"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
