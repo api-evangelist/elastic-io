@@ -1,0 +1,3937 @@
+openapi: 3.1.0
+info:
+  title: elastic.io Platform REST API
+  description: >-
+    The elastic.io Platform REST API v2 provides programmatic access to the
+    elastic.io iPaaS platform. It allows you to manage integration flows,
+    workspaces, contracts, credentials, components, recipes, users, and other
+    platform resources. The API follows the JSON:API specification and uses
+    Bearer token authentication.
+  version: 2.0.0
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+  termsOfService: https://www.elastic.io/
+servers:
+  - url: https://api.elastic.io/v2
+    description: elastic.io Platform API v2
+security:
+  - bearerAuth: []
+tags:
+  - name: Flows
+    description: Manage integration flows
+  - name: Flow Drafts
+    description: Manage flow drafts before publishing
+  - name: Flow Versions
+    description: Manage flow version history
+  - name: Workspaces
+    description: Manage workspaces within contracts
+  - name: Contracts
+    description: Manage contracts (tenants)
+  - name: Credentials
+    description: Manage authentication credentials for components
+  - name: Components
+    description: Manage integration components
+  - name: Recipes
+    description: Manage reusable integration recipes
+  - name: Users
+    description: Manage platform users
+  - name: Auth Clients
+    description: Manage OAuth authentication clients
+  - name: Auth Secrets
+    description: Manage authentication secrets
+  - name: Teams
+    description: Manage developer teams
+  - name: Agents
+    description: Manage on-premises integration agents
+  - name: Executions
+    description: Manage flow executions and logs
+  - name: Data Samples
+    description: Manage data samples for component steps
+  - name: Logs
+    description: Access execution and platform logs
+  - name: Roles
+    description: Manage user roles and permissions
+  - name: SSH Keys
+    description: Manage SSH keys for component repositories
+  - name: Quota Usages
+    description: View quota usage statistics
+  - name: Snapshots
+    description: Manage flow step snapshots
+  - name: Storage
+    description: Manage platform storage objects
+  - name: Topics
+    description: Manage pub/sub topics
+  - name: Subscriptions
+    description: Manage topic subscriptions
+  - name: Tenants
+    description: Manage tenant-level settings
+paths:
+  /flows:
+    get:
+      operationId: listFlows
+      summary: List flows
+      description: Retrieve a list of integration flows accessible to the user.
+      tags:
+        - Flows
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/WorkspaceFilter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createFlow
+      summary: Create a flow
+      description: Create a new integration flow in a workspace.
+      tags:
+        - Flows
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlowCreateRequest'
+      responses:
+        '201':
+          description: Flow created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+  /flows/{flow_id}:
+    get:
+      operationId: getFlow
+      summary: Get a flow
+      description: Retrieve details of a specific integration flow.
+      tags:
+        - Flows
+      parameters:
+        - $ref: '#/components/parameters/FlowId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateFlow
+      summary: Update a flow
+      description: Update an existing integration flow.
+      tags:
+        - Flows
+      parameters:
+        - $ref: '#/components/parameters/FlowId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlowUpdateRequest'
+      responses:
+        '200':
+          description: Flow updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteFlow
+      summary: Delete a flow
+      description: Delete an integration flow.
+      tags:
+        - Flows
+      parameters:
+        - $ref: '#/components/parameters/FlowId'
+      responses:
+        '204':
+          description: Flow deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /flows/{flow_id}/start:
+    post:
+      operationId: startFlow
+      summary: Start a flow
+      description: Start an integration flow to begin processing data.
+      tags:
+        - Flows
+      parameters:
+        - $ref: '#/components/parameters/FlowId'
+      responses:
+        '200':
+          description: Flow started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /flows/{flow_id}/stop:
+    post:
+      operationId: stopFlow
+      summary: Stop a flow
+      description: Stop a running integration flow.
+      tags:
+        - Flows
+      parameters:
+        - $ref: '#/components/parameters/FlowId'
+      responses:
+        '200':
+          description: Flow stopped successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /flows/{flow_id}/run-now:
+    post:
+      operationId: runFlowNow
+      summary: Run a flow on demand
+      description: Trigger an on-demand execution of an integration flow.
+      tags:
+        - Flows
+      parameters:
+        - $ref: '#/components/parameters/FlowId'
+      responses:
+        '200':
+          description: Flow execution triggered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /flow-drafts:
+    get:
+      operationId: listFlowDrafts
+      summary: List flow drafts
+      description: Retrieve a list of flow drafts.
+      tags:
+        - Flow Drafts
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/WorkspaceFilter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowDraftListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createFlowDraft
+      summary: Create a flow draft
+      description: Create a new flow draft for editing before publishing.
+      tags:
+        - Flow Drafts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlowDraftCreateRequest'
+      responses:
+        '201':
+          description: Flow draft created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowDraftResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /flow-drafts/{flow_draft_id}:
+    get:
+      operationId: getFlowDraft
+      summary: Get a flow draft
+      description: Retrieve details of a specific flow draft.
+      tags:
+        - Flow Drafts
+      parameters:
+        - $ref: '#/components/parameters/FlowDraftId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowDraftResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateFlowDraft
+      summary: Update a flow draft
+      description: Update an existing flow draft.
+      tags:
+        - Flow Drafts
+      parameters:
+        - $ref: '#/components/parameters/FlowDraftId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlowDraftUpdateRequest'
+      responses:
+        '200':
+          description: Flow draft updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowDraftResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteFlowDraft
+      summary: Delete a flow draft
+      description: Delete a flow draft.
+      tags:
+        - Flow Drafts
+      parameters:
+        - $ref: '#/components/parameters/FlowDraftId'
+      responses:
+        '204':
+          description: Flow draft deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /flow-versions/{flow_version_id}:
+    get:
+      operationId: getFlowVersion
+      summary: Get a flow version
+      description: Retrieve a specific version of a flow.
+      tags:
+        - Flow Versions
+      parameters:
+        - name: flow_version_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowVersionResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workspaces:
+    get:
+      operationId: listWorkspaces
+      summary: List workspaces
+      description: Retrieve a list of workspaces accessible to the user.
+      tags:
+        - Workspaces
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - name: filter[contract_id]
+          in: query
+          description: Filter by contract ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createWorkspace
+      summary: Create a workspace
+      description: Create a new workspace within a contract.
+      tags:
+        - Workspaces
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkspaceCreateRequest'
+      responses:
+        '201':
+          description: Workspace created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workspaces/{workspace_id}:
+    get:
+      operationId: getWorkspace
+      summary: Get a workspace
+      description: Retrieve details of a specific workspace.
+      tags:
+        - Workspaces
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateWorkspace
+      summary: Update a workspace
+      description: Update an existing workspace.
+      tags:
+        - Workspaces
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkspaceUpdateRequest'
+      responses:
+        '200':
+          description: Workspace updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteWorkspace
+      summary: Delete a workspace
+      description: Delete a workspace.
+      tags:
+        - Workspaces
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+      responses:
+        '204':
+          description: Workspace deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workspaces/{workspace_id}/members:
+    get:
+      operationId: listWorkspaceMembers
+      summary: List workspace members
+      description: Retrieve the list of members in a workspace.
+      tags:
+        - Workspaces
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: addWorkspaceMember
+      summary: Add a workspace member
+      description: Add a user as a member of a workspace.
+      tags:
+        - Workspaces
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberCreateRequest'
+      responses:
+        '200':
+          description: Member added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workspaces/{workspace_id}/members/{user_id}:
+    delete:
+      operationId: removeWorkspaceMember
+      summary: Remove a workspace member
+      description: Remove a member from a workspace.
+      tags:
+        - Workspaces
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '204':
+          description: Member removed successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /contracts:
+    get:
+      operationId: listContracts
+      summary: List contracts
+      description: Retrieve a list of contracts accessible to the user.
+      tags:
+        - Contracts
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /contracts/{contract_id}:
+    get:
+      operationId: getContract
+      summary: Get a contract
+      description: Retrieve details of a specific contract.
+      tags:
+        - Contracts
+      parameters:
+        - $ref: '#/components/parameters/ContractId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateContract
+      summary: Update a contract
+      description: Update contract settings and attributes.
+      tags:
+        - Contracts
+      parameters:
+        - $ref: '#/components/parameters/ContractId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractUpdateRequest'
+      responses:
+        '200':
+          description: Contract updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /contracts/{contract_id}/members:
+    get:
+      operationId: listContractMembers
+      summary: List contract members
+      description: Retrieve the list of members in a contract.
+      tags:
+        - Contracts
+      parameters:
+        - $ref: '#/components/parameters/ContractId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: addContractMember
+      summary: Add a contract member
+      description: Add a user as a member of a contract.
+      tags:
+        - Contracts
+      parameters:
+        - $ref: '#/components/parameters/ContractId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberCreateRequest'
+      responses:
+        '200':
+          description: Member added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /credentials:
+    get:
+      operationId: listCredentials
+      summary: List credentials
+      description: Retrieve a list of credentials for the current workspace.
+      tags:
+        - Credentials
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/WorkspaceFilter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CredentialListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCredential
+      summary: Create a credential
+      description: Create a new credential for authenticating with external services.
+      tags:
+        - Credentials
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CredentialCreateRequest'
+      responses:
+        '201':
+          description: Credential created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CredentialResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /credentials/{credential_id}:
+    get:
+      operationId: getCredential
+      summary: Get a credential
+      description: Retrieve details of a specific credential.
+      tags:
+        - Credentials
+      parameters:
+        - $ref: '#/components/parameters/CredentialId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CredentialResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateCredential
+      summary: Update a credential
+      description: Update an existing credential.
+      tags:
+        - Credentials
+      parameters:
+        - $ref: '#/components/parameters/CredentialId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CredentialUpdateRequest'
+      responses:
+        '200':
+          description: Credential updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CredentialResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteCredential
+      summary: Delete a credential
+      description: Delete a credential.
+      tags:
+        - Credentials
+      parameters:
+        - $ref: '#/components/parameters/CredentialId'
+      responses:
+        '204':
+          description: Credential deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /components:
+    get:
+      operationId: listComponents
+      summary: List components
+      description: Retrieve a list of available integration components.
+      tags:
+        - Components
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - name: filter[contract_id]
+          in: query
+          description: Filter by contract ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComponentListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /components/{component_id}:
+    get:
+      operationId: getComponent
+      summary: Get a component
+      description: Retrieve details of a specific component.
+      tags:
+        - Components
+      parameters:
+        - $ref: '#/components/parameters/ComponentId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComponentResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateComponent
+      summary: Update a component
+      description: Update component metadata.
+      tags:
+        - Components
+      parameters:
+        - $ref: '#/components/parameters/ComponentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComponentUpdateRequest'
+      responses:
+        '200':
+          description: Component updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComponentResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteComponent
+      summary: Delete a component
+      description: Delete a component.
+      tags:
+        - Components
+      parameters:
+        - $ref: '#/components/parameters/ComponentId'
+      responses:
+        '204':
+          description: Component deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /recipes:
+    get:
+      operationId: listRecipes
+      summary: List recipes
+      description: Retrieve a list of available integration recipes.
+      tags:
+        - Recipes
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - name: filter[contract_id]
+          in: query
+          description: Filter by contract ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createRecipe
+      summary: Create a recipe
+      description: Create a new integration recipe.
+      tags:
+        - Recipes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeCreateRequest'
+      responses:
+        '201':
+          description: Recipe created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /recipes/{recipe_id}:
+    get:
+      operationId: getRecipe
+      summary: Get a recipe
+      description: Retrieve details of a specific recipe.
+      tags:
+        - Recipes
+      parameters:
+        - $ref: '#/components/parameters/RecipeId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateRecipe
+      summary: Update a recipe
+      description: Update an existing recipe.
+      tags:
+        - Recipes
+      parameters:
+        - $ref: '#/components/parameters/RecipeId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeUpdateRequest'
+      responses:
+        '200':
+          description: Recipe updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteRecipe
+      summary: Delete a recipe
+      description: Delete a recipe.
+      tags:
+        - Recipes
+      parameters:
+        - $ref: '#/components/parameters/RecipeId'
+      responses:
+        '204':
+          description: Recipe deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /recipes/{recipe_id}/visibility:
+    patch:
+      operationId: updateRecipeVisibility
+      summary: Update recipe visibility
+      description: Update the visibility settings of a recipe.
+      tags:
+        - Recipes
+      parameters:
+        - $ref: '#/components/parameters/RecipeId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    visibility:
+                      type: string
+                      enum:
+                        - workspace
+                        - contract
+                        - tenant
+                        - global
+      responses:
+        '200':
+          description: Visibility updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users/me:
+    get:
+      operationId: getCurrentUser
+      summary: Get current user
+      description: Retrieve the profile of the currently authenticated user.
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      operationId: updateCurrentUser
+      summary: Update current user
+      description: Update the profile of the currently authenticated user.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdateRequest'
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /users/{user_id}:
+    get:
+      operationId: getUser
+      summary: Get a user
+      description: Retrieve the profile of a specific user.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /auth-clients:
+    get:
+      operationId: listAuthClients
+      summary: List auth clients
+      description: Retrieve a list of OAuth authentication clients.
+      tags:
+        - Auth Clients
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthClientListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createAuthClient
+      summary: Create an auth client
+      description: Create a new OAuth authentication client.
+      tags:
+        - Auth Clients
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthClientCreateRequest'
+      responses:
+        '201':
+          description: Auth client created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthClientResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /auth-clients/{auth_client_id}:
+    get:
+      operationId: getAuthClient
+      summary: Get an auth client
+      description: Retrieve details of a specific auth client.
+      tags:
+        - Auth Clients
+      parameters:
+        - $ref: '#/components/parameters/AuthClientId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthClientResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateAuthClient
+      summary: Update an auth client
+      description: Update an existing auth client.
+      tags:
+        - Auth Clients
+      parameters:
+        - $ref: '#/components/parameters/AuthClientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthClientUpdateRequest'
+      responses:
+        '200':
+          description: Auth client updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthClientResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteAuthClient
+      summary: Delete an auth client
+      description: Delete an auth client.
+      tags:
+        - Auth Clients
+      parameters:
+        - $ref: '#/components/parameters/AuthClientId'
+      responses:
+        '204':
+          description: Auth client deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /auth-secrets:
+    get:
+      operationId: listAuthSecrets
+      summary: List auth secrets
+      description: Retrieve a list of authentication secrets.
+      tags:
+        - Auth Secrets
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/WorkspaceFilter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthSecretListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createAuthSecret
+      summary: Create an auth secret
+      description: Create a new authentication secret.
+      tags:
+        - Auth Secrets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthSecretCreateRequest'
+      responses:
+        '201':
+          description: Auth secret created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthSecretResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /auth-secrets/{auth_secret_id}:
+    get:
+      operationId: getAuthSecret
+      summary: Get an auth secret
+      description: Retrieve details of a specific auth secret.
+      tags:
+        - Auth Secrets
+      parameters:
+        - name: auth_secret_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthSecretResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateAuthSecret
+      summary: Update an auth secret
+      description: Update an existing auth secret.
+      tags:
+        - Auth Secrets
+      parameters:
+        - name: auth_secret_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthSecretUpdateRequest'
+      responses:
+        '200':
+          description: Auth secret updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthSecretResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteAuthSecret
+      summary: Delete an auth secret
+      description: Delete an auth secret.
+      tags:
+        - Auth Secrets
+      parameters:
+        - name: auth_secret_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Auth secret deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /teams:
+    get:
+      operationId: listTeams
+      summary: List teams
+      description: Retrieve a list of developer teams.
+      tags:
+        - Teams
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - name: filter[contract_id]
+          in: query
+          description: Filter by contract ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createTeam
+      summary: Create a team
+      description: Create a new developer team.
+      tags:
+        - Teams
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamCreateRequest'
+      responses:
+        '201':
+          description: Team created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /teams/{team_id}:
+    get:
+      operationId: getTeam
+      summary: Get a team
+      description: Retrieve details of a specific developer team.
+      tags:
+        - Teams
+      parameters:
+        - $ref: '#/components/parameters/TeamId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteTeam
+      summary: Delete a team
+      description: Delete a developer team.
+      tags:
+        - Teams
+      parameters:
+        - $ref: '#/components/parameters/TeamId'
+      responses:
+        '204':
+          description: Team deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /agents:
+    get:
+      operationId: listAgents
+      summary: List agents
+      description: Retrieve a list of on-premises integration agents.
+      tags:
+        - Agents
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/WorkspaceFilter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createAgent
+      summary: Create an agent
+      description: Create a new on-premises integration agent.
+      tags:
+        - Agents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentCreateRequest'
+      responses:
+        '201':
+          description: Agent created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /agents/{agent_id}:
+    get:
+      operationId: getAgent
+      summary: Get an agent
+      description: Retrieve details of a specific agent.
+      tags:
+        - Agents
+      parameters:
+        - name: agent_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteAgent
+      summary: Delete an agent
+      description: Delete an on-premises integration agent.
+      tags:
+        - Agents
+      parameters:
+        - name: agent_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Agent deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /exec/poll/{execution_id}:
+    get:
+      operationId: pollExecution
+      summary: Poll execution status
+      description: Check the status of a flow execution by polling.
+      tags:
+        - Executions
+      parameters:
+        - name: execution_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Execution status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /logs:
+    get:
+      operationId: listLogs
+      summary: List execution logs
+      description: Retrieve execution logs for flows.
+      tags:
+        - Logs
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/WorkspaceFilter'
+        - name: filter[flow_id]
+          in: query
+          description: Filter by flow ID
+          schema:
+            type: string
+        - name: filter[from]
+          in: query
+          description: Filter logs from this timestamp
+          schema:
+            type: string
+            format: date-time
+        - name: filter[to]
+          in: query
+          description: Filter logs to this timestamp
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /data-samples:
+    get:
+      operationId: listDataSamples
+      summary: List data samples
+      description: Retrieve a list of data samples.
+      tags:
+        - Data Samples
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/WorkspaceFilter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSampleListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createDataSample
+      summary: Create a data sample
+      description: Create a new data sample for a component step.
+      tags:
+        - Data Samples
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSampleCreateRequest'
+      responses:
+        '201':
+          description: Data sample created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSampleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /data-samples/{data_sample_id}:
+    get:
+      operationId: getDataSample
+      summary: Get a data sample
+      description: Retrieve details of a specific data sample.
+      tags:
+        - Data Samples
+      parameters:
+        - name: data_sample_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSampleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateDataSample
+      summary: Update a data sample
+      description: Update an existing data sample.
+      tags:
+        - Data Samples
+      parameters:
+        - name: data_sample_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSampleUpdateRequest'
+      responses:
+        '200':
+          description: Data sample updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSampleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteDataSample
+      summary: Delete a data sample
+      description: Delete a data sample.
+      tags:
+        - Data Samples
+      parameters:
+        - name: data_sample_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Data sample deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenants/{tenant_id}/roles:
+    get:
+      operationId: listRoles
+      summary: List roles
+      description: Retrieve a list of user roles and permissions for a tenant.
+      tags:
+        - Roles
+      parameters:
+        - $ref: '#/components/parameters/TenantId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createRole
+      summary: Create a role
+      description: Create a new user role with specific permissions.
+      tags:
+        - Roles
+      parameters:
+        - $ref: '#/components/parameters/TenantId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleCreateRequest'
+      responses:
+        '201':
+          description: Role created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /tenants/{tenant_id}/roles/{role_id}:
+    get:
+      operationId: getRole
+      summary: Get a role
+      description: Retrieve details of a specific role.
+      tags:
+        - Roles
+      parameters:
+        - $ref: '#/components/parameters/TenantId'
+        - name: role_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateRole
+      summary: Update a role
+      description: Update an existing role.
+      tags:
+        - Roles
+      parameters:
+        - $ref: '#/components/parameters/TenantId'
+        - name: role_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleUpdateRequest'
+      responses:
+        '200':
+          description: Role updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteRole
+      summary: Delete a role
+      description: Delete a user role.
+      tags:
+        - Roles
+      parameters:
+        - $ref: '#/components/parameters/TenantId'
+        - name: role_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Role deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sshkeys:
+    get:
+      operationId: listSshKeys
+      summary: List SSH keys
+      description: Retrieve a list of SSH keys for the current user.
+      tags:
+        - SSH Keys
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshKeyListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createSshKey
+      summary: Create an SSH key
+      description: Upload a new SSH key for component repository access.
+      tags:
+        - SSH Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SshKeyCreateRequest'
+      responses:
+        '201':
+          description: SSH key created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshKeyResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sshkeys/{sshkey_id}:
+    delete:
+      operationId: deleteSshKey
+      summary: Delete an SSH key
+      description: Delete an SSH key.
+      tags:
+        - SSH Keys
+      parameters:
+        - name: sshkey_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: SSH key deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /quota-usages/workspaces/{workspace_id}:
+    get:
+      operationId: getWorkspaceQuotaUsage
+      summary: Get workspace quota usage
+      description: Retrieve quota usage statistics for a workspace.
+      tags:
+        - Quota Usages
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuotaUsageResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /quota-usages/contracts/{contract_id}:
+    get:
+      operationId: getContractQuotaUsage
+      summary: Get contract quota usage
+      description: Retrieve quota usage statistics for all workspaces in a contract.
+      tags:
+        - Quota Usages
+      parameters:
+        - $ref: '#/components/parameters/ContractId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuotaUsageResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /snapshots:
+    get:
+      operationId: listSnapshots
+      summary: List snapshots
+      description: Retrieve a list of flow step snapshots.
+      tags:
+        - Snapshots
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - name: filter[flow_id]
+          in: query
+          description: Filter by flow ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /topics:
+    get:
+      operationId: listTopics
+      summary: List topics
+      description: Retrieve a list of pub/sub topics.
+      tags:
+        - Topics
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/WorkspaceFilter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopicListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createTopic
+      summary: Create a topic
+      description: Create a new pub/sub topic.
+      tags:
+        - Topics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TopicCreateRequest'
+      responses:
+        '201':
+          description: Topic created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopicResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /topics/{topic_id}:
+    get:
+      operationId: getTopic
+      summary: Get a topic
+      description: Retrieve details of a specific topic.
+      tags:
+        - Topics
+      parameters:
+        - name: topic_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopicResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteTopic
+      summary: Delete a topic
+      description: Delete a pub/sub topic.
+      tags:
+        - Topics
+      parameters:
+        - name: topic_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Topic deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /subscriptions:
+    get:
+      operationId: listSubscriptions
+      summary: List subscriptions
+      description: Retrieve a list of topic subscriptions.
+      tags:
+        - Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/WorkspaceFilter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createSubscription
+      summary: Create a subscription
+      description: Create a new topic subscription.
+      tags:
+        - Subscriptions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionCreateRequest'
+      responses:
+        '201':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /subscriptions/{subscription_id}:
+    get:
+      operationId: getSubscription
+      summary: Get a subscription
+      description: Retrieve details of a specific subscription.
+      tags:
+        - Subscriptions
+      parameters:
+        - name: subscription_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteSubscription
+      summary: Delete a subscription
+      description: Delete a topic subscription.
+      tags:
+        - Subscriptions
+      parameters:
+        - name: subscription_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Subscription deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        Bearer token authentication. Obtain a token through the elastic.io
+        platform login or API key.
+  parameters:
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    WorkspaceFilter:
+      name: filter[workspace_id]
+      in: query
+      description: Filter by workspace ID
+      schema:
+        type: string
+    FlowId:
+      name: flow_id
+      in: path
+      required: true
+      description: The unique identifier of the flow
+      schema:
+        type: string
+    FlowDraftId:
+      name: flow_draft_id
+      in: path
+      required: true
+      description: The unique identifier of the flow draft
+      schema:
+        type: string
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      description: The unique identifier of the workspace
+      schema:
+        type: string
+    ContractId:
+      name: contract_id
+      in: path
+      required: true
+      description: The unique identifier of the contract
+      schema:
+        type: string
+    CredentialId:
+      name: credential_id
+      in: path
+      required: true
+      description: The unique identifier of the credential
+      schema:
+        type: string
+    ComponentId:
+      name: component_id
+      in: path
+      required: true
+      description: The unique identifier of the component
+      schema:
+        type: string
+    RecipeId:
+      name: recipe_id
+      in: path
+      required: true
+      description: The unique identifier of the recipe
+      schema:
+        type: string
+    UserId:
+      name: user_id
+      in: path
+      required: true
+      description: The unique identifier of the user
+      schema:
+        type: string
+    AuthClientId:
+      name: auth_client_id
+      in: path
+      required: true
+      description: The unique identifier of the auth client
+      schema:
+        type: string
+    TeamId:
+      name: team_id
+      in: path
+      required: true
+      description: The unique identifier of the team
+      schema:
+        type: string
+    TenantId:
+      name: tenant_id
+      in: path
+      required: true
+      description: The unique identifier of the tenant
+      schema:
+        type: string
+  schemas:
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    JsonApiLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    Flow:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - flow
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Name of the integration flow
+            status:
+              type: string
+              enum:
+                - active
+                - inactive
+              description: Current status of the flow
+            type:
+              type: string
+              enum:
+                - ordinary
+                - long_running
+              description: Type of the flow
+            graph:
+              type: object
+              description: Flow graph definition with nodes and edges
+              properties:
+                nodes:
+                  type: array
+                  items:
+                    type: object
+                edges:
+                  type: array
+                  items:
+                    type: object
+            cron:
+              type: string
+              description: Cron expression for scheduled execution
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            workspace:
+              $ref: '#/components/schemas/JsonApiRelationship'
+            user:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    FlowResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Flow'
+    FlowListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Flow'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    FlowCreateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+            - relationships
+          properties:
+            type:
+              type: string
+              enum:
+                - flow
+            attributes:
+              type: object
+              required:
+                - name
+                - type
+                - graph
+              properties:
+                name:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                    - ordinary
+                    - long_running
+                graph:
+                  type: object
+                cron:
+                  type: string
+            relationships:
+              type: object
+              required:
+                - workspace
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    FlowUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              enum:
+                - flow
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+                graph:
+                  type: object
+                cron:
+                  type: string
+    FlowDraft:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - flow-draft
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            graph:
+              type: object
+            cron:
+              type: string
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            workspace:
+              $ref: '#/components/schemas/JsonApiRelationship'
+            flow:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    FlowDraftResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/FlowDraft'
+    FlowDraftListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlowDraft'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    FlowDraftCreateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum:
+                - flow-draft
+            attributes:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                graph:
+                  type: object
+                cron:
+                  type: string
+            relationships:
+              type: object
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+                flow:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    FlowDraftUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              enum:
+                - flow-draft
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+                graph:
+                  type: object
+                cron:
+                  type: string
+    FlowVersionResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+                - flow-version
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+                graph:
+                  type: object
+                created_at:
+                  type: string
+                  format: date-time
+    Workspace:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - workspace
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            type:
+              type: string
+              enum:
+                - full
+                - limited
+            flow_count:
+              type: integer
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            contract:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    WorkspaceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Workspace'
+    WorkspaceListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Workspace'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    WorkspaceCreateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+            - relationships
+          properties:
+            type:
+              type: string
+              enum:
+                - workspace
+            attributes:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                    - full
+                    - limited
+            relationships:
+              type: object
+              required:
+                - contract
+              properties:
+                contract:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    WorkspaceUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              enum:
+                - workspace
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+    Contract:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - contract
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            available_roles:
+              type: array
+              items:
+                type: object
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            members:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      type:
+                        type: string
+    ContractResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Contract'
+    ContractListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contract'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    ContractUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              enum:
+                - contract
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+    Credential:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - credential
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            keys:
+              type: object
+              description: Credential key-value pairs for authentication
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            workspace:
+              $ref: '#/components/schemas/JsonApiRelationship'
+            component:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    CredentialResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Credential'
+    CredentialListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Credential'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    CredentialCreateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+            - relationships
+          properties:
+            type:
+              type: string
+              enum:
+                - credential
+            attributes:
+              type: object
+              required:
+                - name
+                - keys
+              properties:
+                name:
+                  type: string
+                keys:
+                  type: object
+            relationships:
+              type: object
+              required:
+                - workspace
+                - component
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+                component:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    CredentialUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              enum:
+                - credential
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+                keys:
+                  type: object
+    Component:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - component
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            title:
+              type: string
+            description:
+              type: string
+            icon:
+              type: string
+            triggers:
+              type: object
+              description: Available trigger operations
+            actions:
+              type: object
+              description: Available action operations
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            team:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    ComponentResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Component'
+    ComponentListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Component'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    ComponentUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              enum:
+                - component
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+                title:
+                  type: string
+                description:
+                  type: string
+    Recipe:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - recipe
+        attributes:
+          type: object
+          properties:
+            title:
+              type: string
+            description:
+              type: string
+            visibility:
+              type: string
+              enum:
+                - workspace
+                - contract
+                - tenant
+                - global
+            graph:
+              type: object
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            workspace:
+              $ref: '#/components/schemas/JsonApiRelationship'
+            contract:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    RecipeResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Recipe'
+    RecipeListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipe'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    RecipeCreateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum:
+                - recipe
+            attributes:
+              type: object
+              required:
+                - title
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                graph:
+                  type: object
+            relationships:
+              type: object
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+                contract:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    RecipeUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              enum:
+                - recipe
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                graph:
+                  type: object
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - user
+        attributes:
+          type: object
+          properties:
+            first_name:
+              type: string
+            last_name:
+              type: string
+            email:
+              type: string
+              format: email
+            registered:
+              type: string
+              format: date-time
+            last_login:
+              type: string
+              format: date-time
+    UserResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/User'
+    UserUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              enum:
+                - user
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+    AuthClient:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - auth-client
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            client_id:
+              type: string
+            client_secret:
+              type: string
+            auth_uri:
+              type: string
+              format: uri
+            token_uri:
+              type: string
+              format: uri
+            scopes:
+              type: array
+              items:
+                type: string
+            access_level:
+              type: string
+              enum:
+                - workspace
+                - contract
+                - tenant
+                - global
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            workspace:
+              $ref: '#/components/schemas/JsonApiRelationship'
+            component:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    AuthClientResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AuthClient'
+    AuthClientListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthClient'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    AuthClientCreateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum:
+                - auth-client
+            attributes:
+              type: object
+              required:
+                - name
+                - client_id
+                - client_secret
+              properties:
+                name:
+                  type: string
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+                auth_uri:
+                  type: string
+                  format: uri
+                token_uri:
+                  type: string
+                  format: uri
+                scopes:
+                  type: array
+                  items:
+                    type: string
+            relationships:
+              type: object
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+                component:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    AuthClientUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              enum:
+                - auth-client
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+                auth_uri:
+                  type: string
+                  format: uri
+                token_uri:
+                  type: string
+                  format: uri
+                scopes:
+                  type: array
+                  items:
+                    type: string
+    AuthSecret:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - auth-secret
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            state:
+              type: string
+            credentials:
+              type: object
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            workspace:
+              $ref: '#/components/schemas/JsonApiRelationship'
+            auth_client:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    AuthSecretResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AuthSecret'
+    AuthSecretListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthSecret'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    AuthSecretCreateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum:
+                - auth-secret
+            attributes:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                credentials:
+                  type: object
+            relationships:
+              type: object
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+                auth_client:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    AuthSecretUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              enum:
+                - auth-secret
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+                credentials:
+                  type: object
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - team
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            contract:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    TeamResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Team'
+    TeamListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Team'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    TeamCreateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum:
+                - team
+            attributes:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+            relationships:
+              type: object
+              required:
+                - contract
+              properties:
+                contract:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    Agent:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - agent
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            status:
+              type: string
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            workspace:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    AgentResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Agent'
+    AgentListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Agent'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    AgentCreateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum:
+                - agent
+            attributes:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+            relationships:
+              type: object
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    ExecutionResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+                - execution
+            attributes:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum:
+                    - pending
+                    - in_progress
+                    - completed
+                    - failed
+                started_at:
+                  type: string
+                  format: date-time
+                finished_at:
+                  type: string
+                  format: date-time
+            relationships:
+              type: object
+              properties:
+                flow:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    MemberResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+                - member
+            attributes:
+              type: object
+              properties:
+                roles:
+                  type: array
+                  items:
+                    type: string
+            relationships:
+              type: object
+              properties:
+                user:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    MemberListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              attributes:
+                type: object
+                properties:
+                  roles:
+                    type: array
+                    items:
+                      type: string
+              relationships:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/JsonApiRelationship'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+    MemberCreateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              enum:
+                - member
+            id:
+              type: string
+              description: The user ID to add as member
+            attributes:
+              type: object
+              properties:
+                roles:
+                  type: array
+                  items:
+                    type: string
+    LogListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+                enum:
+                  - log
+              attributes:
+                type: object
+                properties:
+                  level:
+                    type: string
+                  message:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    DataSample:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - data-sample
+        attributes:
+          type: object
+          properties:
+            data:
+              type: object
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            workspace:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    DataSampleResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DataSample'
+    DataSampleListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSample'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    DataSampleCreateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum:
+                - data-sample
+            attributes:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object
+            relationships:
+              type: object
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    DataSampleUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              enum:
+                - data-sample
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                data:
+                  type: object
+    RoleResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+                - role
+            attributes:
+              type: object
+              properties:
+                role:
+                  type: string
+                scope:
+                  type: string
+                  enum:
+                    - contracts
+                    - workspaces
+                permissions:
+                  type: object
+    RoleListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              attributes:
+                type: object
+                properties:
+                  role:
+                    type: string
+                  scope:
+                    type: string
+                  permissions:
+                    type: object
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+    RoleCreateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum:
+                - role
+            attributes:
+              type: object
+              required:
+                - role
+                - scope
+                - permissions
+              properties:
+                role:
+                  type: string
+                scope:
+                  type: string
+                  enum:
+                    - contracts
+                    - workspaces
+                permissions:
+                  type: object
+    RoleUpdateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - id
+          properties:
+            type:
+              type: string
+              enum:
+                - role
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                permissions:
+                  type: object
+    SshKeyResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+                - sshkey
+            attributes:
+              type: object
+              properties:
+                key:
+                  type: string
+                fingerprint:
+                  type: string
+                title:
+                  type: string
+                created_at:
+                  type: string
+                  format: date-time
+    SshKeyListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              attributes:
+                type: object
+                properties:
+                  key:
+                    type: string
+                  fingerprint:
+                    type: string
+                  title:
+                    type: string
+    SshKeyCreateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum:
+                - sshkey
+            attributes:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: The public SSH key content
+                title:
+                  type: string
+    QuotaUsageResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+                - quota-usage
+            attributes:
+              type: object
+              properties:
+                memory:
+                  type: object
+                  properties:
+                    used:
+                      type: integer
+                    limit:
+                      type: integer
+                cpu:
+                  type: object
+                  properties:
+                    used:
+                      type: integer
+                    limit:
+                      type: integer
+    SnapshotListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+                enum:
+                  - snapshot
+              attributes:
+                type: object
+                properties:
+                  step_id:
+                    type: string
+                  data:
+                    type: object
+                  created_at:
+                    type: string
+                    format: date-time
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    TopicResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+                - topic
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+                schema:
+                  type: object
+                created_at:
+                  type: string
+                  format: date-time
+            relationships:
+              type: object
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    TopicListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              attributes:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  schema:
+                    type: object
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    TopicCreateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type:
+              type: string
+              enum:
+                - topic
+            attributes:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                schema:
+                  type: object
+            relationships:
+              type: object
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    SubscriptionResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+                - subscription
+            attributes:
+              type: object
+              properties:
+                created_at:
+                  type: string
+                  format: date-time
+            relationships:
+              type: object
+              properties:
+                topic:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+                flow:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    SubscriptionListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              attributes:
+                type: object
+              relationships:
+                type: object
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    SubscriptionCreateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - relationships
+          properties:
+            type:
+              type: string
+              enum:
+                - subscription
+            relationships:
+              type: object
+              required:
+                - topic
+                - flow
+              properties:
+                topic:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+                flow:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: Resource conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

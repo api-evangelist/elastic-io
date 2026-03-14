@@ -16,6 +16,9 @@ apis:
         name: elastic.io
         type: Documentation
         description: 'null'
+      - url: openapi/elastic-io-platform-api-openapi.yml
+        name: elastic.io Platform REST API OpenAPI
+        type: OpenAPI
     description: >-
       elastic.io iPaaS platform gives you the tools for integration
       visualisation, intuitive data mapping and easy troubleshooting, so that
@@ -455,7 +458,7 @@ common:
     type: SDKs
     description: 'null'
 created: '2025-06-06'
-modified: '2026-01-02'
+modified: '2026-03-14'
 position: Consuming
 description: >-
   Elastic IO is a cloud-based integration platform that helps businesses
