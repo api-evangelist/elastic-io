@@ -473,8 +473,8 @@ common:
     type: SDKs
     description: 'null'
 created: '2025-06-06'
-modified: '2026-03-14'
-position: Consuming
+modified: '2026-03-16'
+position: Consumer
 description: >-
   Elastic IO is a cloud-based integration platform that helps businesses
   effortlessly connect their various applications, systems, and services. By
@@ -487,5 +487,5 @@ description: >-
   looking to modernize their IT infrastructure and drive digital transformation.
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
 specificationVersion: '0.19'
