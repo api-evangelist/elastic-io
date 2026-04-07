@@ -21,54 +21,50 @@ servers:
 security:
   - bearerAuth: []
 tags:
-  - name: Flows
-    description: Manage integration flows
-  - name: Flow Drafts
-    description: Manage flow drafts before publishing
-  - name: Flow Versions
-    description: Manage flow version history
-  - name: Workspaces
-    description: Manage workspaces within contracts
-  - name: Contracts
-    description: Manage contracts (tenants)
-  - name: Credentials
-    description: Manage authentication credentials for components
-  - name: Components
-    description: Manage integration components
-  - name: Recipes
-    description: Manage reusable integration recipes
-  - name: Users
-    description: Manage platform users
+  - name: Agents
+    description: Manage on-premises integration agents
   - name: Auth Clients
     description: Manage OAuth authentication clients
   - name: Auth Secrets
     description: Manage authentication secrets
-  - name: Teams
-    description: Manage developer teams
-  - name: Agents
-    description: Manage on-premises integration agents
-  - name: Executions
-    description: Manage flow executions and logs
+  - name: Components
+    description: Manage integration components
+  - name: Contracts
+    description: Manage contracts (tenants)
+  - name: Credentials
+    description: Manage authentication credentials for components
   - name: Data Samples
     description: Manage data samples for component steps
+  - name: Executions
+    description: Manage flow executions and logs
+  - name: Flow Drafts
+    description: Manage flow drafts before publishing
+  - name: Flow Versions
+    description: Manage flow version history
+  - name: Flows
+    description: Manage integration flows
   - name: Logs
     description: Access execution and platform logs
-  - name: Roles
-    description: Manage user roles and permissions
-  - name: SSH Keys
-    description: Manage SSH keys for component repositories
   - name: Quota Usages
     description: View quota usage statistics
+  - name: Recipes
+    description: Manage reusable integration recipes
+  - name: Roles
+    description: Manage user roles and permissions
   - name: Snapshots
     description: Manage flow step snapshots
-  - name: Storage
-    description: Manage platform storage objects
-  - name: Topics
-    description: Manage pub/sub topics
+  - name: SSH Keys
+    description: Manage SSH keys for component repositories
   - name: Subscriptions
     description: Manage topic subscriptions
-  - name: Tenants
-    description: Manage tenant-level settings
+  - name: Teams
+    description: Manage developer teams
+  - name: Topics
+    description: Manage pub/sub topics
+  - name: Users
+    description: Manage platform users
+  - name: Workspaces
+    description: Manage workspaces within contracts
 paths:
   /flows:
     get:
