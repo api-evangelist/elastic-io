@@ -3,7 +3,7 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/elastic-io/refs/heads/main/apis.yml
 apis:
   - aid: elastic-io:elastic-io
-    name: elastic.io
+    name: Elastic.io
     tags:
       - Integrations
       - iPaaS
@@ -39,7 +39,7 @@ apis:
       visualisation, intuitive data mapping and easy troubleshooting, so that
       you can generate more value from your data with less distraction from your
       core business.
-name: elastic.io
+name: Elastic.io
 tags:
   - Integrations
   - iPaaS
@@ -476,15 +476,10 @@ created: '2025-06-06'
 modified: '2026-03-16'
 position: Consumer
 description: >-
-  Elastic IO is a cloud-based integration platform that helps businesses
-  effortlessly connect their various applications, systems, and services. By
-  providing a user-friendly interface and a wide range of pre-built connectors,
-  elastic.io allows organizations to automate and streamline their data
-  integration processes. With features such as data mapping, transformation, and
-  scheduling, Elastic.io enables users to easily design and deploy complex
-  workflows that can help them improve productivity, efficiency, and
-  decision-making. Overall, Elastic.io serves as a powerful tool for companies
-  looking to modernize their IT infrastructure and drive digital transformation.
+  Elastic IO is a cloud-based integration platform that helps businesses effortlessly
+  connect their various applications, systems, and services. By providing a user-friendly
+  interface and a wide range of pre-built connectors, elastic.io allows organizations
+  to automate and streamline their data integration processes.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

@@ -73,7 +73,7 @@ paths:
   /flows:
     get:
       operationId: listFlows
-      summary: List flows
+      summary: Elastic.io List flows
       description: Retrieve a list of integration flows accessible to the user.
       tags:
         - Flows
@@ -92,7 +92,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createFlow
-      summary: Create a flow
+      summary: Elastic.io Create a flow
       description: Create a new integration flow in a workspace.
       tags:
         - Flows
@@ -116,7 +116,7 @@ paths:
   /flows/{flow_id}:
     get:
       operationId: getFlow
-      summary: Get a flow
+      summary: Elastic.io Get a flow
       description: Retrieve details of a specific integration flow.
       tags:
         - Flows
@@ -135,7 +135,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateFlow
-      summary: Update a flow
+      summary: Elastic.io Update a flow
       description: Update an existing integration flow.
       tags:
         - Flows
@@ -160,7 +160,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteFlow
-      summary: Delete a flow
+      summary: Elastic.io Delete a flow
       description: Delete an integration flow.
       tags:
         - Flows
@@ -176,7 +176,7 @@ paths:
   /flows/{flow_id}/start:
     post:
       operationId: startFlow
-      summary: Start a flow
+      summary: Elastic.io Start a flow
       description: Start an integration flow to begin processing data.
       tags:
         - Flows
@@ -196,7 +196,7 @@ paths:
   /flows/{flow_id}/stop:
     post:
       operationId: stopFlow
-      summary: Stop a flow
+      summary: Elastic.io Stop a flow
       description: Stop a running integration flow.
       tags:
         - Flows
@@ -216,7 +216,7 @@ paths:
   /flows/{flow_id}/run-now:
     post:
       operationId: runFlowNow
-      summary: Run a flow on demand
+      summary: Elastic.io Run a flow on demand
       description: Trigger an on-demand execution of an integration flow.
       tags:
         - Flows
@@ -236,7 +236,7 @@ paths:
   /flow-drafts:
     get:
       operationId: listFlowDrafts
-      summary: List flow drafts
+      summary: Elastic.io List flow drafts
       description: Retrieve a list of flow drafts.
       tags:
         - Flow Drafts
@@ -255,7 +255,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createFlowDraft
-      summary: Create a flow draft
+      summary: Elastic.io Create a flow draft
       description: Create a new flow draft for editing before publishing.
       tags:
         - Flow Drafts
@@ -277,7 +277,7 @@ paths:
   /flow-drafts/{flow_draft_id}:
     get:
       operationId: getFlowDraft
-      summary: Get a flow draft
+      summary: Elastic.io Get a flow draft
       description: Retrieve details of a specific flow draft.
       tags:
         - Flow Drafts
@@ -296,7 +296,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateFlowDraft
-      summary: Update a flow draft
+      summary: Elastic.io Update a flow draft
       description: Update an existing flow draft.
       tags:
         - Flow Drafts
@@ -321,7 +321,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteFlowDraft
-      summary: Delete a flow draft
+      summary: Elastic.io Delete a flow draft
       description: Delete a flow draft.
       tags:
         - Flow Drafts
@@ -337,7 +337,7 @@ paths:
   /flow-versions/{flow_version_id}:
     get:
       operationId: getFlowVersion
-      summary: Get a flow version
+      summary: Elastic.io Get a flow version
       description: Retrieve a specific version of a flow.
       tags:
         - Flow Versions
@@ -361,7 +361,7 @@ paths:
   /workspaces:
     get:
       operationId: listWorkspaces
-      summary: List workspaces
+      summary: Elastic.io List workspaces
       description: Retrieve a list of workspaces accessible to the user.
       tags:
         - Workspaces
@@ -384,7 +384,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createWorkspace
-      summary: Create a workspace
+      summary: Elastic.io Create a workspace
       description: Create a new workspace within a contract.
       tags:
         - Workspaces
@@ -406,7 +406,7 @@ paths:
   /workspaces/{workspace_id}:
     get:
       operationId: getWorkspace
-      summary: Get a workspace
+      summary: Elastic.io Get a workspace
       description: Retrieve details of a specific workspace.
       tags:
         - Workspaces
@@ -425,7 +425,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateWorkspace
-      summary: Update a workspace
+      summary: Elastic.io Update a workspace
       description: Update an existing workspace.
       tags:
         - Workspaces
@@ -450,7 +450,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteWorkspace
-      summary: Delete a workspace
+      summary: Elastic.io Delete a workspace
       description: Delete a workspace.
       tags:
         - Workspaces
@@ -466,7 +466,7 @@ paths:
   /workspaces/{workspace_id}/members:
     get:
       operationId: listWorkspaceMembers
-      summary: List workspace members
+      summary: Elastic.io List workspace members
       description: Retrieve the list of members in a workspace.
       tags:
         - Workspaces
@@ -483,7 +483,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: addWorkspaceMember
-      summary: Add a workspace member
+      summary: Elastic.io Add a workspace member
       description: Add a user as a member of a workspace.
       tags:
         - Workspaces
@@ -507,7 +507,7 @@ paths:
   /workspaces/{workspace_id}/members/{user_id}:
     delete:
       operationId: removeWorkspaceMember
-      summary: Remove a workspace member
+      summary: Elastic.io Remove a workspace member
       description: Remove a member from a workspace.
       tags:
         - Workspaces
@@ -524,7 +524,7 @@ paths:
   /contracts:
     get:
       operationId: listContracts
-      summary: List contracts
+      summary: Elastic.io List contracts
       description: Retrieve a list of contracts accessible to the user.
       tags:
         - Contracts
@@ -543,7 +543,7 @@ paths:
   /contracts/{contract_id}:
     get:
       operationId: getContract
-      summary: Get a contract
+      summary: Elastic.io Get a contract
       description: Retrieve details of a specific contract.
       tags:
         - Contracts
@@ -562,7 +562,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateContract
-      summary: Update a contract
+      summary: Elastic.io Update a contract
       description: Update contract settings and attributes.
       tags:
         - Contracts
@@ -588,7 +588,7 @@ paths:
   /contracts/{contract_id}/members:
     get:
       operationId: listContractMembers
-      summary: List contract members
+      summary: Elastic.io List contract members
       description: Retrieve the list of members in a contract.
       tags:
         - Contracts
@@ -605,7 +605,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: addContractMember
-      summary: Add a contract member
+      summary: Elastic.io Add a contract member
       description: Add a user as a member of a contract.
       tags:
         - Contracts
@@ -629,7 +629,7 @@ paths:
   /credentials:
     get:
       operationId: listCredentials
-      summary: List credentials
+      summary: Elastic.io List credentials
       description: Retrieve a list of credentials for the current workspace.
       tags:
         - Credentials
@@ -648,7 +648,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createCredential
-      summary: Create a credential
+      summary: Elastic.io Create a credential
       description: Create a new credential for authenticating with external services.
       tags:
         - Credentials
@@ -670,7 +670,7 @@ paths:
   /credentials/{credential_id}:
     get:
       operationId: getCredential
-      summary: Get a credential
+      summary: Elastic.io Get a credential
       description: Retrieve details of a specific credential.
       tags:
         - Credentials
@@ -689,7 +689,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateCredential
-      summary: Update a credential
+      summary: Elastic.io Update a credential
       description: Update an existing credential.
       tags:
         - Credentials
@@ -714,7 +714,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteCredential
-      summary: Delete a credential
+      summary: Elastic.io Delete a credential
       description: Delete a credential.
       tags:
         - Credentials
@@ -730,7 +730,7 @@ paths:
   /components:
     get:
       operationId: listComponents
-      summary: List components
+      summary: Elastic.io List components
       description: Retrieve a list of available integration components.
       tags:
         - Components
@@ -754,7 +754,7 @@ paths:
   /components/{component_id}:
     get:
       operationId: getComponent
-      summary: Get a component
+      summary: Elastic.io Get a component
       description: Retrieve details of a specific component.
       tags:
         - Components
@@ -773,7 +773,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateComponent
-      summary: Update a component
+      summary: Elastic.io Update a component
       description: Update component metadata.
       tags:
         - Components
@@ -798,7 +798,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteComponent
-      summary: Delete a component
+      summary: Elastic.io Delete a component
       description: Delete a component.
       tags:
         - Components
@@ -814,7 +814,7 @@ paths:
   /recipes:
     get:
       operationId: listRecipes
-      summary: List recipes
+      summary: Elastic.io List recipes
       description: Retrieve a list of available integration recipes.
       tags:
         - Recipes
@@ -837,7 +837,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createRecipe
-      summary: Create a recipe
+      summary: Elastic.io Create a recipe
       description: Create a new integration recipe.
       tags:
         - Recipes
@@ -859,7 +859,7 @@ paths:
   /recipes/{recipe_id}:
     get:
       operationId: getRecipe
-      summary: Get a recipe
+      summary: Elastic.io Get a recipe
       description: Retrieve details of a specific recipe.
       tags:
         - Recipes
@@ -878,7 +878,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateRecipe
-      summary: Update a recipe
+      summary: Elastic.io Update a recipe
       description: Update an existing recipe.
       tags:
         - Recipes
@@ -903,7 +903,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteRecipe
-      summary: Delete a recipe
+      summary: Elastic.io Delete a recipe
       description: Delete a recipe.
       tags:
         - Recipes
@@ -919,7 +919,7 @@ paths:
   /recipes/{recipe_id}/visibility:
     patch:
       operationId: updateRecipeVisibility
-      summary: Update recipe visibility
+      summary: Elastic.io Update recipe visibility
       description: Update the visibility settings of a recipe.
       tags:
         - Recipes
@@ -956,7 +956,7 @@ paths:
   /users/me:
     get:
       operationId: getCurrentUser
-      summary: Get current user
+      summary: Elastic.io Get current user
       description: Retrieve the profile of the currently authenticated user.
       tags:
         - Users
@@ -971,7 +971,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     patch:
       operationId: updateCurrentUser
-      summary: Update current user
+      summary: Elastic.io Update current user
       description: Update the profile of the currently authenticated user.
       tags:
         - Users
@@ -993,7 +993,7 @@ paths:
   /users/{user_id}:
     get:
       operationId: getUser
-      summary: Get a user
+      summary: Elastic.io Get a user
       description: Retrieve the profile of a specific user.
       tags:
         - Users
@@ -1013,7 +1013,7 @@ paths:
   /auth-clients:
     get:
       operationId: listAuthClients
-      summary: List auth clients
+      summary: Elastic.io List auth clients
       description: Retrieve a list of OAuth authentication clients.
       tags:
         - Auth Clients
@@ -1031,7 +1031,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createAuthClient
-      summary: Create an auth client
+      summary: Elastic.io Create an auth client
       description: Create a new OAuth authentication client.
       tags:
         - Auth Clients
@@ -1053,7 +1053,7 @@ paths:
   /auth-clients/{auth_client_id}:
     get:
       operationId: getAuthClient
-      summary: Get an auth client
+      summary: Elastic.io Get an auth client
       description: Retrieve details of a specific auth client.
       tags:
         - Auth Clients
@@ -1072,7 +1072,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateAuthClient
-      summary: Update an auth client
+      summary: Elastic.io Update an auth client
       description: Update an existing auth client.
       tags:
         - Auth Clients
@@ -1097,7 +1097,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteAuthClient
-      summary: Delete an auth client
+      summary: Elastic.io Delete an auth client
       description: Delete an auth client.
       tags:
         - Auth Clients
@@ -1113,7 +1113,7 @@ paths:
   /auth-secrets:
     get:
       operationId: listAuthSecrets
-      summary: List auth secrets
+      summary: Elastic.io List auth secrets
       description: Retrieve a list of authentication secrets.
       tags:
         - Auth Secrets
@@ -1132,7 +1132,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createAuthSecret
-      summary: Create an auth secret
+      summary: Elastic.io Create an auth secret
       description: Create a new authentication secret.
       tags:
         - Auth Secrets
@@ -1154,7 +1154,7 @@ paths:
   /auth-secrets/{auth_secret_id}:
     get:
       operationId: getAuthSecret
-      summary: Get an auth secret
+      summary: Elastic.io Get an auth secret
       description: Retrieve details of a specific auth secret.
       tags:
         - Auth Secrets
@@ -1177,7 +1177,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateAuthSecret
-      summary: Update an auth secret
+      summary: Elastic.io Update an auth secret
       description: Update an existing auth secret.
       tags:
         - Auth Secrets
@@ -1206,7 +1206,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteAuthSecret
-      summary: Delete an auth secret
+      summary: Elastic.io Delete an auth secret
       description: Delete an auth secret.
       tags:
         - Auth Secrets
@@ -1226,7 +1226,7 @@ paths:
   /teams:
     get:
       operationId: listTeams
-      summary: List teams
+      summary: Elastic.io List teams
       description: Retrieve a list of developer teams.
       tags:
         - Teams
@@ -1249,7 +1249,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createTeam
-      summary: Create a team
+      summary: Elastic.io Create a team
       description: Create a new developer team.
       tags:
         - Teams
@@ -1271,7 +1271,7 @@ paths:
   /teams/{team_id}:
     get:
       operationId: getTeam
-      summary: Get a team
+      summary: Elastic.io Get a team
       description: Retrieve details of a specific developer team.
       tags:
         - Teams
@@ -1290,7 +1290,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteTeam
-      summary: Delete a team
+      summary: Elastic.io Delete a team
       description: Delete a developer team.
       tags:
         - Teams
@@ -1306,7 +1306,7 @@ paths:
   /agents:
     get:
       operationId: listAgents
-      summary: List agents
+      summary: Elastic.io List agents
       description: Retrieve a list of on-premises integration agents.
       tags:
         - Agents
@@ -1325,7 +1325,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createAgent
-      summary: Create an agent
+      summary: Elastic.io Create an agent
       description: Create a new on-premises integration agent.
       tags:
         - Agents
@@ -1347,7 +1347,7 @@ paths:
   /agents/{agent_id}:
     get:
       operationId: getAgent
-      summary: Get an agent
+      summary: Elastic.io Get an agent
       description: Retrieve details of a specific agent.
       tags:
         - Agents
@@ -1370,7 +1370,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteAgent
-      summary: Delete an agent
+      summary: Elastic.io Delete an agent
       description: Delete an on-premises integration agent.
       tags:
         - Agents
@@ -1390,7 +1390,7 @@ paths:
   /exec/poll/{execution_id}:
     get:
       operationId: pollExecution
-      summary: Poll execution status
+      summary: Elastic.io Poll execution status
       description: Check the status of a flow execution by polling.
       tags:
         - Executions
@@ -1414,7 +1414,7 @@ paths:
   /logs:
     get:
       operationId: listLogs
-      summary: List execution logs
+      summary: Elastic.io List execution logs
       description: Retrieve execution logs for flows.
       tags:
         - Logs
@@ -1451,7 +1451,7 @@ paths:
   /data-samples:
     get:
       operationId: listDataSamples
-      summary: List data samples
+      summary: Elastic.io List data samples
       description: Retrieve a list of data samples.
       tags:
         - Data Samples
@@ -1470,7 +1470,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createDataSample
-      summary: Create a data sample
+      summary: Elastic.io Create a data sample
       description: Create a new data sample for a component step.
       tags:
         - Data Samples
@@ -1492,7 +1492,7 @@ paths:
   /data-samples/{data_sample_id}:
     get:
       operationId: getDataSample
-      summary: Get a data sample
+      summary: Elastic.io Get a data sample
       description: Retrieve details of a specific data sample.
       tags:
         - Data Samples
@@ -1515,7 +1515,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateDataSample
-      summary: Update a data sample
+      summary: Elastic.io Update a data sample
       description: Update an existing data sample.
       tags:
         - Data Samples
@@ -1544,7 +1544,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteDataSample
-      summary: Delete a data sample
+      summary: Elastic.io Delete a data sample
       description: Delete a data sample.
       tags:
         - Data Samples
@@ -1564,7 +1564,7 @@ paths:
   /tenants/{tenant_id}/roles:
     get:
       operationId: listRoles
-      summary: List roles
+      summary: Elastic.io List roles
       description: Retrieve a list of user roles and permissions for a tenant.
       tags:
         - Roles
@@ -1581,7 +1581,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createRole
-      summary: Create a role
+      summary: Elastic.io Create a role
       description: Create a new user role with specific permissions.
       tags:
         - Roles
@@ -1605,7 +1605,7 @@ paths:
   /tenants/{tenant_id}/roles/{role_id}:
     get:
       operationId: getRole
-      summary: Get a role
+      summary: Elastic.io Get a role
       description: Retrieve details of a specific role.
       tags:
         - Roles
@@ -1629,7 +1629,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateRole
-      summary: Update a role
+      summary: Elastic.io Update a role
       description: Update an existing role.
       tags:
         - Roles
@@ -1659,7 +1659,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteRole
-      summary: Delete a role
+      summary: Elastic.io Delete a role
       description: Delete a user role.
       tags:
         - Roles
@@ -1680,7 +1680,7 @@ paths:
   /sshkeys:
     get:
       operationId: listSshKeys
-      summary: List SSH keys
+      summary: Elastic.io List SSH keys
       description: Retrieve a list of SSH keys for the current user.
       tags:
         - SSH Keys
@@ -1695,7 +1695,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createSshKey
-      summary: Create an SSH key
+      summary: Elastic.io Create an SSH key
       description: Upload a new SSH key for component repository access.
       tags:
         - SSH Keys
@@ -1717,7 +1717,7 @@ paths:
   /sshkeys/{sshkey_id}:
     delete:
       operationId: deleteSshKey
-      summary: Delete an SSH key
+      summary: Elastic.io Delete an SSH key
       description: Delete an SSH key.
       tags:
         - SSH Keys
@@ -1737,7 +1737,7 @@ paths:
   /quota-usages/workspaces/{workspace_id}:
     get:
       operationId: getWorkspaceQuotaUsage
-      summary: Get workspace quota usage
+      summary: Elastic.io Get workspace quota usage
       description: Retrieve quota usage statistics for a workspace.
       tags:
         - Quota Usages
@@ -1757,7 +1757,7 @@ paths:
   /quota-usages/contracts/{contract_id}:
     get:
       operationId: getContractQuotaUsage
-      summary: Get contract quota usage
+      summary: Elastic.io Get contract quota usage
       description: Retrieve quota usage statistics for all workspaces in a contract.
       tags:
         - Quota Usages
@@ -1777,7 +1777,7 @@ paths:
   /snapshots:
     get:
       operationId: listSnapshots
-      summary: List snapshots
+      summary: Elastic.io List snapshots
       description: Retrieve a list of flow step snapshots.
       tags:
         - Snapshots
@@ -1801,7 +1801,7 @@ paths:
   /topics:
     get:
       operationId: listTopics
-      summary: List topics
+      summary: Elastic.io List topics
       description: Retrieve a list of pub/sub topics.
       tags:
         - Topics
@@ -1820,7 +1820,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createTopic
-      summary: Create a topic
+      summary: Elastic.io Create a topic
       description: Create a new pub/sub topic.
       tags:
         - Topics
@@ -1842,7 +1842,7 @@ paths:
   /topics/{topic_id}:
     get:
       operationId: getTopic
-      summary: Get a topic
+      summary: Elastic.io Get a topic
       description: Retrieve details of a specific topic.
       tags:
         - Topics
@@ -1865,7 +1865,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteTopic
-      summary: Delete a topic
+      summary: Elastic.io Delete a topic
       description: Delete a pub/sub topic.
       tags:
         - Topics
@@ -1885,7 +1885,7 @@ paths:
   /subscriptions:
     get:
       operationId: listSubscriptions
-      summary: List subscriptions
+      summary: Elastic.io List subscriptions
       description: Retrieve a list of topic subscriptions.
       tags:
         - Subscriptions
@@ -1904,7 +1904,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createSubscription
-      summary: Create a subscription
+      summary: Elastic.io Create a subscription
       description: Create a new topic subscription.
       tags:
         - Subscriptions
@@ -1926,7 +1926,7 @@ paths:
   /subscriptions/{subscription_id}:
     get:
       operationId: getSubscription
-      summary: Get a subscription
+      summary: Elastic.io Get a subscription
       description: Retrieve details of a specific subscription.
       tags:
         - Subscriptions
@@ -1949,7 +1949,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteSubscription
-      summary: Delete a subscription
+      summary: Elastic.io Delete a subscription
       description: Delete a topic subscription.
       tags:
         - Subscriptions
