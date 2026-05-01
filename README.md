@@ -1,44 +1,47 @@
 # elastic.io (elastic-io)
-elastic.io iPaaS platform gives you the tools for integration visualisation, intuitive data mapping and easy troubleshooting, so that you can generate more value from your data with less distraction from your core business. 
+
+elastic.io is a low-code integration platform-as-a-service (iPaaS) that connects disparate software cloud-to-cloud and cloud-to-ground. The platform provides tools for integration visualization, intuitive data mapping and easy troubleshooting, helping organizations generate more value from their data with less distraction from their core business.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/elastic-io/refs/heads/main/apis.yml)
 
 ## Scope
 
-- **Type:** Index 
-- **Position:** Consumer 
-- **Access:** 3rd-Party 
+- **Type:** Contract
+- **Position:** Consumer
+- **Access:** 3rd-Party
 
-## Tags:
+## Tags
 
- - Integrations, iPaaS, SaaS Integration
+- Integrations, iPaaS, SaaS Integration
 
 ## Timestamps
 
-- **Created:** 2025-06-06 
-- **Modified:** 2025-06-09 
+- **Created:** 2025-06-06
+- **Modified:** 2026-04-28
 
 ## APIs
 
 ### elastic.io
-elastic.io iPaaS platform gives you the tools for integration visualisation, intuitive data mapping and easy troubleshooting, so that you can generate more value from your data with less distraction from your core business. 
 
-**Human URL:** [ https://www.elastic.io/]( https://www.elastic.io/)
+elastic.io iPaaS platform gives you the tools for integration visualisation, intuitive data mapping and easy troubleshooting, so that you can generate more value from your data with less distraction from your core business.
 
-
-#### Tags:
-
- - API
+**Human URL:** [https://www.elastic.io/](https://www.elastic.io/)
 
 #### Properties
 
-- [Documentation]( https://www.elastic.io/)
+- [Documentation](https://www.elastic.io/)
 - [Documentation](https://api.elastic.io/docs/v2/)
+- [OpenAPI](openapi/elastic-io-platform-api-openapi.yml)
+- [AsyncAPI](asyncapi/elastic-io-platform-events-asyncapi.yml)
+- [JSONSchema - Flow](json-schema/elastic-io-flow.json)
+- [JSONSchema - Workspace](json-schema/elastic-io-workspace.json)
+- [JSONSchema - Contract](json-schema/elastic-io-contract.json)
+- [JSONLD](json-ld/elastic-io-context.jsonld)
 
 ## Common Properties
 
-- [Features](undefined)
-- [UseCases](undefined)
+- [Features](#features)
+- [UseCases](#use-cases)
 - [Integrations](https://www.elastic.io/enterprise-integration-platform/)
 - [Website](https://www.elastic.io/)
 - [Pricing](https://www.elastic.io/plans/)
@@ -61,5 +64,4 @@ elastic.io iPaaS platform gives you the tools for integration visualisation, int
 
 **FN:** Kin Lane
 
-**Email:** info@apievangelist.com
-
+**Email:** kin@apievangelist.com
