@@ -1,0 +1,1911 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: elastic.io Platform REST API
+  description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows
+    you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources.
+    The API follows the JSON:API specification and uses Bearer token authentication.
+  tags:
+  - Elastic
+  - Io
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: elastic-io
+    baseUri: https://api.elastic.io/v2
+    description: elastic.io Platform REST API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{ELASTIC_IO_TOKEN}}'
+    resources:
+    - name: flows
+      path: /flows
+      operations:
+      - name: listflows
+        method: GET
+        description: Elastic.io List flows
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createflow
+        method: POST
+        description: Elastic.io Create a flow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: flows-flow-id
+      path: /flows/{flow_id}
+      operations:
+      - name: getflow
+        method: GET
+        description: Elastic.io Get a flow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateflow
+        method: PATCH
+        description: Elastic.io Update a flow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteflow
+        method: DELETE
+        description: Elastic.io Delete a flow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: flows-flow-id-start
+      path: /flows/{flow_id}/start
+      operations:
+      - name: startflow
+        method: POST
+        description: Elastic.io Start a flow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: flows-flow-id-stop
+      path: /flows/{flow_id}/stop
+      operations:
+      - name: stopflow
+        method: POST
+        description: Elastic.io Stop a flow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: flows-flow-id-run-now
+      path: /flows/{flow_id}/run-now
+      operations:
+      - name: runflownow
+        method: POST
+        description: Elastic.io Run a flow on demand
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: flow-drafts
+      path: /flow-drafts
+      operations:
+      - name: listflowdrafts
+        method: GET
+        description: Elastic.io List flow drafts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createflowdraft
+        method: POST
+        description: Elastic.io Create a flow draft
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: flow-drafts-flow-draft-id
+      path: /flow-drafts/{flow_draft_id}
+      operations:
+      - name: getflowdraft
+        method: GET
+        description: Elastic.io Get a flow draft
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateflowdraft
+        method: PATCH
+        description: Elastic.io Update a flow draft
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteflowdraft
+        method: DELETE
+        description: Elastic.io Delete a flow draft
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: flow-versions-flow-version-id
+      path: /flow-versions/{flow_version_id}
+      operations:
+      - name: getflowversion
+        method: GET
+        description: Elastic.io Get a flow version
+        inputParameters:
+        - name: flow_version_id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workspaces
+      path: /workspaces
+      operations:
+      - name: listworkspaces
+        method: GET
+        description: Elastic.io List workspaces
+        inputParameters:
+        - name: filter[contract_id]
+          in: query
+          type: string
+          description: Filter by contract ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createworkspace
+        method: POST
+        description: Elastic.io Create a workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workspaces-workspace-id
+      path: /workspaces/{workspace_id}
+      operations:
+      - name: getworkspace
+        method: GET
+        description: Elastic.io Get a workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateworkspace
+        method: PATCH
+        description: Elastic.io Update a workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteworkspace
+        method: DELETE
+        description: Elastic.io Delete a workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workspaces-workspace-id-members
+      path: /workspaces/{workspace_id}/members
+      operations:
+      - name: listworkspacemembers
+        method: GET
+        description: Elastic.io List workspace members
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addworkspacemember
+        method: POST
+        description: Elastic.io Add a workspace member
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workspaces-workspace-id-members-user-id
+      path: /workspaces/{workspace_id}/members/{user_id}
+      operations:
+      - name: removeworkspacemember
+        method: DELETE
+        description: Elastic.io Remove a workspace member
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: contracts
+      path: /contracts
+      operations:
+      - name: listcontracts
+        method: GET
+        description: Elastic.io List contracts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: contracts-contract-id
+      path: /contracts/{contract_id}
+      operations:
+      - name: getcontract
+        method: GET
+        description: Elastic.io Get a contract
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecontract
+        method: PATCH
+        description: Elastic.io Update a contract
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: contracts-contract-id-members
+      path: /contracts/{contract_id}/members
+      operations:
+      - name: listcontractmembers
+        method: GET
+        description: Elastic.io List contract members
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addcontractmember
+        method: POST
+        description: Elastic.io Add a contract member
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: credentials
+      path: /credentials
+      operations:
+      - name: listcredentials
+        method: GET
+        description: Elastic.io List credentials
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createcredential
+        method: POST
+        description: Elastic.io Create a credential
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: credentials-credential-id
+      path: /credentials/{credential_id}
+      operations:
+      - name: getcredential
+        method: GET
+        description: Elastic.io Get a credential
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecredential
+        method: PATCH
+        description: Elastic.io Update a credential
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletecredential
+        method: DELETE
+        description: Elastic.io Delete a credential
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: components
+      path: /components
+      operations:
+      - name: listcomponents
+        method: GET
+        description: Elastic.io List components
+        inputParameters:
+        - name: filter[contract_id]
+          in: query
+          type: string
+          description: Filter by contract ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: components-component-id
+      path: /components/{component_id}
+      operations:
+      - name: getcomponent
+        method: GET
+        description: Elastic.io Get a component
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecomponent
+        method: PATCH
+        description: Elastic.io Update a component
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletecomponent
+        method: DELETE
+        description: Elastic.io Delete a component
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: recipes
+      path: /recipes
+      operations:
+      - name: listrecipes
+        method: GET
+        description: Elastic.io List recipes
+        inputParameters:
+        - name: filter[contract_id]
+          in: query
+          type: string
+          description: Filter by contract ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createrecipe
+        method: POST
+        description: Elastic.io Create a recipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: recipes-recipe-id
+      path: /recipes/{recipe_id}
+      operations:
+      - name: getrecipe
+        method: GET
+        description: Elastic.io Get a recipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updaterecipe
+        method: PATCH
+        description: Elastic.io Update a recipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleterecipe
+        method: DELETE
+        description: Elastic.io Delete a recipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: recipes-recipe-id-visibility
+      path: /recipes/{recipe_id}/visibility
+      operations:
+      - name: updaterecipevisibility
+        method: PATCH
+        description: Elastic.io Update recipe visibility
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users-me
+      path: /users/me
+      operations:
+      - name: getcurrentuser
+        method: GET
+        description: Elastic.io Get current user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecurrentuser
+        method: PATCH
+        description: Elastic.io Update current user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users-user-id
+      path: /users/{user_id}
+      operations:
+      - name: getuser
+        method: GET
+        description: Elastic.io Get a user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: auth-clients
+      path: /auth-clients
+      operations:
+      - name: listauthclients
+        method: GET
+        description: Elastic.io List auth clients
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createauthclient
+        method: POST
+        description: Elastic.io Create an auth client
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: auth-clients-auth-client-id
+      path: /auth-clients/{auth_client_id}
+      operations:
+      - name: getauthclient
+        method: GET
+        description: Elastic.io Get an auth client
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateauthclient
+        method: PATCH
+        description: Elastic.io Update an auth client
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteauthclient
+        method: DELETE
+        description: Elastic.io Delete an auth client
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: auth-secrets
+      path: /auth-secrets
+      operations:
+      - name: listauthsecrets
+        method: GET
+        description: Elastic.io List auth secrets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createauthsecret
+        method: POST
+        description: Elastic.io Create an auth secret
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: auth-secrets-auth-secret-id
+      path: /auth-secrets/{auth_secret_id}
+      operations:
+      - name: getauthsecret
+        method: GET
+        description: Elastic.io Get an auth secret
+        inputParameters:
+        - name: auth_secret_id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateauthsecret
+        method: PATCH
+        description: Elastic.io Update an auth secret
+        inputParameters:
+        - name: auth_secret_id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteauthsecret
+        method: DELETE
+        description: Elastic.io Delete an auth secret
+        inputParameters:
+        - name: auth_secret_id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: teams
+      path: /teams
+      operations:
+      - name: listteams
+        method: GET
+        description: Elastic.io List teams
+        inputParameters:
+        - name: filter[contract_id]
+          in: query
+          type: string
+          description: Filter by contract ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createteam
+        method: POST
+        description: Elastic.io Create a team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: teams-team-id
+      path: /teams/{team_id}
+      operations:
+      - name: getteam
+        method: GET
+        description: Elastic.io Get a team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteteam
+        method: DELETE
+        description: Elastic.io Delete a team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: agents
+      path: /agents
+      operations:
+      - name: listagents
+        method: GET
+        description: Elastic.io List agents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: elastic-io-rest
+    description: REST adapter for elastic.io Platform REST API.
+    resources:
+    - path: /flows
+      name: listflows
+      operations:
+      - method: GET
+        name: listflows
+        description: Elastic.io List flows
+        call: elastic-io.listflows
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /flows
+      name: createflow
+      operations:
+      - method: POST
+        name: createflow
+        description: Elastic.io Create a flow
+        call: elastic-io.createflow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /flows/{flow_id}
+      name: getflow
+      operations:
+      - method: GET
+        name: getflow
+        description: Elastic.io Get a flow
+        call: elastic-io.getflow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /flows/{flow_id}
+      name: updateflow
+      operations:
+      - method: PATCH
+        name: updateflow
+        description: Elastic.io Update a flow
+        call: elastic-io.updateflow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /flows/{flow_id}
+      name: deleteflow
+      operations:
+      - method: DELETE
+        name: deleteflow
+        description: Elastic.io Delete a flow
+        call: elastic-io.deleteflow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /flows/{flow_id}/start
+      name: startflow
+      operations:
+      - method: POST
+        name: startflow
+        description: Elastic.io Start a flow
+        call: elastic-io.startflow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /flows/{flow_id}/stop
+      name: stopflow
+      operations:
+      - method: POST
+        name: stopflow
+        description: Elastic.io Stop a flow
+        call: elastic-io.stopflow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /flows/{flow_id}/run-now
+      name: runflownow
+      operations:
+      - method: POST
+        name: runflownow
+        description: Elastic.io Run a flow on demand
+        call: elastic-io.runflownow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /flow-drafts
+      name: listflowdrafts
+      operations:
+      - method: GET
+        name: listflowdrafts
+        description: Elastic.io List flow drafts
+        call: elastic-io.listflowdrafts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /flow-drafts
+      name: createflowdraft
+      operations:
+      - method: POST
+        name: createflowdraft
+        description: Elastic.io Create a flow draft
+        call: elastic-io.createflowdraft
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /flow-drafts/{flow_draft_id}
+      name: getflowdraft
+      operations:
+      - method: GET
+        name: getflowdraft
+        description: Elastic.io Get a flow draft
+        call: elastic-io.getflowdraft
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /flow-drafts/{flow_draft_id}
+      name: updateflowdraft
+      operations:
+      - method: PATCH
+        name: updateflowdraft
+        description: Elastic.io Update a flow draft
+        call: elastic-io.updateflowdraft
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /flow-drafts/{flow_draft_id}
+      name: deleteflowdraft
+      operations:
+      - method: DELETE
+        name: deleteflowdraft
+        description: Elastic.io Delete a flow draft
+        call: elastic-io.deleteflowdraft
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /flow-versions/{flow_version_id}
+      name: getflowversion
+      operations:
+      - method: GET
+        name: getflowversion
+        description: Elastic.io Get a flow version
+        call: elastic-io.getflowversion
+        with:
+          flow_version_id: rest.flow_version_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /workspaces
+      name: listworkspaces
+      operations:
+      - method: GET
+        name: listworkspaces
+        description: Elastic.io List workspaces
+        call: elastic-io.listworkspaces
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /workspaces
+      name: createworkspace
+      operations:
+      - method: POST
+        name: createworkspace
+        description: Elastic.io Create a workspace
+        call: elastic-io.createworkspace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /workspaces/{workspace_id}
+      name: getworkspace
+      operations:
+      - method: GET
+        name: getworkspace
+        description: Elastic.io Get a workspace
+        call: elastic-io.getworkspace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /workspaces/{workspace_id}
+      name: updateworkspace
+      operations:
+      - method: PATCH
+        name: updateworkspace
+        description: Elastic.io Update a workspace
+        call: elastic-io.updateworkspace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /workspaces/{workspace_id}
+      name: deleteworkspace
+      operations:
+      - method: DELETE
+        name: deleteworkspace
+        description: Elastic.io Delete a workspace
+        call: elastic-io.deleteworkspace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /workspaces/{workspace_id}/members
+      name: listworkspacemembers
+      operations:
+      - method: GET
+        name: listworkspacemembers
+        description: Elastic.io List workspace members
+        call: elastic-io.listworkspacemembers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /workspaces/{workspace_id}/members
+      name: addworkspacemember
+      operations:
+      - method: POST
+        name: addworkspacemember
+        description: Elastic.io Add a workspace member
+        call: elastic-io.addworkspacemember
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /workspaces/{workspace_id}/members/{user_id}
+      name: removeworkspacemember
+      operations:
+      - method: DELETE
+        name: removeworkspacemember
+        description: Elastic.io Remove a workspace member
+        call: elastic-io.removeworkspacemember
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /contracts
+      name: listcontracts
+      operations:
+      - method: GET
+        name: listcontracts
+        description: Elastic.io List contracts
+        call: elastic-io.listcontracts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /contracts/{contract_id}
+      name: getcontract
+      operations:
+      - method: GET
+        name: getcontract
+        description: Elastic.io Get a contract
+        call: elastic-io.getcontract
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /contracts/{contract_id}
+      name: updatecontract
+      operations:
+      - method: PATCH
+        name: updatecontract
+        description: Elastic.io Update a contract
+        call: elastic-io.updatecontract
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /contracts/{contract_id}/members
+      name: listcontractmembers
+      operations:
+      - method: GET
+        name: listcontractmembers
+        description: Elastic.io List contract members
+        call: elastic-io.listcontractmembers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /contracts/{contract_id}/members
+      name: addcontractmember
+      operations:
+      - method: POST
+        name: addcontractmember
+        description: Elastic.io Add a contract member
+        call: elastic-io.addcontractmember
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /credentials
+      name: listcredentials
+      operations:
+      - method: GET
+        name: listcredentials
+        description: Elastic.io List credentials
+        call: elastic-io.listcredentials
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /credentials
+      name: createcredential
+      operations:
+      - method: POST
+        name: createcredential
+        description: Elastic.io Create a credential
+        call: elastic-io.createcredential
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /credentials/{credential_id}
+      name: getcredential
+      operations:
+      - method: GET
+        name: getcredential
+        description: Elastic.io Get a credential
+        call: elastic-io.getcredential
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /credentials/{credential_id}
+      name: updatecredential
+      operations:
+      - method: PATCH
+        name: updatecredential
+        description: Elastic.io Update a credential
+        call: elastic-io.updatecredential
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /credentials/{credential_id}
+      name: deletecredential
+      operations:
+      - method: DELETE
+        name: deletecredential
+        description: Elastic.io Delete a credential
+        call: elastic-io.deletecredential
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /components
+      name: listcomponents
+      operations:
+      - method: GET
+        name: listcomponents
+        description: Elastic.io List components
+        call: elastic-io.listcomponents
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /components/{component_id}
+      name: getcomponent
+      operations:
+      - method: GET
+        name: getcomponent
+        description: Elastic.io Get a component
+        call: elastic-io.getcomponent
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /components/{component_id}
+      name: updatecomponent
+      operations:
+      - method: PATCH
+        name: updatecomponent
+        description: Elastic.io Update a component
+        call: elastic-io.updatecomponent
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /components/{component_id}
+      name: deletecomponent
+      operations:
+      - method: DELETE
+        name: deletecomponent
+        description: Elastic.io Delete a component
+        call: elastic-io.deletecomponent
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /recipes
+      name: listrecipes
+      operations:
+      - method: GET
+        name: listrecipes
+        description: Elastic.io List recipes
+        call: elastic-io.listrecipes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /recipes
+      name: createrecipe
+      operations:
+      - method: POST
+        name: createrecipe
+        description: Elastic.io Create a recipe
+        call: elastic-io.createrecipe
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /recipes/{recipe_id}
+      name: getrecipe
+      operations:
+      - method: GET
+        name: getrecipe
+        description: Elastic.io Get a recipe
+        call: elastic-io.getrecipe
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /recipes/{recipe_id}
+      name: updaterecipe
+      operations:
+      - method: PATCH
+        name: updaterecipe
+        description: Elastic.io Update a recipe
+        call: elastic-io.updaterecipe
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /recipes/{recipe_id}
+      name: deleterecipe
+      operations:
+      - method: DELETE
+        name: deleterecipe
+        description: Elastic.io Delete a recipe
+        call: elastic-io.deleterecipe
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /recipes/{recipe_id}/visibility
+      name: updaterecipevisibility
+      operations:
+      - method: PATCH
+        name: updaterecipevisibility
+        description: Elastic.io Update recipe visibility
+        call: elastic-io.updaterecipevisibility
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users/me
+      name: getcurrentuser
+      operations:
+      - method: GET
+        name: getcurrentuser
+        description: Elastic.io Get current user
+        call: elastic-io.getcurrentuser
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users/me
+      name: updatecurrentuser
+      operations:
+      - method: PATCH
+        name: updatecurrentuser
+        description: Elastic.io Update current user
+        call: elastic-io.updatecurrentuser
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users/{user_id}
+      name: getuser
+      operations:
+      - method: GET
+        name: getuser
+        description: Elastic.io Get a user
+        call: elastic-io.getuser
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /auth-clients
+      name: listauthclients
+      operations:
+      - method: GET
+        name: listauthclients
+        description: Elastic.io List auth clients
+        call: elastic-io.listauthclients
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /auth-clients
+      name: createauthclient
+      operations:
+      - method: POST
+        name: createauthclient
+        description: Elastic.io Create an auth client
+        call: elastic-io.createauthclient
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /auth-clients/{auth_client_id}
+      name: getauthclient
+      operations:
+      - method: GET
+        name: getauthclient
+        description: Elastic.io Get an auth client
+        call: elastic-io.getauthclient
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /auth-clients/{auth_client_id}
+      name: updateauthclient
+      operations:
+      - method: PATCH
+        name: updateauthclient
+        description: Elastic.io Update an auth client
+        call: elastic-io.updateauthclient
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /auth-clients/{auth_client_id}
+      name: deleteauthclient
+      operations:
+      - method: DELETE
+        name: deleteauthclient
+        description: Elastic.io Delete an auth client
+        call: elastic-io.deleteauthclient
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /auth-secrets
+      name: listauthsecrets
+      operations:
+      - method: GET
+        name: listauthsecrets
+        description: Elastic.io List auth secrets
+        call: elastic-io.listauthsecrets
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /auth-secrets
+      name: createauthsecret
+      operations:
+      - method: POST
+        name: createauthsecret
+        description: Elastic.io Create an auth secret
+        call: elastic-io.createauthsecret
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /auth-secrets/{auth_secret_id}
+      name: getauthsecret
+      operations:
+      - method: GET
+        name: getauthsecret
+        description: Elastic.io Get an auth secret
+        call: elastic-io.getauthsecret
+        with:
+          auth_secret_id: rest.auth_secret_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /auth-secrets/{auth_secret_id}
+      name: updateauthsecret
+      operations:
+      - method: PATCH
+        name: updateauthsecret
+        description: Elastic.io Update an auth secret
+        call: elastic-io.updateauthsecret
+        with:
+          auth_secret_id: rest.auth_secret_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /auth-secrets/{auth_secret_id}
+      name: deleteauthsecret
+      operations:
+      - method: DELETE
+        name: deleteauthsecret
+        description: Elastic.io Delete an auth secret
+        call: elastic-io.deleteauthsecret
+        with:
+          auth_secret_id: rest.auth_secret_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /teams
+      name: listteams
+      operations:
+      - method: GET
+        name: listteams
+        description: Elastic.io List teams
+        call: elastic-io.listteams
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /teams
+      name: createteam
+      operations:
+      - method: POST
+        name: createteam
+        description: Elastic.io Create a team
+        call: elastic-io.createteam
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /teams/{team_id}
+      name: getteam
+      operations:
+      - method: GET
+        name: getteam
+        description: Elastic.io Get a team
+        call: elastic-io.getteam
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /teams/{team_id}
+      name: deleteteam
+      operations:
+      - method: DELETE
+        name: deleteteam
+        description: Elastic.io Delete a team
+        call: elastic-io.deleteteam
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /agents
+      name: listagents
+      operations:
+      - method: GET
+        name: listagents
+        description: Elastic.io List agents
+        call: elastic-io.listagents
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: elastic-io-mcp
+    transport: http
+    description: MCP adapter for elastic.io Platform REST API for AI agent use.
+    tools:
+    - name: listflows
+      description: Elastic.io List flows
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.listflows
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createflow
+      description: Elastic.io Create a flow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.createflow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getflow
+      description: Elastic.io Get a flow
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.getflow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateflow
+      description: Elastic.io Update a flow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.updateflow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteflow
+      description: Elastic.io Delete a flow
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: elastic-io.deleteflow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: startflow
+      description: Elastic.io Start a flow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.startflow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: stopflow
+      description: Elastic.io Stop a flow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.stopflow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: runflownow
+      description: Elastic.io Run a flow on demand
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.runflownow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listflowdrafts
+      description: Elastic.io List flow drafts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.listflowdrafts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createflowdraft
+      description: Elastic.io Create a flow draft
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.createflowdraft
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getflowdraft
+      description: Elastic.io Get a flow draft
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.getflowdraft
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateflowdraft
+      description: Elastic.io Update a flow draft
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.updateflowdraft
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteflowdraft
+      description: Elastic.io Delete a flow draft
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: elastic-io.deleteflowdraft
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getflowversion
+      description: Elastic.io Get a flow version
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.getflowversion
+      with:
+        flow_version_id: tools.flow_version_id
+      inputParameters:
+      - name: flow_version_id
+        type: string
+        description: flow_version_id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listworkspaces
+      description: Elastic.io List workspaces
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.listworkspaces
+      with:
+        filter[contract_id]: tools.filter[contract_id]
+      inputParameters:
+      - name: filter[contract_id]
+        type: string
+        description: Filter by contract ID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createworkspace
+      description: Elastic.io Create a workspace
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.createworkspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getworkspace
+      description: Elastic.io Get a workspace
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.getworkspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateworkspace
+      description: Elastic.io Update a workspace
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.updateworkspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteworkspace
+      description: Elastic.io Delete a workspace
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: elastic-io.deleteworkspace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listworkspacemembers
+      description: Elastic.io List workspace members
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.listworkspacemembers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: addworkspacemember
+      description: Elastic.io Add a workspace member
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.addworkspacemember
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: removeworkspacemember
+      description: Elastic.io Remove a workspace member
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: elastic-io.removeworkspacemember
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listcontracts
+      description: Elastic.io List contracts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.listcontracts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcontract
+      description: Elastic.io Get a contract
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.getcontract
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatecontract
+      description: Elastic.io Update a contract
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.updatecontract
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listcontractmembers
+      description: Elastic.io List contract members
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.listcontractmembers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: addcontractmember
+      description: Elastic.io Add a contract member
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.addcontractmember
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listcredentials
+      description: Elastic.io List credentials
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.listcredentials
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createcredential
+      description: Elastic.io Create a credential
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.createcredential
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcredential
+      description: Elastic.io Get a credential
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.getcredential
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatecredential
+      description: Elastic.io Update a credential
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.updatecredential
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletecredential
+      description: Elastic.io Delete a credential
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: elastic-io.deletecredential
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listcomponents
+      description: Elastic.io List components
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.listcomponents
+      with:
+        filter[contract_id]: tools.filter[contract_id]
+      inputParameters:
+      - name: filter[contract_id]
+        type: string
+        description: Filter by contract ID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcomponent
+      description: Elastic.io Get a component
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.getcomponent
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatecomponent
+      description: Elastic.io Update a component
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.updatecomponent
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletecomponent
+      description: Elastic.io Delete a component
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: elastic-io.deletecomponent
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listrecipes
+      description: Elastic.io List recipes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.listrecipes
+      with:
+        filter[contract_id]: tools.filter[contract_id]
+      inputParameters:
+      - name: filter[contract_id]
+        type: string
+        description: Filter by contract ID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createrecipe
+      description: Elastic.io Create a recipe
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.createrecipe
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getrecipe
+      description: Elastic.io Get a recipe
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.getrecipe
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updaterecipe
+      description: Elastic.io Update a recipe
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.updaterecipe
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleterecipe
+      description: Elastic.io Delete a recipe
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: elastic-io.deleterecipe
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updaterecipevisibility
+      description: Elastic.io Update recipe visibility
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.updaterecipevisibility
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcurrentuser
+      description: Elastic.io Get current user
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.getcurrentuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatecurrentuser
+      description: Elastic.io Update current user
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.updatecurrentuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getuser
+      description: Elastic.io Get a user
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.getuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listauthclients
+      description: Elastic.io List auth clients
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.listauthclients
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createauthclient
+      description: Elastic.io Create an auth client
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.createauthclient
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getauthclient
+      description: Elastic.io Get an auth client
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.getauthclient
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateauthclient
+      description: Elastic.io Update an auth client
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.updateauthclient
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteauthclient
+      description: Elastic.io Delete an auth client
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: elastic-io.deleteauthclient
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listauthsecrets
+      description: Elastic.io List auth secrets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.listauthsecrets
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createauthsecret
+      description: Elastic.io Create an auth secret
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.createauthsecret
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getauthsecret
+      description: Elastic.io Get an auth secret
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.getauthsecret
+      with:
+        auth_secret_id: tools.auth_secret_id
+      inputParameters:
+      - name: auth_secret_id
+        type: string
+        description: auth_secret_id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateauthsecret
+      description: Elastic.io Update an auth secret
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.updateauthsecret
+      with:
+        auth_secret_id: tools.auth_secret_id
+      inputParameters:
+      - name: auth_secret_id
+        type: string
+        description: auth_secret_id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteauthsecret
+      description: Elastic.io Delete an auth secret
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: elastic-io.deleteauthsecret
+      with:
+        auth_secret_id: tools.auth_secret_id
+      inputParameters:
+      - name: auth_secret_id
+        type: string
+        description: auth_secret_id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listteams
+      description: Elastic.io List teams
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.listteams
+      with:
+        filter[contract_id]: tools.filter[contract_id]
+      inputParameters:
+      - name: filter[contract_id]
+        type: string
+        description: Filter by contract ID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createteam
+      description: Elastic.io Create a team
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: elastic-io.createteam
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getteam
+      description: Elastic.io Get a team
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.getteam
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteteam
+      description: Elastic.io Delete a team
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: elastic-io.deleteteam
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listagents
+      description: Elastic.io List agents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: elastic-io.listagents
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    ELASTIC_IO_TOKEN: ELASTIC_IO_TOKEN
