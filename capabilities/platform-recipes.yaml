@@ -1,0 +1,248 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: elastic.io Platform REST API — Recipes
+  description: 'elastic.io Platform REST API — Recipes. 6 operations. Lead operation: Elastic.io List recipes. Self-contained
+    Naftiko capability covering one Elastic Io business surface.'
+  tags:
+  - Elastic Io
+  - Recipes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ELASTIC_IO_API_KEY: ELASTIC_IO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-recipes
+    baseUri: https://api.elastic.io/v2
+    description: elastic.io Platform REST API — Recipes business capability. Self-contained, no shared references.
+    resources:
+    - name: recipes
+      path: /recipes
+      operations:
+      - name: listrecipes
+        method: GET
+        description: Elastic.io List recipes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filter[contract_id]
+          in: query
+          type: string
+          description: Filter by contract ID
+      - name: createrecipe
+        method: POST
+        description: Elastic.io Create a recipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: recipes-recipe_id
+      path: /recipes/{recipe_id}
+      operations:
+      - name: getrecipe
+        method: GET
+        description: Elastic.io Get a recipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updaterecipe
+        method: PATCH
+        description: Elastic.io Update a recipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleterecipe
+        method: DELETE
+        description: Elastic.io Delete a recipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: recipes-recipe_id-visibility
+      path: /recipes/{recipe_id}/visibility
+      operations:
+      - name: updaterecipevisibility
+        method: PATCH
+        description: Elastic.io Update recipe visibility
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ELASTIC_IO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: platform-recipes-rest
+    port: 8080
+    description: REST adapter for elastic.io Platform REST API — Recipes. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/recipes
+      name: recipes
+      description: REST surface for recipes.
+      operations:
+      - method: GET
+        name: listrecipes
+        description: Elastic.io List recipes
+        call: platform-recipes.listrecipes
+        with:
+          filter[contract_id]: rest.filter[contract_id]
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createrecipe
+        description: Elastic.io Create a recipe
+        call: platform-recipes.createrecipe
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/recipes/{recipe-id}
+      name: recipes-recipe-id
+      description: REST surface for recipes-recipe_id.
+      operations:
+      - method: GET
+        name: getrecipe
+        description: Elastic.io Get a recipe
+        call: platform-recipes.getrecipe
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updaterecipe
+        description: Elastic.io Update a recipe
+        call: platform-recipes.updaterecipe
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterecipe
+        description: Elastic.io Delete a recipe
+        call: platform-recipes.deleterecipe
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/recipes/{recipe-id}/visibility
+      name: recipes-recipe-id-visibility
+      description: REST surface for recipes-recipe_id-visibility.
+      operations:
+      - method: PATCH
+        name: updaterecipevisibility
+        description: Elastic.io Update recipe visibility
+        call: platform-recipes.updaterecipevisibility
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-recipes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for elastic.io Platform REST API — Recipes. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: elastic-io-list-recipes
+      description: Elastic.io List recipes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-recipes.listrecipes
+      with:
+        filter[contract_id]: tools.filter[contract_id]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-create-recipe
+      description: Elastic.io Create a recipe
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-recipes.createrecipe
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-get-recipe
+      description: Elastic.io Get a recipe
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-recipes.getrecipe
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-update-recipe
+      description: Elastic.io Update a recipe
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: platform-recipes.updaterecipe
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-delete-recipe
+      description: Elastic.io Delete a recipe
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: platform-recipes.deleterecipe
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-update-recipe-visibility
+      description: Elastic.io Update recipe visibility
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: platform-recipes.updaterecipevisibility
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

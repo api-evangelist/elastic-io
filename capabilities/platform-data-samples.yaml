@@ -1,0 +1,221 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: elastic.io Platform REST API — Data Samples
+  description: 'elastic.io Platform REST API — Data Samples. 5 operations. Lead operation: Elastic.io List data samples. Self-contained
+    Naftiko capability covering one Elastic Io business surface.'
+  tags:
+  - Elastic Io
+  - Data Samples
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ELASTIC_IO_API_KEY: ELASTIC_IO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-data-samples
+    baseUri: https://api.elastic.io/v2
+    description: elastic.io Platform REST API — Data Samples business capability. Self-contained, no shared references.
+    resources:
+    - name: data-samples
+      path: /data-samples
+      operations:
+      - name: listdatasamples
+        method: GET
+        description: Elastic.io List data samples
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createdatasample
+        method: POST
+        description: Elastic.io Create a data sample
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: data-samples-data_sample_id
+      path: /data-samples/{data_sample_id}
+      operations:
+      - name: getdatasample
+        method: GET
+        description: Elastic.io Get a data sample
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: data_sample_id
+          in: path
+          type: string
+          required: true
+      - name: updatedatasample
+        method: PATCH
+        description: Elastic.io Update a data sample
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: data_sample_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletedatasample
+        method: DELETE
+        description: Elastic.io Delete a data sample
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: data_sample_id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ELASTIC_IO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: platform-data-samples-rest
+    port: 8080
+    description: REST adapter for elastic.io Platform REST API — Data Samples. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/data-samples
+      name: data-samples
+      description: REST surface for data-samples.
+      operations:
+      - method: GET
+        name: listdatasamples
+        description: Elastic.io List data samples
+        call: platform-data-samples.listdatasamples
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdatasample
+        description: Elastic.io Create a data sample
+        call: platform-data-samples.createdatasample
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/data-samples/{data-sample-id}
+      name: data-samples-data-sample-id
+      description: REST surface for data-samples-data_sample_id.
+      operations:
+      - method: GET
+        name: getdatasample
+        description: Elastic.io Get a data sample
+        call: platform-data-samples.getdatasample
+        with:
+          data_sample_id: rest.data_sample_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatedatasample
+        description: Elastic.io Update a data sample
+        call: platform-data-samples.updatedatasample
+        with:
+          data_sample_id: rest.data_sample_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedatasample
+        description: Elastic.io Delete a data sample
+        call: platform-data-samples.deletedatasample
+        with:
+          data_sample_id: rest.data_sample_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-data-samples-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for elastic.io Platform REST API — Data Samples. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: elastic-io-list-data-samples
+      description: Elastic.io List data samples
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-data-samples.listdatasamples
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-create-data-sample
+      description: Elastic.io Create a data sample
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-data-samples.createdatasample
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-get-data-sample
+      description: Elastic.io Get a data sample
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-data-samples.getdatasample
+      with:
+        data_sample_id: tools.data_sample_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-update-data-sample
+      description: Elastic.io Update a data sample
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: platform-data-samples.updatedatasample
+      with:
+        data_sample_id: tools.data_sample_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-delete-data-sample
+      description: Elastic.io Delete a data sample
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: platform-data-samples.deletedatasample
+      with:
+        data_sample_id: tools.data_sample_id
+      outputParameters:
+      - type: object
+        mapping: $.

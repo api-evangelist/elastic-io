@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: elastic.io Platform REST API — Flow Drafts
+  description: 'elastic.io Platform REST API — Flow Drafts. 5 operations. Lead operation: Elastic.io List flow drafts. Self-contained
+    Naftiko capability covering one Elastic Io business surface.'
+  tags:
+  - Elastic Io
+  - Flow Drafts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ELASTIC_IO_API_KEY: ELASTIC_IO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-flow-drafts
+    baseUri: https://api.elastic.io/v2
+    description: elastic.io Platform REST API — Flow Drafts business capability. Self-contained, no shared references.
+    resources:
+    - name: flow-drafts
+      path: /flow-drafts
+      operations:
+      - name: listflowdrafts
+        method: GET
+        description: Elastic.io List flow drafts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createflowdraft
+        method: POST
+        description: Elastic.io Create a flow draft
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: flow-drafts-flow_draft_id
+      path: /flow-drafts/{flow_draft_id}
+      operations:
+      - name: getflowdraft
+        method: GET
+        description: Elastic.io Get a flow draft
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateflowdraft
+        method: PATCH
+        description: Elastic.io Update a flow draft
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteflowdraft
+        method: DELETE
+        description: Elastic.io Delete a flow draft
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ELASTIC_IO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: platform-flow-drafts-rest
+    port: 8080
+    description: REST adapter for elastic.io Platform REST API — Flow Drafts. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/flow-drafts
+      name: flow-drafts
+      description: REST surface for flow-drafts.
+      operations:
+      - method: GET
+        name: listflowdrafts
+        description: Elastic.io List flow drafts
+        call: platform-flow-drafts.listflowdrafts
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createflowdraft
+        description: Elastic.io Create a flow draft
+        call: platform-flow-drafts.createflowdraft
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/flow-drafts/{flow-draft-id}
+      name: flow-drafts-flow-draft-id
+      description: REST surface for flow-drafts-flow_draft_id.
+      operations:
+      - method: GET
+        name: getflowdraft
+        description: Elastic.io Get a flow draft
+        call: platform-flow-drafts.getflowdraft
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateflowdraft
+        description: Elastic.io Update a flow draft
+        call: platform-flow-drafts.updateflowdraft
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteflowdraft
+        description: Elastic.io Delete a flow draft
+        call: platform-flow-drafts.deleteflowdraft
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-flow-drafts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for elastic.io Platform REST API — Flow Drafts. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: elastic-io-list-flow-drafts
+      description: Elastic.io List flow drafts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-flow-drafts.listflowdrafts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-create-flow-draft
+      description: Elastic.io Create a flow draft
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-flow-drafts.createflowdraft
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-get-flow-draft
+      description: Elastic.io Get a flow draft
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-flow-drafts.getflowdraft
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-update-flow-draft
+      description: Elastic.io Update a flow draft
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: platform-flow-drafts.updateflowdraft
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-delete-flow-draft
+      description: Elastic.io Delete a flow draft
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: platform-flow-drafts.deleteflowdraft
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,171 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: elastic.io Platform REST API — Components
+  description: 'elastic.io Platform REST API — Components. 4 operations. Lead operation: Elastic.io List components. Self-contained
+    Naftiko capability covering one Elastic Io business surface.'
+  tags:
+  - Elastic Io
+  - Components
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ELASTIC_IO_API_KEY: ELASTIC_IO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-components
+    baseUri: https://api.elastic.io/v2
+    description: elastic.io Platform REST API — Components business capability. Self-contained, no shared references.
+    resources:
+    - name: components
+      path: /components
+      operations:
+      - name: listcomponents
+        method: GET
+        description: Elastic.io List components
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filter[contract_id]
+          in: query
+          type: string
+          description: Filter by contract ID
+    - name: components-component_id
+      path: /components/{component_id}
+      operations:
+      - name: getcomponent
+        method: GET
+        description: Elastic.io Get a component
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecomponent
+        method: PATCH
+        description: Elastic.io Update a component
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletecomponent
+        method: DELETE
+        description: Elastic.io Delete a component
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ELASTIC_IO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: platform-components-rest
+    port: 8080
+    description: REST adapter for elastic.io Platform REST API — Components. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/components
+      name: components
+      description: REST surface for components.
+      operations:
+      - method: GET
+        name: listcomponents
+        description: Elastic.io List components
+        call: platform-components.listcomponents
+        with:
+          filter[contract_id]: rest.filter[contract_id]
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/components/{component-id}
+      name: components-component-id
+      description: REST surface for components-component_id.
+      operations:
+      - method: GET
+        name: getcomponent
+        description: Elastic.io Get a component
+        call: platform-components.getcomponent
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatecomponent
+        description: Elastic.io Update a component
+        call: platform-components.updatecomponent
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecomponent
+        description: Elastic.io Delete a component
+        call: platform-components.deletecomponent
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-components-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for elastic.io Platform REST API — Components. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: elastic-io-list-components
+      description: Elastic.io List components
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-components.listcomponents
+      with:
+        filter[contract_id]: tools.filter[contract_id]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-get-component
+      description: Elastic.io Get a component
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-components.getcomponent
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-update-component
+      description: Elastic.io Update a component
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: platform-components.updatecomponent
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-delete-component
+      description: Elastic.io Delete a component
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: platform-components.deletecomponent
+      outputParameters:
+      - type: object
+        mapping: $.

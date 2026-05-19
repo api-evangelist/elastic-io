@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: elastic.io Platform REST API — Executions
+  description: 'elastic.io Platform REST API — Executions. 1 operations. Lead operation: Elastic.io Poll execution status.
+    Self-contained Naftiko capability covering one Elastic Io business surface.'
+  tags:
+  - Elastic Io
+  - Executions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ELASTIC_IO_API_KEY: ELASTIC_IO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-executions
+    baseUri: https://api.elastic.io/v2
+    description: elastic.io Platform REST API — Executions business capability. Self-contained, no shared references.
+    resources:
+    - name: exec-poll-execution_id
+      path: /exec/poll/{execution_id}
+      operations:
+      - name: pollexecution
+        method: GET
+        description: Elastic.io Poll execution status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: execution_id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ELASTIC_IO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: platform-executions-rest
+    port: 8080
+    description: REST adapter for elastic.io Platform REST API — Executions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/exec/poll/{execution-id}
+      name: exec-poll-execution-id
+      description: REST surface for exec-poll-execution_id.
+      operations:
+      - method: GET
+        name: pollexecution
+        description: Elastic.io Poll execution status
+        call: platform-executions.pollexecution
+        with:
+          execution_id: rest.execution_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-executions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for elastic.io Platform REST API — Executions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: elastic-io-poll-execution-status
+      description: Elastic.io Poll execution status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-executions.pollexecution
+      with:
+        execution_id: tools.execution_id
+      outputParameters:
+      - type: object
+        mapping: $.

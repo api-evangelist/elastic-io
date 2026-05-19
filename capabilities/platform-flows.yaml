@@ -1,0 +1,293 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: elastic.io Platform REST API — Flows
+  description: 'elastic.io Platform REST API — Flows. 8 operations. Lead operation: Elastic.io List flows. Self-contained
+    Naftiko capability covering one Elastic Io business surface.'
+  tags:
+  - Elastic Io
+  - Flows
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ELASTIC_IO_API_KEY: ELASTIC_IO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-flows
+    baseUri: https://api.elastic.io/v2
+    description: elastic.io Platform REST API — Flows business capability. Self-contained, no shared references.
+    resources:
+    - name: flows
+      path: /flows
+      operations:
+      - name: listflows
+        method: GET
+        description: Elastic.io List flows
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createflow
+        method: POST
+        description: Elastic.io Create a flow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: flows-flow_id
+      path: /flows/{flow_id}
+      operations:
+      - name: getflow
+        method: GET
+        description: Elastic.io Get a flow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateflow
+        method: PATCH
+        description: Elastic.io Update a flow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteflow
+        method: DELETE
+        description: Elastic.io Delete a flow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: flows-flow_id-run-now
+      path: /flows/{flow_id}/run-now
+      operations:
+      - name: runflownow
+        method: POST
+        description: Elastic.io Run a flow on demand
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: flows-flow_id-start
+      path: /flows/{flow_id}/start
+      operations:
+      - name: startflow
+        method: POST
+        description: Elastic.io Start a flow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: flows-flow_id-stop
+      path: /flows/{flow_id}/stop
+      operations:
+      - name: stopflow
+        method: POST
+        description: Elastic.io Stop a flow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ELASTIC_IO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: platform-flows-rest
+    port: 8080
+    description: REST adapter for elastic.io Platform REST API — Flows. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/flows
+      name: flows
+      description: REST surface for flows.
+      operations:
+      - method: GET
+        name: listflows
+        description: Elastic.io List flows
+        call: platform-flows.listflows
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createflow
+        description: Elastic.io Create a flow
+        call: platform-flows.createflow
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/flows/{flow-id}
+      name: flows-flow-id
+      description: REST surface for flows-flow_id.
+      operations:
+      - method: GET
+        name: getflow
+        description: Elastic.io Get a flow
+        call: platform-flows.getflow
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateflow
+        description: Elastic.io Update a flow
+        call: platform-flows.updateflow
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteflow
+        description: Elastic.io Delete a flow
+        call: platform-flows.deleteflow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/flows/{flow-id}/run-now
+      name: flows-flow-id-run-now
+      description: REST surface for flows-flow_id-run-now.
+      operations:
+      - method: POST
+        name: runflownow
+        description: Elastic.io Run a flow on demand
+        call: platform-flows.runflownow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/flows/{flow-id}/start
+      name: flows-flow-id-start
+      description: REST surface for flows-flow_id-start.
+      operations:
+      - method: POST
+        name: startflow
+        description: Elastic.io Start a flow
+        call: platform-flows.startflow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/flows/{flow-id}/stop
+      name: flows-flow-id-stop
+      description: REST surface for flows-flow_id-stop.
+      operations:
+      - method: POST
+        name: stopflow
+        description: Elastic.io Stop a flow
+        call: platform-flows.stopflow
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-flows-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for elastic.io Platform REST API — Flows. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: elastic-io-list-flows
+      description: Elastic.io List flows
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-flows.listflows
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-create-flow
+      description: Elastic.io Create a flow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-flows.createflow
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-get-flow
+      description: Elastic.io Get a flow
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-flows.getflow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-update-flow
+      description: Elastic.io Update a flow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: platform-flows.updateflow
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-delete-flow
+      description: Elastic.io Delete a flow
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: platform-flows.deleteflow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-run-flow-demand
+      description: Elastic.io Run a flow on demand
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-flows.runflownow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-start-flow
+      description: Elastic.io Start a flow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-flows.startflow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-stop-flow
+      description: Elastic.io Stop a flow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-flows.stopflow
+      outputParameters:
+      - type: object
+        mapping: $.

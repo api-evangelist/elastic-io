@@ -1,0 +1,91 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: elastic.io Platform REST API — Logs
+  description: 'elastic.io Platform REST API — Logs. 1 operations. Lead operation: Elastic.io List execution logs. Self-contained
+    Naftiko capability covering one Elastic Io business surface.'
+  tags:
+  - Elastic Io
+  - Logs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ELASTIC_IO_API_KEY: ELASTIC_IO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-logs
+    baseUri: https://api.elastic.io/v2
+    description: elastic.io Platform REST API — Logs business capability. Self-contained, no shared references.
+    resources:
+    - name: logs
+      path: /logs
+      operations:
+      - name: listlogs
+        method: GET
+        description: Elastic.io List execution logs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filter[flow_id]
+          in: query
+          type: string
+          description: Filter by flow ID
+        - name: filter[from]
+          in: query
+          type: string
+          description: Filter logs from this timestamp
+        - name: filter[to]
+          in: query
+          type: string
+          description: Filter logs to this timestamp
+    authentication:
+      type: bearer
+      token: '{{env.ELASTIC_IO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: platform-logs-rest
+    port: 8080
+    description: REST adapter for elastic.io Platform REST API — Logs. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/logs
+      name: logs
+      description: REST surface for logs.
+      operations:
+      - method: GET
+        name: listlogs
+        description: Elastic.io List execution logs
+        call: platform-logs.listlogs
+        with:
+          filter[flow_id]: rest.filter[flow_id]
+          filter[from]: rest.filter[from]
+          filter[to]: rest.filter[to]
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-logs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for elastic.io Platform REST API — Logs. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: elastic-io-list-execution-logs
+      description: Elastic.io List execution logs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-logs.listlogs
+      with:
+        filter[flow_id]: tools.filter[flow_id]
+        filter[from]: tools.filter[from]
+        filter[to]: tools.filter[to]
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,180 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: elastic.io Platform REST API — Agents
+  description: 'elastic.io Platform REST API — Agents. 4 operations. Lead operation: Elastic.io List agents. Self-contained
+    Naftiko capability covering one Elastic Io business surface.'
+  tags:
+  - Elastic Io
+  - Agents
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ELASTIC_IO_API_KEY: ELASTIC_IO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-agents
+    baseUri: https://api.elastic.io/v2
+    description: elastic.io Platform REST API — Agents business capability. Self-contained, no shared references.
+    resources:
+    - name: agents
+      path: /agents
+      operations:
+      - name: listagents
+        method: GET
+        description: Elastic.io List agents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createagent
+        method: POST
+        description: Elastic.io Create an agent
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: agents-agent_id
+      path: /agents/{agent_id}
+      operations:
+      - name: getagent
+        method: GET
+        description: Elastic.io Get an agent
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: agent_id
+          in: path
+          type: string
+          required: true
+      - name: deleteagent
+        method: DELETE
+        description: Elastic.io Delete an agent
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: agent_id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ELASTIC_IO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: platform-agents-rest
+    port: 8080
+    description: REST adapter for elastic.io Platform REST API — Agents. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/agents
+      name: agents
+      description: REST surface for agents.
+      operations:
+      - method: GET
+        name: listagents
+        description: Elastic.io List agents
+        call: platform-agents.listagents
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createagent
+        description: Elastic.io Create an agent
+        call: platform-agents.createagent
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/agents/{agent-id}
+      name: agents-agent-id
+      description: REST surface for agents-agent_id.
+      operations:
+      - method: GET
+        name: getagent
+        description: Elastic.io Get an agent
+        call: platform-agents.getagent
+        with:
+          agent_id: rest.agent_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteagent
+        description: Elastic.io Delete an agent
+        call: platform-agents.deleteagent
+        with:
+          agent_id: rest.agent_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-agents-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for elastic.io Platform REST API — Agents. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: elastic-io-list-agents
+      description: Elastic.io List agents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-agents.listagents
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-create-agent
+      description: Elastic.io Create an agent
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-agents.createagent
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-get-agent
+      description: Elastic.io Get an agent
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-agents.getagent
+      with:
+        agent_id: tools.agent_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: elastic-io-delete-agent
+      description: Elastic.io Delete an agent
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: platform-agents.deleteagent
+      with:
+        agent_id: tools.agent_id
+      outputParameters:
+      - type: object
+        mapping: $.

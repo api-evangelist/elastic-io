@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: elastic.io Platform REST API — Snapshots
+  description: 'elastic.io Platform REST API — Snapshots. 1 operations. Lead operation: Elastic.io List snapshots. Self-contained
+    Naftiko capability covering one Elastic Io business surface.'
+  tags:
+  - Elastic Io
+  - Snapshots
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ELASTIC_IO_API_KEY: ELASTIC_IO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-snapshots
+    baseUri: https://api.elastic.io/v2
+    description: elastic.io Platform REST API — Snapshots business capability. Self-contained, no shared references.
+    resources:
+    - name: snapshots
+      path: /snapshots
+      operations:
+      - name: listsnapshots
+        method: GET
+        description: Elastic.io List snapshots
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filter[flow_id]
+          in: query
+          type: string
+          description: Filter by flow ID
+    authentication:
+      type: bearer
+      token: '{{env.ELASTIC_IO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: platform-snapshots-rest
+    port: 8080
+    description: REST adapter for elastic.io Platform REST API — Snapshots. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/snapshots
+      name: snapshots
+      description: REST surface for snapshots.
+      operations:
+      - method: GET
+        name: listsnapshots
+        description: Elastic.io List snapshots
+        call: platform-snapshots.listsnapshots
+        with:
+          filter[flow_id]: rest.filter[flow_id]
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-snapshots-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for elastic.io Platform REST API — Snapshots. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: elastic-io-list-snapshots
+      description: Elastic.io List snapshots
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-snapshots.listsnapshots
+      with:
+        filter[flow_id]: tools.filter[flow_id]
+      outputParameters:
+      - type: object
+        mapping: $.
