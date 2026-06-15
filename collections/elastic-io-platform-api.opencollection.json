@@ -1,0 +1,2075 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "elastic.io Platform REST API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Flows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List flows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/flows",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[workspace_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workspace ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of integration flows accessible to the user."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/flows",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new integration flow in a workspace."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/flows/:flow_id",
+            "params": [
+              {
+                "name": "flow_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific integration flow."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/flows/:flow_id",
+            "params": [
+              {
+                "name": "flow_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing integration flow."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/flows/:flow_id",
+            "params": [
+              {
+                "name": "flow_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow"
+              }
+            ]
+          },
+          "docs": "Delete an integration flow."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Start a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/flows/:flow_id/start",
+            "params": [
+              {
+                "name": "flow_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow"
+              }
+            ]
+          },
+          "docs": "Start an integration flow to begin processing data."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Stop a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/flows/:flow_id/stop",
+            "params": [
+              {
+                "name": "flow_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow"
+              }
+            ]
+          },
+          "docs": "Stop a running integration flow."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Run a flow on demand",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/flows/:flow_id/run-now",
+            "params": [
+              {
+                "name": "flow_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow"
+              }
+            ]
+          },
+          "docs": "Trigger an on-demand execution of an integration flow."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Flow Drafts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List flow drafts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/flow-drafts",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[workspace_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workspace ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of flow drafts."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create a flow draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/flow-drafts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new flow draft for editing before publishing."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a flow draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/flow-drafts/:flow_draft_id",
+            "params": [
+              {
+                "name": "flow_draft_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow draft"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific flow draft."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update a flow draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/flow-drafts/:flow_draft_id",
+            "params": [
+              {
+                "name": "flow_draft_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow draft"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing flow draft."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a flow draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/flow-drafts/:flow_draft_id",
+            "params": [
+              {
+                "name": "flow_draft_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow draft"
+              }
+            ]
+          },
+          "docs": "Delete a flow draft."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Flow Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io Get a flow version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/flow-versions/:flow_version_id",
+            "params": [
+              {
+                "name": "flow_version_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific version of a flow."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workspaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List workspaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/workspaces",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[contract_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by contract ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of workspaces accessible to the user."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/workspaces",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new workspace within a contract."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/workspaces/:workspace_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workspace"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific workspace."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/workspaces/:workspace_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workspace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing workspace."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/workspaces/:workspace_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workspace"
+              }
+            ]
+          },
+          "docs": "Delete a workspace."
+        },
+        {
+          "info": {
+            "name": "Elastic.io List workspace members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/workspaces/:workspace_id/members",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workspace"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of members in a workspace."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Add a workspace member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/workspaces/:workspace_id/members",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workspace"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a user as a member of a workspace."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Remove a workspace member",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/workspaces/:workspace_id/members/:user_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workspace"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the user"
+              }
+            ]
+          },
+          "docs": "Remove a member from a workspace."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contracts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List contracts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/contracts",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of contracts accessible to the user."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/contracts/:contract_id",
+            "params": [
+              {
+                "name": "contract_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the contract"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific contract."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update a contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/contracts/:contract_id",
+            "params": [
+              {
+                "name": "contract_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the contract"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update contract settings and attributes."
+        },
+        {
+          "info": {
+            "name": "Elastic.io List contract members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/contracts/:contract_id/members",
+            "params": [
+              {
+                "name": "contract_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the contract"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of members in a contract."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Add a contract member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/contracts/:contract_id/members",
+            "params": [
+              {
+                "name": "contract_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the contract"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a user as a member of a contract."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Credentials",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/credentials",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[workspace_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workspace ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of credentials for the current workspace."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create a credential",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/credentials",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new credential for authenticating with external services."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a credential",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/credentials/:credential_id",
+            "params": [
+              {
+                "name": "credential_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the credential"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific credential."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update a credential",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/credentials/:credential_id",
+            "params": [
+              {
+                "name": "credential_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the credential"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing credential."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a credential",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/credentials/:credential_id",
+            "params": [
+              {
+                "name": "credential_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the credential"
+              }
+            ]
+          },
+          "docs": "Delete a credential."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Components",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List components",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/components",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[contract_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by contract ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of available integration components."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a component",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/components/:component_id",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the component"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific component."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update a component",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/components/:component_id",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the component"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update component metadata."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a component",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/components/:component_id",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the component"
+              }
+            ]
+          },
+          "docs": "Delete a component."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recipes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List recipes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/recipes",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[contract_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by contract ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of available integration recipes."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create a recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/recipes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new integration recipe."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/recipes/:recipe_id",
+            "params": [
+              {
+                "name": "recipe_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recipe"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific recipe."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update a recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/recipes/:recipe_id",
+            "params": [
+              {
+                "name": "recipe_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recipe"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing recipe."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/recipes/:recipe_id",
+            "params": [
+              {
+                "name": "recipe_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recipe"
+              }
+            ]
+          },
+          "docs": "Delete a recipe."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update recipe visibility",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/recipes/:recipe_id/visibility",
+            "params": [
+              {
+                "name": "recipe_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recipe"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the visibility settings of a recipe."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io Get current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/users/me"
+          },
+          "docs": "Retrieve the profile of the currently authenticated user."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/users/me",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the profile of the currently authenticated user."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the user"
+              }
+            ]
+          },
+          "docs": "Retrieve the profile of a specific user."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Auth Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List auth clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/auth-clients",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of OAuth authentication clients."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create an auth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/auth-clients",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new OAuth authentication client."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get an auth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/auth-clients/:auth_client_id",
+            "params": [
+              {
+                "name": "auth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the auth client"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific auth client."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update an auth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/auth-clients/:auth_client_id",
+            "params": [
+              {
+                "name": "auth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the auth client"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing auth client."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete an auth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/auth-clients/:auth_client_id",
+            "params": [
+              {
+                "name": "auth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the auth client"
+              }
+            ]
+          },
+          "docs": "Delete an auth client."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Auth Secrets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List auth secrets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/auth-secrets",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[workspace_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workspace ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of authentication secrets."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create an auth secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/auth-secrets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new authentication secret."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get an auth secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/auth-secrets/:auth_secret_id",
+            "params": [
+              {
+                "name": "auth_secret_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific auth secret."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update an auth secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/auth-secrets/:auth_secret_id",
+            "params": [
+              {
+                "name": "auth_secret_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing auth secret."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete an auth secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/auth-secrets/:auth_secret_id",
+            "params": [
+              {
+                "name": "auth_secret_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an auth secret."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/teams",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[contract_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by contract ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of developer teams."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/teams",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new developer team."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/teams/:team_id",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the team"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific developer team."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/teams/:team_id",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the team"
+              }
+            ]
+          },
+          "docs": "Delete a developer team."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/agents",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[workspace_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workspace ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of on-premises integration agents."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create an agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/agents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new on-premises integration agent."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get an agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/agents/:agent_id",
+            "params": [
+              {
+                "name": "agent_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific agent."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete an agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/agents/:agent_id",
+            "params": [
+              {
+                "name": "agent_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an on-premises integration agent."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io Poll execution status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/exec/poll/:execution_id",
+            "params": [
+              {
+                "name": "execution_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Check the status of a flow execution by polling."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List execution logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/logs",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[workspace_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workspace ID"
+              },
+              {
+                "name": "filter[flow_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by flow ID"
+              },
+              {
+                "name": "filter[from]",
+                "value": "",
+                "type": "query",
+                "description": "Filter logs from this timestamp"
+              },
+              {
+                "name": "filter[to]",
+                "value": "",
+                "type": "query",
+                "description": "Filter logs to this timestamp"
+              }
+            ]
+          },
+          "docs": "Retrieve execution logs for flows."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data Samples",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List data samples",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/data-samples",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[workspace_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workspace ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of data samples."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create a data sample",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/data-samples",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new data sample for a component step."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a data sample",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/data-samples/:data_sample_id",
+            "params": [
+              {
+                "name": "data_sample_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific data sample."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update a data sample",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/data-samples/:data_sample_id",
+            "params": [
+              {
+                "name": "data_sample_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing data sample."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a data sample",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/data-samples/:data_sample_id",
+            "params": [
+              {
+                "name": "data_sample_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a data sample."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/tenants/:tenant_id/roles",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the tenant"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of user roles and permissions for a tenant."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/tenants/:tenant_id/roles",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the tenant"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new user role with specific permissions."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/tenants/:tenant_id/roles/:role_id",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the tenant"
+              },
+              {
+                "name": "role_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific role."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/tenants/:tenant_id/roles/:role_id",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the tenant"
+              },
+              {
+                "name": "role_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing role."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/tenants/:tenant_id/roles/:role_id",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the tenant"
+              },
+              {
+                "name": "role_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a user role."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SSH Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List SSH keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/sshkeys"
+          },
+          "docs": "Retrieve a list of SSH keys for the current user."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create an SSH key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/sshkeys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload a new SSH key for component repository access."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete an SSH key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/sshkeys/:sshkey_id",
+            "params": [
+              {
+                "name": "sshkey_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an SSH key."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Quota Usages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io Get workspace quota usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/quota-usages/workspaces/:workspace_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workspace"
+              }
+            ]
+          },
+          "docs": "Retrieve quota usage statistics for a workspace."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get contract quota usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/quota-usages/contracts/:contract_id",
+            "params": [
+              {
+                "name": "contract_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the contract"
+              }
+            ]
+          },
+          "docs": "Retrieve quota usage statistics for all workspaces in a contract."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List snapshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/snapshots",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[flow_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by flow ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of flow step snapshots."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Topics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List topics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/topics",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[workspace_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workspace ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of pub/sub topics."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create a topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/topics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new pub/sub topic."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/topics/:topic_id",
+            "params": [
+              {
+                "name": "topic_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific topic."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/topics/:topic_id",
+            "params": [
+              {
+                "name": "topic_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a pub/sub topic."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/subscriptions",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[workspace_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workspace ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of topic subscriptions."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new topic subscription."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/subscriptions/:subscription_id",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific subscription."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/subscriptions/:subscription_id",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a topic subscription."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
