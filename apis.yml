@@ -465,7 +465,7 @@ common:
   description: 'null'
 - url: https://app.elastic.io/register
   name: Registration
-  type: SignUp
+  type: Signup
   description: 'null'
 - url: https://www.elastic.io/book-demo-elasticio-ipaas/
   name: Book a 30-min live product tour of the elastic.io iPaaS

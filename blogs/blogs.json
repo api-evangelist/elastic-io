@@ -3,12 +3,13 @@
   "feeds": [
     {
       "source": "https://www.elastic.io/blog/",
-      "feed_url": "https://www.elastic.io/blog/",
+      "feed_url": "",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "agent-scrape"
     }
   ],
-  "fetched": "2026-06-14T20:42:17Z",
-  "post_count": 0
+  "fetched": "2026-06-27T12:38:51Z",
+  "post_count": 0,
+  "agent_pulled": "2026-06-27"
 }
