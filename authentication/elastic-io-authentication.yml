@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/elastic-io-platform-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: Bearer token authentication. Obtain a token through the elastic.io platform login
+    or API key.
+  sources:
+  - openapi/elastic-io-platform-api-openapi.yml
