@@ -1,0 +1,319 @@
+openapi: 3.1.0
+info:
+  title: elastic.io Platform REST Agents Data Samples API
+  description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: 2.0.0
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+  termsOfService: https://www.elastic.io/
+servers:
+- url: https://api.elastic.io/v2
+  description: elastic.io Platform API v2
+security:
+- bearerAuth: []
+tags:
+- name: Data Samples
+  description: Manage data samples for component steps
+paths:
+  /data-samples:
+    get:
+      operationId: listDataSamples
+      summary: Elastic.io List data samples
+      description: Retrieve a list of data samples.
+      tags:
+      - Data Samples
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      - $ref: '#/components/parameters/WorkspaceFilter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSampleListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createDataSample
+      summary: Elastic.io Create a data sample
+      description: Create a new data sample for a component step.
+      tags:
+      - Data Samples
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSampleCreateRequest'
+      responses:
+        '201':
+          description: Data sample created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSampleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /data-samples/{data_sample_id}:
+    get:
+      operationId: getDataSample
+      summary: Elastic.io Get a data sample
+      description: Retrieve details of a specific data sample.
+      tags:
+      - Data Samples
+      parameters:
+      - name: data_sample_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSampleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateDataSample
+      summary: Elastic.io Update a data sample
+      description: Update an existing data sample.
+      tags:
+      - Data Samples
+      parameters:
+      - name: data_sample_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSampleUpdateRequest'
+      responses:
+        '200':
+          description: Data sample updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSampleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteDataSample
+      summary: Elastic.io Delete a data sample
+      description: Delete a data sample.
+      tags:
+      - Data Samples
+      parameters:
+      - name: data_sample_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Data sample deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    WorkspaceFilter:
+      name: filter[workspace_id]
+      in: query
+      description: Filter by workspace ID
+      schema:
+        type: string
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    DataSampleResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DataSample'
+    DataSample:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - data-sample
+        attributes:
+          type: object
+          properties:
+            data:
+              type: object
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            workspace:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    DataSampleCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - attributes
+          properties:
+            type:
+              type: string
+              enum:
+              - data-sample
+            attributes:
+              type: object
+              required:
+              - data
+              properties:
+                data:
+                  type: object
+            relationships:
+              type: object
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    DataSampleListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSample'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    JsonApiLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+    DataSampleUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - data-sample
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                data:
+                  type: object
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication. Obtain a token through the elastic.io platform login or API key.

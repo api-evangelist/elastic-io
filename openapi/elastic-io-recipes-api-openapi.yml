@@ -1,0 +1,372 @@
+openapi: 3.1.0
+info:
+  title: elastic.io Platform REST Agents Recipes API
+  description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: 2.0.0
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+  termsOfService: https://www.elastic.io/
+servers:
+- url: https://api.elastic.io/v2
+  description: elastic.io Platform API v2
+security:
+- bearerAuth: []
+tags:
+- name: Recipes
+  description: Manage reusable integration recipes
+paths:
+  /recipes:
+    get:
+      operationId: listRecipes
+      summary: Elastic.io List recipes
+      description: Retrieve a list of available integration recipes.
+      tags:
+      - Recipes
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      - name: filter[contract_id]
+        in: query
+        description: Filter by contract ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createRecipe
+      summary: Elastic.io Create a recipe
+      description: Create a new integration recipe.
+      tags:
+      - Recipes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeCreateRequest'
+      responses:
+        '201':
+          description: Recipe created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /recipes/{recipe_id}:
+    get:
+      operationId: getRecipe
+      summary: Elastic.io Get a recipe
+      description: Retrieve details of a specific recipe.
+      tags:
+      - Recipes
+      parameters:
+      - $ref: '#/components/parameters/RecipeId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateRecipe
+      summary: Elastic.io Update a recipe
+      description: Update an existing recipe.
+      tags:
+      - Recipes
+      parameters:
+      - $ref: '#/components/parameters/RecipeId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeUpdateRequest'
+      responses:
+        '200':
+          description: Recipe updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteRecipe
+      summary: Elastic.io Delete a recipe
+      description: Delete a recipe.
+      tags:
+      - Recipes
+      parameters:
+      - $ref: '#/components/parameters/RecipeId'
+      responses:
+        '204':
+          description: Recipe deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /recipes/{recipe_id}/visibility:
+    patch:
+      operationId: updateRecipeVisibility
+      summary: Elastic.io Update recipe visibility
+      description: Update the visibility settings of a recipe.
+      tags:
+      - Recipes
+      parameters:
+      - $ref: '#/components/parameters/RecipeId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    visibility:
+                      type: string
+                      enum:
+                      - workspace
+                      - contract
+                      - tenant
+                      - global
+      responses:
+        '200':
+          description: Visibility updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    RecipeUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - recipe
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                graph:
+                  type: object
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    RecipeListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipe'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    JsonApiLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    RecipeResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Recipe'
+    Recipe:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - recipe
+        attributes:
+          type: object
+          properties:
+            title:
+              type: string
+            description:
+              type: string
+            visibility:
+              type: string
+              enum:
+              - workspace
+              - contract
+              - tenant
+              - global
+            graph:
+              type: object
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            workspace:
+              $ref: '#/components/schemas/JsonApiRelationship'
+            contract:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+    RecipeCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - attributes
+          properties:
+            type:
+              type: string
+              enum:
+              - recipe
+            attributes:
+              type: object
+              required:
+              - title
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                graph:
+                  type: object
+            relationships:
+              type: object
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+                contract:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    RecipeId:
+      name: recipe_id
+      in: path
+      required: true
+      description: The unique identifier of the recipe
+      schema:
+        type: string
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication. Obtain a token through the elastic.io platform login or API key.

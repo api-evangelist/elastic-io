@@ -1,0 +1,175 @@
+openapi: 3.1.0
+info:
+  title: elastic.io Platform REST Agents Users API
+  description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: 2.0.0
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+  termsOfService: https://www.elastic.io/
+servers:
+- url: https://api.elastic.io/v2
+  description: elastic.io Platform API v2
+security:
+- bearerAuth: []
+tags:
+- name: Users
+  description: Manage platform users
+paths:
+  /users/me:
+    get:
+      operationId: getCurrentUser
+      summary: Elastic.io Get current user
+      description: Retrieve the profile of the currently authenticated user.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      operationId: updateCurrentUser
+      summary: Elastic.io Update current user
+      description: Update the profile of the currently authenticated user.
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdateRequest'
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /users/{user_id}:
+    get:
+      operationId: getUser
+      summary: Elastic.io Get a user
+      description: Retrieve the profile of a specific user.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - user
+        attributes:
+          type: object
+          properties:
+            first_name:
+              type: string
+            last_name:
+              type: string
+            email:
+              type: string
+              format: email
+            registered:
+              type: string
+              format: date-time
+            last_login:
+              type: string
+              format: date-time
+    UserResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/User'
+    UserUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - user
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    UserId:
+      name: user_id
+      in: path
+      required: true
+      description: The unique identifier of the user
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication. Obtain a token through the elastic.io platform login or API key.

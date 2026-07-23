@@ -1,0 +1,467 @@
+openapi: 3.1.0
+info:
+  title: elastic.io Platform REST Agents Workspaces API
+  description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: 2.0.0
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+  termsOfService: https://www.elastic.io/
+servers:
+- url: https://api.elastic.io/v2
+  description: elastic.io Platform API v2
+security:
+- bearerAuth: []
+tags:
+- name: Workspaces
+  description: Manage workspaces within contracts
+paths:
+  /workspaces:
+    get:
+      operationId: listWorkspaces
+      summary: Elastic.io List workspaces
+      description: Retrieve a list of workspaces accessible to the user.
+      tags:
+      - Workspaces
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      - name: filter[contract_id]
+        in: query
+        description: Filter by contract ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createWorkspace
+      summary: Elastic.io Create a workspace
+      description: Create a new workspace within a contract.
+      tags:
+      - Workspaces
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkspaceCreateRequest'
+      responses:
+        '201':
+          description: Workspace created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workspaces/{workspace_id}:
+    get:
+      operationId: getWorkspace
+      summary: Elastic.io Get a workspace
+      description: Retrieve details of a specific workspace.
+      tags:
+      - Workspaces
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateWorkspace
+      summary: Elastic.io Update a workspace
+      description: Update an existing workspace.
+      tags:
+      - Workspaces
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkspaceUpdateRequest'
+      responses:
+        '200':
+          description: Workspace updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteWorkspace
+      summary: Elastic.io Delete a workspace
+      description: Delete a workspace.
+      tags:
+      - Workspaces
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      responses:
+        '204':
+          description: Workspace deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workspaces/{workspace_id}/members:
+    get:
+      operationId: listWorkspaceMembers
+      summary: Elastic.io List workspace members
+      description: Retrieve the list of members in a workspace.
+      tags:
+      - Workspaces
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: addWorkspaceMember
+      summary: Elastic.io Add a workspace member
+      description: Add a user as a member of a workspace.
+      tags:
+      - Workspaces
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberCreateRequest'
+      responses:
+        '200':
+          description: Member added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workspaces/{workspace_id}/members/{user_id}:
+    delete:
+      operationId: removeWorkspaceMember
+      summary: Elastic.io Remove a workspace member
+      description: Remove a member from a workspace.
+      tags:
+      - Workspaces
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '204':
+          description: Member removed successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    MemberListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              attributes:
+                type: object
+                properties:
+                  roles:
+                    type: array
+                    items:
+                      type: string
+              relationships:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/JsonApiRelationship'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+    WorkspaceUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - workspace
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+    MemberResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+              - member
+            attributes:
+              type: object
+              properties:
+                roles:
+                  type: array
+                  items:
+                    type: string
+            relationships:
+              type: object
+              properties:
+                user:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    Workspace:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - workspace
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            type:
+              type: string
+              enum:
+              - full
+              - limited
+            flow_count:
+              type: integer
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            contract:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    WorkspaceListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Workspace'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+    MemberCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - member
+            id:
+              type: string
+              description: The user ID to add as member
+            attributes:
+              type: object
+              properties:
+                roles:
+                  type: array
+                  items:
+                    type: string
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    JsonApiLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    WorkspaceCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - attributes
+          - relationships
+          properties:
+            type:
+              type: string
+              enum:
+              - workspace
+            attributes:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                  - full
+                  - limited
+            relationships:
+              type: object
+              required:
+              - contract
+              properties:
+                contract:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    WorkspaceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Workspace'
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      description: The unique identifier of the workspace
+      schema:
+        type: string
+    UserId:
+      name: user_id
+      in: path
+      required: true
+      description: The unique identifier of the user
+      schema:
+        type: string
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication. Obtain a token through the elastic.io platform login or API key.

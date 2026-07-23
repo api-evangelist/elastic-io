@@ -1,0 +1,279 @@
+openapi: 3.1.0
+info:
+  title: elastic.io Platform REST Agents Topics API
+  description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: 2.0.0
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+  termsOfService: https://www.elastic.io/
+servers:
+- url: https://api.elastic.io/v2
+  description: elastic.io Platform API v2
+security:
+- bearerAuth: []
+tags:
+- name: Topics
+  description: Manage pub/sub topics
+paths:
+  /topics:
+    get:
+      operationId: listTopics
+      summary: Elastic.io List topics
+      description: Retrieve a list of pub/sub topics.
+      tags:
+      - Topics
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      - $ref: '#/components/parameters/WorkspaceFilter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopicListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createTopic
+      summary: Elastic.io Create a topic
+      description: Create a new pub/sub topic.
+      tags:
+      - Topics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TopicCreateRequest'
+      responses:
+        '201':
+          description: Topic created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopicResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /topics/{topic_id}:
+    get:
+      operationId: getTopic
+      summary: Elastic.io Get a topic
+      description: Retrieve details of a specific topic.
+      tags:
+      - Topics
+      parameters:
+      - name: topic_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopicResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteTopic
+      summary: Elastic.io Delete a topic
+      description: Delete a pub/sub topic.
+      tags:
+      - Topics
+      parameters:
+      - name: topic_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Topic deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    WorkspaceFilter:
+      name: filter[workspace_id]
+      in: query
+      description: Filter by workspace ID
+      schema:
+        type: string
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    JsonApiLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    TopicResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+              - topic
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+                schema:
+                  type: object
+                created_at:
+                  type: string
+                  format: date-time
+            relationships:
+              type: object
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    TopicCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - attributes
+          properties:
+            type:
+              type: string
+              enum:
+              - topic
+            attributes:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                schema:
+                  type: object
+            relationships:
+              type: object
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    TopicListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              attributes:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  schema:
+                    type: object
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication. Obtain a token through the elastic.io platform login or API key.

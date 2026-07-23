@@ -1,0 +1,430 @@
+openapi: 3.1.0
+info:
+  title: elastic.io Platform REST Agents Flows API
+  description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: 2.0.0
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+  termsOfService: https://www.elastic.io/
+servers:
+- url: https://api.elastic.io/v2
+  description: elastic.io Platform API v2
+security:
+- bearerAuth: []
+tags:
+- name: Flows
+  description: Manage integration flows
+paths:
+  /flows:
+    get:
+      operationId: listFlows
+      summary: Elastic.io List flows
+      description: Retrieve a list of integration flows accessible to the user.
+      tags:
+      - Flows
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      - $ref: '#/components/parameters/WorkspaceFilter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createFlow
+      summary: Elastic.io Create a flow
+      description: Create a new integration flow in a workspace.
+      tags:
+      - Flows
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlowCreateRequest'
+      responses:
+        '201':
+          description: Flow created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+  /flows/{flow_id}:
+    get:
+      operationId: getFlow
+      summary: Elastic.io Get a flow
+      description: Retrieve details of a specific integration flow.
+      tags:
+      - Flows
+      parameters:
+      - $ref: '#/components/parameters/FlowId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateFlow
+      summary: Elastic.io Update a flow
+      description: Update an existing integration flow.
+      tags:
+      - Flows
+      parameters:
+      - $ref: '#/components/parameters/FlowId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlowUpdateRequest'
+      responses:
+        '200':
+          description: Flow updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteFlow
+      summary: Elastic.io Delete a flow
+      description: Delete an integration flow.
+      tags:
+      - Flows
+      parameters:
+      - $ref: '#/components/parameters/FlowId'
+      responses:
+        '204':
+          description: Flow deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /flows/{flow_id}/start:
+    post:
+      operationId: startFlow
+      summary: Elastic.io Start a flow
+      description: Start an integration flow to begin processing data.
+      tags:
+      - Flows
+      parameters:
+      - $ref: '#/components/parameters/FlowId'
+      responses:
+        '200':
+          description: Flow started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /flows/{flow_id}/stop:
+    post:
+      operationId: stopFlow
+      summary: Elastic.io Stop a flow
+      description: Stop a running integration flow.
+      tags:
+      - Flows
+      parameters:
+      - $ref: '#/components/parameters/FlowId'
+      responses:
+        '200':
+          description: Flow stopped successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /flows/{flow_id}/run-now:
+    post:
+      operationId: runFlowNow
+      summary: Elastic.io Run a flow on demand
+      description: Trigger an on-demand execution of an integration flow.
+      tags:
+      - Flows
+      parameters:
+      - $ref: '#/components/parameters/FlowId'
+      responses:
+        '200':
+          description: Flow execution triggered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    WorkspaceFilter:
+      name: filter[workspace_id]
+      in: query
+      description: Filter by workspace ID
+      schema:
+        type: string
+    FlowId:
+      name: flow_id
+      in: path
+      required: true
+      description: The unique identifier of the flow
+      schema:
+        type: string
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    FlowResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Flow'
+    JsonApiLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    FlowListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Flow'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    Flow:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - flow
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Name of the integration flow
+            status:
+              type: string
+              enum:
+              - active
+              - inactive
+              description: Current status of the flow
+            type:
+              type: string
+              enum:
+              - ordinary
+              - long_running
+              description: Type of the flow
+            graph:
+              type: object
+              description: Flow graph definition with nodes and edges
+              properties:
+                nodes:
+                  type: array
+                  items:
+                    type: object
+                edges:
+                  type: array
+                  items:
+                    type: object
+            cron:
+              type: string
+              description: Cron expression for scheduled execution
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            workspace:
+              $ref: '#/components/schemas/JsonApiRelationship'
+            user:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    FlowCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - attributes
+          - relationships
+          properties:
+            type:
+              type: string
+              enum:
+              - flow
+            attributes:
+              type: object
+              required:
+              - name
+              - type
+              - graph
+              properties:
+                name:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                  - ordinary
+                  - long_running
+                graph:
+                  type: object
+                cron:
+                  type: string
+            relationships:
+              type: object
+              required:
+              - workspace
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+    FlowUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - flow
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+                graph:
+                  type: object
+                cron:
+                  type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: Resource conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication. Obtain a token through the elastic.io platform login or API key.

@@ -1,0 +1,270 @@
+openapi: 3.1.0
+info:
+  title: elastic.io Platform REST Agents API
+  description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: 2.0.0
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+  termsOfService: https://www.elastic.io/
+servers:
+- url: https://api.elastic.io/v2
+  description: elastic.io Platform API v2
+security:
+- bearerAuth: []
+tags:
+- name: Agents
+  description: Manage on-premises integration agents
+paths:
+  /agents:
+    get:
+      operationId: listAgents
+      summary: Elastic.io List agents
+      description: Retrieve a list of on-premises integration agents.
+      tags:
+      - Agents
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      - $ref: '#/components/parameters/WorkspaceFilter'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createAgent
+      summary: Elastic.io Create an agent
+      description: Create a new on-premises integration agent.
+      tags:
+      - Agents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentCreateRequest'
+      responses:
+        '201':
+          description: Agent created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /agents/{agent_id}:
+    get:
+      operationId: getAgent
+      summary: Elastic.io Get an agent
+      description: Retrieve details of a specific agent.
+      tags:
+      - Agents
+      parameters:
+      - name: agent_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteAgent
+      summary: Elastic.io Delete an agent
+      description: Delete an on-premises integration agent.
+      tags:
+      - Agents
+      parameters:
+      - name: agent_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Agent deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    WorkspaceFilter:
+      name: filter[workspace_id]
+      in: query
+      description: Filter by workspace ID
+      schema:
+        type: string
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    AgentListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Agent'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    AgentCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - attributes
+          properties:
+            type:
+              type: string
+              enum:
+              - agent
+            attributes:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+            relationships:
+              type: object
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    JsonApiLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    AgentResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Agent'
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+    Agent:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - agent
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            status:
+              type: string
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            workspace:
+              $ref: '#/components/schemas/JsonApiRelationship'
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication. Obtain a token through the elastic.io platform login or API key.

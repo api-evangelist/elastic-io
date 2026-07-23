@@ -1,0 +1,165 @@
+openapi: 3.1.0
+info:
+  title: elastic.io Platform REST Agents Logs API
+  description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: 2.0.0
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+  termsOfService: https://www.elastic.io/
+servers:
+- url: https://api.elastic.io/v2
+  description: elastic.io Platform API v2
+security:
+- bearerAuth: []
+tags:
+- name: Logs
+  description: Access execution and platform logs
+paths:
+  /logs:
+    get:
+      operationId: listLogs
+      summary: Elastic.io List execution logs
+      description: Retrieve execution logs for flows.
+      tags:
+      - Logs
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      - $ref: '#/components/parameters/WorkspaceFilter'
+      - name: filter[flow_id]
+        in: query
+        description: Filter by flow ID
+        schema:
+          type: string
+      - name: filter[from]
+        in: query
+        description: Filter logs from this timestamp
+        schema:
+          type: string
+          format: date-time
+      - name: filter[to]
+        in: query
+        description: Filter logs to this timestamp
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    WorkspaceFilter:
+      name: filter[workspace_id]
+      in: query
+      description: Filter by workspace ID
+      schema:
+        type: string
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
+  schemas:
+    LogListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+                enum:
+                - log
+              attributes:
+                type: object
+                properties:
+                  level:
+                    type: string
+                  message:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    JsonApiLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication. Obtain a token through the elastic.io platform login or API key.

@@ -1,0 +1,280 @@
+openapi: 3.1.0
+info:
+  title: elastic.io Platform REST Agents Components API
+  description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: 2.0.0
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+  termsOfService: https://www.elastic.io/
+servers:
+- url: https://api.elastic.io/v2
+  description: elastic.io Platform API v2
+security:
+- bearerAuth: []
+tags:
+- name: Components
+  description: Manage integration components
+paths:
+  /components:
+    get:
+      operationId: listComponents
+      summary: Elastic.io List components
+      description: Retrieve a list of available integration components.
+      tags:
+      - Components
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      - name: filter[contract_id]
+        in: query
+        description: Filter by contract ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComponentListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /components/{component_id}:
+    get:
+      operationId: getComponent
+      summary: Elastic.io Get a component
+      description: Retrieve details of a specific component.
+      tags:
+      - Components
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComponentResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateComponent
+      summary: Elastic.io Update a component
+      description: Update component metadata.
+      tags:
+      - Components
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComponentUpdateRequest'
+      responses:
+        '200':
+          description: Component updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComponentResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteComponent
+      summary: Elastic.io Delete a component
+      description: Delete a component.
+      tags:
+      - Components
+      parameters:
+      - $ref: '#/components/parameters/ComponentId'
+      responses:
+        '204':
+          description: Component deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    ComponentUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - component
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+                title:
+                  type: string
+                description:
+                  type: string
+    ComponentListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Component'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    JsonApiLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    ComponentResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Component'
+    Component:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - component
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            title:
+              type: string
+            description:
+              type: string
+            icon:
+              type: string
+            triggers:
+              type: object
+              description: Available trigger operations
+            actions:
+              type: object
+              description: Available action operations
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            team:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    ComponentId:
+      name: component_id
+      in: path
+      required: true
+      description: The unique identifier of the component
+      schema:
+        type: string
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication. Obtain a token through the elastic.io platform login or API key.

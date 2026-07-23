@@ -1,0 +1,183 @@
+openapi: 3.1.0
+info:
+  title: elastic.io Platform REST Agents SSH Keys API
+  description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: 2.0.0
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+  termsOfService: https://www.elastic.io/
+servers:
+- url: https://api.elastic.io/v2
+  description: elastic.io Platform API v2
+security:
+- bearerAuth: []
+tags:
+- name: SSH Keys
+  description: Manage SSH keys for component repositories
+paths:
+  /sshkeys:
+    get:
+      operationId: listSshKeys
+      summary: Elastic.io List SSH keys
+      description: Retrieve a list of SSH keys for the current user.
+      tags:
+      - SSH Keys
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshKeyListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createSshKey
+      summary: Elastic.io Create an SSH key
+      description: Upload a new SSH key for component repository access.
+      tags:
+      - SSH Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SshKeyCreateRequest'
+      responses:
+        '201':
+          description: SSH key created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SshKeyResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sshkeys/{sshkey_id}:
+    delete:
+      operationId: deleteSshKey
+      summary: Elastic.io Delete an SSH key
+      description: Delete an SSH key.
+      tags:
+      - SSH Keys
+      parameters:
+      - name: sshkey_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: SSH key deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    SshKeyCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - attributes
+          properties:
+            type:
+              type: string
+              enum:
+              - sshkey
+            attributes:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: The public SSH key content
+                title:
+                  type: string
+    SshKeyListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              attributes:
+                type: object
+                properties:
+                  key:
+                    type: string
+                  fingerprint:
+                    type: string
+                  title:
+                    type: string
+    SshKeyResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+              - sshkey
+            attributes:
+              type: object
+              properties:
+                key:
+                  type: string
+                fingerprint:
+                  type: string
+                title:
+                  type: string
+                created_at:
+                  type: string
+                  format: date-time
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication. Obtain a token through the elastic.io platform login or API key.

@@ -1,0 +1,362 @@
+openapi: 3.1.0
+info:
+  title: elastic.io Platform REST Agents Auth Clients API
+  description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: 2.0.0
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+  termsOfService: https://www.elastic.io/
+servers:
+- url: https://api.elastic.io/v2
+  description: elastic.io Platform API v2
+security:
+- bearerAuth: []
+tags:
+- name: Auth Clients
+  description: Manage OAuth authentication clients
+paths:
+  /auth-clients:
+    get:
+      operationId: listAuthClients
+      summary: Elastic.io List auth clients
+      description: Retrieve a list of OAuth authentication clients.
+      tags:
+      - Auth Clients
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthClientListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createAuthClient
+      summary: Elastic.io Create an auth client
+      description: Create a new OAuth authentication client.
+      tags:
+      - Auth Clients
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthClientCreateRequest'
+      responses:
+        '201':
+          description: Auth client created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthClientResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /auth-clients/{auth_client_id}:
+    get:
+      operationId: getAuthClient
+      summary: Elastic.io Get an auth client
+      description: Retrieve details of a specific auth client.
+      tags:
+      - Auth Clients
+      parameters:
+      - $ref: '#/components/parameters/AuthClientId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthClientResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateAuthClient
+      summary: Elastic.io Update an auth client
+      description: Update an existing auth client.
+      tags:
+      - Auth Clients
+      parameters:
+      - $ref: '#/components/parameters/AuthClientId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthClientUpdateRequest'
+      responses:
+        '200':
+          description: Auth client updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthClientResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteAuthClient
+      summary: Elastic.io Delete an auth client
+      description: Delete an auth client.
+      tags:
+      - Auth Clients
+      parameters:
+      - $ref: '#/components/parameters/AuthClientId'
+      responses:
+        '204':
+          description: Auth client deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    AuthClientListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthClient'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    AuthClientCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - attributes
+          properties:
+            type:
+              type: string
+              enum:
+              - auth-client
+            attributes:
+              type: object
+              required:
+              - name
+              - client_id
+              - client_secret
+              properties:
+                name:
+                  type: string
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+                auth_uri:
+                  type: string
+                  format: uri
+                token_uri:
+                  type: string
+                  format: uri
+                scopes:
+                  type: array
+                  items:
+                    type: string
+            relationships:
+              type: object
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+                component:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    AuthClientResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/AuthClient'
+    JsonApiLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    AuthClient:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - auth-client
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            client_id:
+              type: string
+            client_secret:
+              type: string
+            auth_uri:
+              type: string
+              format: uri
+            token_uri:
+              type: string
+              format: uri
+            scopes:
+              type: array
+              items:
+                type: string
+            access_level:
+              type: string
+              enum:
+              - workspace
+              - contract
+              - tenant
+              - global
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            workspace:
+              $ref: '#/components/schemas/JsonApiRelationship'
+            component:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    AuthClientUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - auth-client
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+                auth_uri:
+                  type: string
+                  format: uri
+                token_uri:
+                  type: string
+                  format: uri
+                scopes:
+                  type: array
+                  items:
+                    type: string
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    AuthClientId:
+      name: auth_client_id
+      in: path
+      required: true
+      description: The unique identifier of the auth client
+      schema:
+        type: string
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication. Obtain a token through the elastic.io platform login or API key.

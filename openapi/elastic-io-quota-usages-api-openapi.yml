@@ -1,0 +1,140 @@
+openapi: 3.1.0
+info:
+  title: elastic.io Platform REST Agents Quota Usages API
+  description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: 2.0.0
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+  termsOfService: https://www.elastic.io/
+servers:
+- url: https://api.elastic.io/v2
+  description: elastic.io Platform API v2
+security:
+- bearerAuth: []
+tags:
+- name: Quota Usages
+  description: View quota usage statistics
+paths:
+  /quota-usages/workspaces/{workspace_id}:
+    get:
+      operationId: getWorkspaceQuotaUsage
+      summary: Elastic.io Get workspace quota usage
+      description: Retrieve quota usage statistics for a workspace.
+      tags:
+      - Quota Usages
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuotaUsageResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /quota-usages/contracts/{contract_id}:
+    get:
+      operationId: getContractQuotaUsage
+      summary: Elastic.io Get contract quota usage
+      description: Retrieve quota usage statistics for all workspaces in a contract.
+      tags:
+      - Quota Usages
+      parameters:
+      - $ref: '#/components/parameters/ContractId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuotaUsageResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    ContractId:
+      name: contract_id
+      in: path
+      required: true
+      description: The unique identifier of the contract
+      schema:
+        type: string
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      description: The unique identifier of the workspace
+      schema:
+        type: string
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    QuotaUsageResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+              - quota-usage
+            attributes:
+              type: object
+              properties:
+                memory:
+                  type: object
+                  properties:
+                    used:
+                      type: integer
+                    limit:
+                      type: integer
+                cpu:
+                  type: object
+                  properties:
+                    used:
+                      type: integer
+                    limit:
+                      type: integer
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication. Obtain a token through the elastic.io platform login or API key.

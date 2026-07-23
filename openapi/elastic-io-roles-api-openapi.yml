@@ -1,0 +1,291 @@
+openapi: 3.1.0
+info:
+  title: elastic.io Platform REST Agents Roles API
+  description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: 2.0.0
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+  termsOfService: https://www.elastic.io/
+servers:
+- url: https://api.elastic.io/v2
+  description: elastic.io Platform API v2
+security:
+- bearerAuth: []
+tags:
+- name: Roles
+  description: Manage user roles and permissions
+paths:
+  /tenants/{tenant_id}/roles:
+    get:
+      operationId: listRoles
+      summary: Elastic.io List roles
+      description: Retrieve a list of user roles and permissions for a tenant.
+      tags:
+      - Roles
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createRole
+      summary: Elastic.io Create a role
+      description: Create a new user role with specific permissions.
+      tags:
+      - Roles
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleCreateRequest'
+      responses:
+        '201':
+          description: Role created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /tenants/{tenant_id}/roles/{role_id}:
+    get:
+      operationId: getRole
+      summary: Elastic.io Get a role
+      description: Retrieve details of a specific role.
+      tags:
+      - Roles
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      - name: role_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateRole
+      summary: Elastic.io Update a role
+      description: Update an existing role.
+      tags:
+      - Roles
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      - name: role_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleUpdateRequest'
+      responses:
+        '200':
+          description: Role updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteRole
+      summary: Elastic.io Delete a role
+      description: Delete a user role.
+      tags:
+      - Roles
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      - name: role_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Role deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    RoleCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - attributes
+          properties:
+            type:
+              type: string
+              enum:
+              - role
+            attributes:
+              type: object
+              required:
+              - role
+              - scope
+              - permissions
+              properties:
+                role:
+                  type: string
+                scope:
+                  type: string
+                  enum:
+                  - contracts
+                  - workspaces
+                permissions:
+                  type: object
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    RoleListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              attributes:
+                type: object
+                properties:
+                  role:
+                    type: string
+                  scope:
+                    type: string
+                  permissions:
+                    type: object
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    RoleUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - role
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                permissions:
+                  type: object
+    RoleResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+              - role
+            attributes:
+              type: object
+              properties:
+                role:
+                  type: string
+                scope:
+                  type: string
+                  enum:
+                  - contracts
+                  - workspaces
+                permissions:
+                  type: object
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    TenantId:
+      name: tenant_id
+      in: path
+      required: true
+      description: The unique identifier of the tenant
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication. Obtain a token through the elastic.io platform login or API key.

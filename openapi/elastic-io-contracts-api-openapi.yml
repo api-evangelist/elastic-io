@@ -1,0 +1,374 @@
+openapi: 3.1.0
+info:
+  title: elastic.io Platform REST Agents Contracts API
+  description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: 2.0.0
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+  termsOfService: https://www.elastic.io/
+servers:
+- url: https://api.elastic.io/v2
+  description: elastic.io Platform API v2
+security:
+- bearerAuth: []
+tags:
+- name: Contracts
+  description: Manage contracts (tenants)
+paths:
+  /contracts:
+    get:
+      operationId: listContracts
+      summary: Elastic.io List contracts
+      description: Retrieve a list of contracts accessible to the user.
+      tags:
+      - Contracts
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /contracts/{contract_id}:
+    get:
+      operationId: getContract
+      summary: Elastic.io Get a contract
+      description: Retrieve details of a specific contract.
+      tags:
+      - Contracts
+      parameters:
+      - $ref: '#/components/parameters/ContractId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateContract
+      summary: Elastic.io Update a contract
+      description: Update contract settings and attributes.
+      tags:
+      - Contracts
+      parameters:
+      - $ref: '#/components/parameters/ContractId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractUpdateRequest'
+      responses:
+        '200':
+          description: Contract updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /contracts/{contract_id}/members:
+    get:
+      operationId: listContractMembers
+      summary: Elastic.io List contract members
+      description: Retrieve the list of members in a contract.
+      tags:
+      - Contracts
+      parameters:
+      - $ref: '#/components/parameters/ContractId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: addContractMember
+      summary: Elastic.io Add a contract member
+      description: Add a user as a member of a contract.
+      tags:
+      - Contracts
+      parameters:
+      - $ref: '#/components/parameters/ContractId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberCreateRequest'
+      responses:
+        '200':
+          description: Member added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Contract:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - contract
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            available_roles:
+              type: array
+              items:
+                type: object
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            members:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      type:
+                        type: string
+    MemberListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              attributes:
+                type: object
+                properties:
+                  roles:
+                    type: array
+                    items:
+                      type: string
+              relationships:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/JsonApiRelationship'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+    MemberResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+              - member
+            attributes:
+              type: object
+              properties:
+                roles:
+                  type: array
+                  items:
+                    type: string
+            relationships:
+              type: object
+              properties:
+                user:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    ContractListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contract'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    MemberCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - member
+            id:
+              type: string
+              description: The user ID to add as member
+            attributes:
+              type: object
+              properties:
+                roles:
+                  type: array
+                  items:
+                    type: string
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+    JsonApiLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    ContractResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Contract'
+    ContractUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - contract
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+  parameters:
+    ContractId:
+      name: contract_id
+      in: path
+      required: true
+      description: The unique identifier of the contract
+      schema:
+        type: string
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication. Obtain a token through the elastic.io platform login or API key.

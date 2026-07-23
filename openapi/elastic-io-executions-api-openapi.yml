@@ -1,0 +1,123 @@
+openapi: 3.1.0
+info:
+  title: elastic.io Platform REST Agents Executions API
+  description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: 2.0.0
+  contact:
+    name: elastic.io
+    url: https://www.elastic.io/
+  license:
+    name: Proprietary
+    url: https://www.elastic.io/
+  termsOfService: https://www.elastic.io/
+servers:
+- url: https://api.elastic.io/v2
+  description: elastic.io Platform API v2
+security:
+- bearerAuth: []
+tags:
+- name: Executions
+  description: Manage flow executions and logs
+paths:
+  /exec/poll/{execution_id}:
+    get:
+      operationId: pollExecution
+      summary: Elastic.io Poll execution status
+      description: Check the status of a flow execution by polling.
+      tags:
+      - Executions
+      parameters:
+      - name: execution_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Execution status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ExecutionResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+              - execution
+            attributes:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum:
+                  - pending
+                  - in_progress
+                  - completed
+                  - failed
+                started_at:
+                  type: string
+                  format: date-time
+                finished_at:
+                  type: string
+                  format: date-time
+            relationships:
+              type: object
+              properties:
+                flow:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token authentication. Obtain a token through the elastic.io platform login or API key.
