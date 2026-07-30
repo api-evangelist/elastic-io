@@ -1,52 +1,580 @@
 aid: elastic-io
 url: https://raw.githubusercontent.com/api-evangelist/elastic-io/refs/heads/main/apis.yml
 apis:
-- aid: elastic-io:elastic-io
-  name: Elastic.io
-  tags:
-  - Integrations
-  - iPaaS
-  - SaaS Integration
+- aid: elastic-io:elastic-io-agents-api
+  name: Elastic.io Agents API
+  description: Manage on-premises integration agents
   humanURL: ' https://www.elastic.io/'
+  tags:
+  - Agents
   properties:
-  - url: ' https://www.elastic.io/'
-    type: Documentation
-  - url: https://api.elastic.io/docs/v2/
-    name: elastic.io
-    type: Documentation
-    description: 'null'
-  - url: openapi/elastic-io-platform-api-openapi.yml
-    name: elastic.io Platform REST API OpenAPI
-    type: OpenAPI
-  - url: asyncapi/elastic-io-platform-events-asyncapi.yml
-    name: elastic.io Platform Events AsyncAPI
-    type: AsyncAPI
-  - url: json-schema/elastic-io-flow.json
-    name: elastic.io Flow JSON Schema
-    type: JSONSchema
-  - url: json-schema/elastic-io-workspace.json
-    name: elastic.io Workspace JSON Schema
-    type: JSONSchema
-  - url: json-schema/elastic-io-contract.json
-    name: elastic.io Contract JSON Schema
-    type: JSONSchema
-  - url: json-ld/elastic-io-context.jsonld
-    name: elastic.io JSON-LD Context
-    type: JSONLD
-  - url: graphql/elastic-io-graphql.md
-    type: GraphQL
-  description: >-
-    elastic.io iPaaS platform gives you the tools for integration visualisation, intuitive data mapping and easy
-    troubleshooting, so that you can generate more value from your data with less distraction from your core business.
+  - type: OpenAPI
+    url: openapi/elastic-io-agents-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-auth-clients-api
+  name: Elastic.io Auth Clients API
+  description: Manage OAuth authentication clients
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Auth Clients
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-auth-clients-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-auth-secrets-api
+  name: Elastic.io Auth Secrets API
+  description: Manage authentication secrets
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Auth Secrets
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-auth-secrets-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-components-api
+  name: Elastic.io Components API
+  description: Manage integration components
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Components
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-components-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-contracts-api
+  name: Elastic.io Contracts API
+  description: Manage contracts (tenants)
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Contracts
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-contracts-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-credentials-api
+  name: Elastic.io Credentials API
+  description: Manage authentication credentials for components
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Credentials
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-credentials-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-data-samples-api
+  name: Elastic.io Data Samples API
+  description: Manage data samples for component steps
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Data Samples
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-data-samples-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-executions-api
+  name: Elastic.io Executions API
+  description: Manage flow executions and logs
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Executions
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-executions-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-flow-drafts-api
+  name: Elastic.io Flow Drafts API
+  description: Manage flow drafts before publishing
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Flow Drafts
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-flow-drafts-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-flow-versions-api
+  name: Elastic.io Flow Versions API
+  description: Manage flow version history
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Flow Versions
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-flow-versions-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-flows-api
+  name: Elastic.io Flows API
+  description: Manage integration flows
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Flows
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-flows-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-logs-api
+  name: Elastic.io Logs API
+  description: Access execution and platform logs
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-logs-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-quota-usages-api
+  name: Elastic.io Quota Usages API
+  description: View quota usage statistics
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Quota Usages
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-quota-usages-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-recipes-api
+  name: Elastic.io Recipes API
+  description: Manage reusable integration recipes
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Recipes
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-recipes-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-roles-api
+  name: Elastic.io Roles API
+  description: Manage user roles and permissions
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-roles-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-snapshots-api
+  name: Elastic.io Snapshots API
+  description: Manage flow step snapshots
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Snapshots
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-snapshots-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-ssh-keys-api
+  name: Elastic.io SSH Keys API
+  description: Manage SSH keys for component repositories
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - SSH Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-ssh-keys-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-subscriptions-api
+  name: Elastic.io Subscriptions API
+  description: Manage topic subscriptions
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-teams-api
+  name: Elastic.io Teams API
+  description: Manage developer teams
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Teams
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-teams-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-topics-api
+  name: Elastic.io Topics API
+  description: Manage pub/sub topics
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Topics
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-topics-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-users-api
+  name: Elastic.io Users API
+  description: Manage platform users
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-users-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
+- aid: elastic-io:elastic-io-workspaces-api
+  name: Elastic.io Workspaces API
+  description: Manage workspaces within contracts
+  humanURL: ' https://www.elastic.io/'
+  tags:
+  - Workspaces
+  properties:
+  - type: OpenAPI
+    url: openapi/elastic-io-workspaces-api-openapi.yml
+  - type: Documentation
+    url: ' https://www.elastic.io/'
+  - type: Documentation
+    url: https://api.elastic.io/docs/v2/
+  - type: AsyncAPI
+    url: asyncapi/elastic-io-platform-events-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/elastic-io-flow.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-workspace.json
+  - type: JSONSchema
+    url: json-schema/elastic-io-contract.json
+  - type: JSONLD
+    url: json-ld/elastic-io-context.jsonld
+  - type: GraphQL
+    url: graphql/elastic-io-graphql.md
 name: Elastic.io
 tags:
 - Integrations
 - iPaaS
 - SaaS Integration
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/elastic-io.png
 access: 3rd-Party
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/elasticio/overview
 - type: AgenticAccess
   url: agentic-access/elastic-io-agentic-access.yml
 - type: DomainSecurity
