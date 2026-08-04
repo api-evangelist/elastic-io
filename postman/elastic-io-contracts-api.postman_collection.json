@@ -1,0 +1,952 @@
+{
+  "info": {
+    "_postman_id": "2c4bba01-1900-45b9-934b-1d63555cd4d0",
+    "name": "elastic.io Platform REST Agents Contracts API",
+    "description": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:33:31.000Z",
+    "updatedAt": "2026-07-28T01:33:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2c4bba01-1900-45b9-934b-1d63555cd4d0"
+  },
+  "item": [
+    {
+      "name": "contracts",
+      "item": [
+        {
+          "name": "{contract_id}",
+          "item": [
+            {
+              "name": "members",
+              "item": [
+                {
+                  "name": "Elastic.io List contract members",
+                  "id": "17227715-a0b1-4b53-bbe5-32ae798f32c8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/contracts/:contract_id/members",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contracts",
+                        ":contract_id",
+                        "members"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6676384c-13cd-4b01-acad-033933a3de36",
+                          "key": "contract_id",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the contract"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve the list of members in a contract."
+                  },
+                  "response": [
+                    {
+                      "id": "c91c4d98-b89a-488c-8ad1-ccc4bfbb433a",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/contracts/:contract_id/members",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contracts",
+                            ":contract_id",
+                            "members"
+                          ],
+                          "variable": [
+                            {
+                              "key": "contract_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attributes\": {\n        \"roles\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"relationships\": {\n        \"user\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attributes\": {\n        \"roles\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"relationships\": {\n        \"user\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": \"<integer>\",\n    \"per_page\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"total_pages\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:33:32.000Z",
+                      "updatedAt": "2026-07-28T01:33:32.000Z",
+                      "uid": "35240-c91c4d98-b89a-488c-8ad1-ccc4bfbb433a"
+                    },
+                    {
+                      "id": "893d5e76-0a3e-4b39-9ab7-f18e5a39db61",
+                      "name": "Authentication required or token is invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/contracts/:contract_id/members",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contracts",
+                            ":contract_id",
+                            "members"
+                          ],
+                          "variable": [
+                            {
+                              "key": "contract_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:33:32.000Z",
+                      "updatedAt": "2026-07-28T01:33:32.000Z",
+                      "uid": "35240-893d5e76-0a3e-4b39-9ab7-f18e5a39db61"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:32.000Z",
+                  "updatedAt": "2026-07-28T01:33:32.000Z",
+                  "uid": "35240-17227715-a0b1-4b53-bbe5-32ae798f32c8"
+                },
+                {
+                  "name": "Elastic.io Add a contract member",
+                  "id": "c25ddb91-a9fa-41b9-ab88-abdd2e0f0305",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"member\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/contracts/:contract_id/members",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contracts",
+                        ":contract_id",
+                        "members"
+                      ],
+                      "variable": [
+                        {
+                          "id": "bcbae312-a54b-45f6-8743-c2227632bf5e",
+                          "key": "contract_id",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the contract"
+                        }
+                      ]
+                    },
+                    "description": "Add a user as a member of a contract."
+                  },
+                  "response": [
+                    {
+                      "id": "fda6c3c1-6e66-4362-905b-6f2c5fd941c3",
+                      "name": "Member added successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"type\": \"member\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/contracts/:contract_id/members",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contracts",
+                            ":contract_id",
+                            "members"
+                          ],
+                          "variable": [
+                            {
+                              "key": "contract_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"member\",\n    \"attributes\": {\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"relationships\": {\n      \"user\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:33:32.000Z",
+                      "updatedAt": "2026-07-28T01:33:32.000Z",
+                      "uid": "35240-fda6c3c1-6e66-4362-905b-6f2c5fd941c3"
+                    },
+                    {
+                      "id": "1c1dc942-3401-46b1-8a26-b9290cb60bec",
+                      "name": "Authentication required or token is invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"type\": \"member\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/contracts/:contract_id/members",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contracts",
+                            ":contract_id",
+                            "members"
+                          ],
+                          "variable": [
+                            {
+                              "key": "contract_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:33:32.000Z",
+                      "updatedAt": "2026-07-28T01:33:32.000Z",
+                      "uid": "35240-1c1dc942-3401-46b1-8a26-b9290cb60bec"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:32.000Z",
+                  "updatedAt": "2026-07-28T01:33:32.000Z",
+                  "uid": "35240-c25ddb91-a9fa-41b9-ab88-abdd2e0f0305"
+                }
+              ],
+              "id": "cf8955a2-97f0-4e3a-a009-a1f91cfc38a7",
+              "createdAt": "2026-07-28T01:33:32.000Z",
+              "updatedAt": "2026-07-28T01:33:32.000Z",
+              "uid": "35240-cf8955a2-97f0-4e3a-a009-a1f91cfc38a7"
+            },
+            {
+              "name": "Elastic.io Get a contract",
+              "id": "6d495483-db4a-4c80-9362-a2603cc9d4f1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contracts/:contract_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "contracts",
+                    ":contract_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "707ecceb-69aa-477a-8ba2-db4fa959a59f",
+                      "key": "contract_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the contract"
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific contract."
+              },
+              "response": [
+                {
+                  "id": "c29d7289-9597-4698-adf9-24b7a96d73b4",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/contracts/:contract_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contracts",
+                        ":contract_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "contract_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"contract\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"members\": {\n        \"data\": [\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ]\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:33:32.000Z",
+                  "updatedAt": "2026-07-28T01:33:32.000Z",
+                  "uid": "35240-c29d7289-9597-4698-adf9-24b7a96d73b4"
+                },
+                {
+                  "id": "4b219ac1-ebe1-4e3f-b05b-6558fa54284b",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/contracts/:contract_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contracts",
+                        ":contract_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "contract_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:32.000Z",
+                  "updatedAt": "2026-07-28T01:33:32.000Z",
+                  "uid": "35240-4b219ac1-ebe1-4e3f-b05b-6558fa54284b"
+                },
+                {
+                  "id": "08c8457e-7e68-4f96-8133-c1afa82ebb54",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/contracts/:contract_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contracts",
+                        ":contract_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "contract_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:32.000Z",
+                  "updatedAt": "2026-07-28T01:33:32.000Z",
+                  "uid": "35240-08c8457e-7e68-4f96-8133-c1afa82ebb54"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:32.000Z",
+              "updatedAt": "2026-07-28T01:33:32.000Z",
+              "uid": "35240-6d495483-db4a-4c80-9362-a2603cc9d4f1"
+            },
+            {
+              "name": "Elastic.io Update a contract",
+              "id": "7fdd12d9-97d7-401e-9fac-1e16269cadd6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"contract\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/contracts/:contract_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "contracts",
+                    ":contract_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "62a5f924-a45f-4052-8b6c-c4532fa4c8e3",
+                      "key": "contract_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the contract"
+                    }
+                  ]
+                },
+                "description": "Update contract settings and attributes."
+              },
+              "response": [
+                {
+                  "id": "38548620-8ae2-42e5-9ccf-e5a2fe8405bb",
+                  "name": "Contract updated successfully",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"contract\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/contracts/:contract_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contracts",
+                        ":contract_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "contract_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"contract\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"members\": {\n        \"data\": [\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ]\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:33:32.000Z",
+                  "updatedAt": "2026-07-28T01:33:32.000Z",
+                  "uid": "35240-38548620-8ae2-42e5-9ccf-e5a2fe8405bb"
+                },
+                {
+                  "id": "f288195c-1a5c-4e50-bf94-d997689ecc31",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"contract\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/contracts/:contract_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contracts",
+                        ":contract_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "contract_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:32.000Z",
+                  "updatedAt": "2026-07-28T01:33:32.000Z",
+                  "uid": "35240-f288195c-1a5c-4e50-bf94-d997689ecc31"
+                },
+                {
+                  "id": "2f315f9c-6f77-4a38-9f0f-996465fcf250",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"contract\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/contracts/:contract_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contracts",
+                        ":contract_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "contract_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:32.000Z",
+                  "updatedAt": "2026-07-28T01:33:32.000Z",
+                  "uid": "35240-2f315f9c-6f77-4a38-9f0f-996465fcf250"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:32.000Z",
+              "updatedAt": "2026-07-28T01:33:32.000Z",
+              "uid": "35240-7fdd12d9-97d7-401e-9fac-1e16269cadd6"
+            }
+          ],
+          "id": "0bfd677a-7352-41ee-ae72-20d3a169984b",
+          "createdAt": "2026-07-28T01:33:32.000Z",
+          "updatedAt": "2026-07-28T01:33:32.000Z",
+          "uid": "35240-0bfd677a-7352-41ee-ae72-20d3a169984b"
+        },
+        {
+          "name": "Elastic.io List contracts",
+          "id": "3485ac40-b368-4090-9d03-6ca70af70815",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/contracts?page[size]=20&page[number]=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contracts"
+              ],
+              "query": [
+                {
+                  "description": "Number of items per page",
+                  "key": "page[size]",
+                  "value": "20"
+                },
+                {
+                  "description": "Page number to retrieve",
+                  "key": "page[number]",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Retrieve a list of contracts accessible to the user."
+          },
+          "response": [
+            {
+              "id": "dd5bcb68-5ea5-4b6a-9332-909a6215c9fc",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contracts?page[size]=20&page[number]=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "contracts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"contract\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"members\": {\n          \"data\": [\n            {\n              \"id\": \"<string>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"type\": \"<string>\"\n            }\n          ]\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"contract\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"members\": {\n          \"data\": [\n            {\n              \"id\": \"<string>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"type\": \"<string>\"\n            }\n          ]\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": \"<integer>\",\n    \"per_page\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"total_pages\": \"<integer>\"\n  },\n  \"links\": {\n    \"self\": \"<uri>\",\n    \"first\": \"<uri>\",\n    \"prev\": \"<uri>\",\n    \"next\": \"<uri>\",\n    \"last\": \"<uri>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:33:32.000Z",
+              "updatedAt": "2026-07-28T01:33:32.000Z",
+              "uid": "35240-dd5bcb68-5ea5-4b6a-9332-909a6215c9fc"
+            },
+            {
+              "id": "84bf27e4-03a9-455d-9e07-d7c0516ef6c5",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contracts?page[size]=20&page[number]=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "contracts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:33:32.000Z",
+              "updatedAt": "2026-07-28T01:33:32.000Z",
+              "uid": "35240-84bf27e4-03a9-455d-9e07-d7c0516ef6c5"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:32.000Z",
+          "updatedAt": "2026-07-28T01:33:32.000Z",
+          "uid": "35240-3485ac40-b368-4090-9d03-6ca70af70815"
+        }
+      ],
+      "id": "a924c6b9-690a-4578-9ce0-5495668b6823",
+      "createdAt": "2026-07-28T01:33:32.000Z",
+      "updatedAt": "2026-07-28T01:33:32.000Z",
+      "uid": "35240-a924c6b9-690a-4578-9ce0-5495668b6823"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.elastic.io/v2"
+    }
+  ]
+}

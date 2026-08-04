@@ -1,0 +1,245 @@
+{
+  "info": {
+    "_postman_id": "872fa3cd-90b2-4495-bf0b-460b6106b0a3",
+    "name": "elastic.io Platform REST Agents Executions API",
+    "description": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:33:45.000Z",
+    "updatedAt": "2026-07-28T01:33:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-872fa3cd-90b2-4495-bf0b-460b6106b0a3"
+  },
+  "item": [
+    {
+      "name": "exec",
+      "item": [
+        {
+          "name": "poll",
+          "item": [
+            {
+              "name": "{execution_id}",
+              "item": [
+                {
+                  "name": "Elastic.io Poll execution status",
+                  "id": "2b48fe3c-725f-4124-af0e-5cb5f6f7537b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/exec/poll/:execution_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "exec",
+                        "poll",
+                        ":execution_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "46d387e2-59ca-45e7-978b-75ae4e0caced",
+                          "key": "execution_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Check the status of a flow execution by polling."
+                  },
+                  "response": [
+                    {
+                      "id": "a9b535f0-db55-471e-9986-b7c300146aea",
+                      "name": "Execution status",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/exec/poll/:execution_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "exec",
+                            "poll",
+                            ":execution_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "execution_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"execution\",\n    \"attributes\": {\n      \"status\": \"pending\",\n      \"started_at\": \"<dateTime>\",\n      \"finished_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"flow\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:33:46.000Z",
+                      "updatedAt": "2026-07-28T01:33:46.000Z",
+                      "uid": "35240-a9b535f0-db55-471e-9986-b7c300146aea"
+                    },
+                    {
+                      "id": "c5483a56-8712-4623-a729-975977f7fba2",
+                      "name": "Authentication required or token is invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/exec/poll/:execution_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "exec",
+                            "poll",
+                            ":execution_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "execution_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:33:46.000Z",
+                      "updatedAt": "2026-07-28T01:33:46.000Z",
+                      "uid": "35240-c5483a56-8712-4623-a729-975977f7fba2"
+                    },
+                    {
+                      "id": "4cc47d39-83f1-4f65-92c9-9e65347def20",
+                      "name": "The requested resource was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/exec/poll/:execution_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "exec",
+                            "poll",
+                            ":execution_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "execution_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:33:46.000Z",
+                      "updatedAt": "2026-07-28T01:33:46.000Z",
+                      "uid": "35240-4cc47d39-83f1-4f65-92c9-9e65347def20"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:46.000Z",
+                  "updatedAt": "2026-07-28T01:33:46.000Z",
+                  "uid": "35240-2b48fe3c-725f-4124-af0e-5cb5f6f7537b"
+                }
+              ],
+              "id": "5d0b8611-78ab-4959-83fc-80692e34f1ce",
+              "createdAt": "2026-07-28T01:33:46.000Z",
+              "updatedAt": "2026-07-28T01:33:46.000Z",
+              "uid": "35240-5d0b8611-78ab-4959-83fc-80692e34f1ce"
+            }
+          ],
+          "id": "5bfa60df-bb24-40f3-a8ca-c1dcfc23373d",
+          "createdAt": "2026-07-28T01:33:46.000Z",
+          "updatedAt": "2026-07-28T01:33:46.000Z",
+          "uid": "35240-5bfa60df-bb24-40f3-a8ca-c1dcfc23373d"
+        }
+      ],
+      "id": "8ff933ea-7762-4a1a-b788-268faffae5a8",
+      "createdAt": "2026-07-28T01:33:46.000Z",
+      "updatedAt": "2026-07-28T01:33:46.000Z",
+      "uid": "35240-8ff933ea-7762-4a1a-b788-268faffae5a8"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.elastic.io/v2"
+    }
+  ]
+}

@@ -1,0 +1,730 @@
+{
+  "info": {
+    "_postman_id": "44ab819d-cfc7-44c2-81b7-6b048620ad60",
+    "name": "elastic.io Platform REST Agents Teams API",
+    "description": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:34:40.000Z",
+    "updatedAt": "2026-07-28T01:34:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-44ab819d-cfc7-44c2-81b7-6b048620ad60"
+  },
+  "item": [
+    {
+      "name": "teams",
+      "item": [
+        {
+          "name": "{team_id}",
+          "item": [
+            {
+              "name": "Elastic.io Get a team",
+              "id": "4f5ccab4-0219-46ae-bb1c-6629a35a6bf6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/teams/:team_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "teams",
+                    ":team_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e3285b18-eb54-4ea2-84c2-399da11fde06",
+                      "key": "team_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the team"
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific developer team."
+              },
+              "response": [
+                {
+                  "id": "7967d9ff-ae8c-4f5e-a2ad-06fedcb1dcba",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/teams/:team_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "teams",
+                        ":team_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "team_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"team\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:34:41.000Z",
+                  "updatedAt": "2026-07-28T01:34:41.000Z",
+                  "uid": "35240-7967d9ff-ae8c-4f5e-a2ad-06fedcb1dcba"
+                },
+                {
+                  "id": "661e17af-cc88-4838-a50f-7df1d66f5c6d",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/teams/:team_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "teams",
+                        ":team_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "team_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:41.000Z",
+                  "updatedAt": "2026-07-28T01:34:41.000Z",
+                  "uid": "35240-661e17af-cc88-4838-a50f-7df1d66f5c6d"
+                },
+                {
+                  "id": "9591e716-8fd7-469f-9569-957da0c12196",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/teams/:team_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "teams",
+                        ":team_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "team_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:41.000Z",
+                  "updatedAt": "2026-07-28T01:34:41.000Z",
+                  "uid": "35240-9591e716-8fd7-469f-9569-957da0c12196"
+                }
+              ],
+              "createdAt": "2026-07-28T01:34:41.000Z",
+              "updatedAt": "2026-07-28T01:34:41.000Z",
+              "uid": "35240-4f5ccab4-0219-46ae-bb1c-6629a35a6bf6"
+            },
+            {
+              "name": "Elastic.io Delete a team",
+              "id": "7f2aed2f-6ba8-4020-9221-07584f3b8130",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/teams/:team_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "teams",
+                    ":team_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0e253662-51c0-4d91-a00e-db01c7add876",
+                      "key": "team_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the team"
+                    }
+                  ]
+                },
+                "description": "Delete a developer team."
+              },
+              "response": [
+                {
+                  "id": "6758f5f1-0451-47a8-931d-809082fbd3a4",
+                  "name": "Team deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/teams/:team_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "teams",
+                        ":team_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "team_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:34:41.000Z",
+                  "updatedAt": "2026-07-28T01:34:41.000Z",
+                  "uid": "35240-6758f5f1-0451-47a8-931d-809082fbd3a4"
+                },
+                {
+                  "id": "03e5bd82-82bc-43c4-a741-6d8890d9f7cf",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/teams/:team_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "teams",
+                        ":team_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "team_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:41.000Z",
+                  "updatedAt": "2026-07-28T01:34:41.000Z",
+                  "uid": "35240-03e5bd82-82bc-43c4-a741-6d8890d9f7cf"
+                },
+                {
+                  "id": "43e66ca9-ae96-4be5-9499-c27c2b9ebc62",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/teams/:team_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "teams",
+                        ":team_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "team_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:41.000Z",
+                  "updatedAt": "2026-07-28T01:34:41.000Z",
+                  "uid": "35240-43e66ca9-ae96-4be5-9499-c27c2b9ebc62"
+                }
+              ],
+              "createdAt": "2026-07-28T01:34:41.000Z",
+              "updatedAt": "2026-07-28T01:34:41.000Z",
+              "uid": "35240-7f2aed2f-6ba8-4020-9221-07584f3b8130"
+            }
+          ],
+          "id": "b4b36e9f-5507-40f2-af0e-7974a453ed3e",
+          "createdAt": "2026-07-28T01:34:41.000Z",
+          "updatedAt": "2026-07-28T01:34:41.000Z",
+          "uid": "35240-b4b36e9f-5507-40f2-af0e-7974a453ed3e"
+        },
+        {
+          "name": "Elastic.io List teams",
+          "id": "dc4ed97e-0f88-4800-b37e-a0d4a7845ddb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/teams?page[size]=20&page[number]=1&filter[contract_id]=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "teams"
+              ],
+              "query": [
+                {
+                  "description": "Number of items per page",
+                  "key": "page[size]",
+                  "value": "20"
+                },
+                {
+                  "description": "Page number to retrieve",
+                  "key": "page[number]",
+                  "value": "1"
+                },
+                {
+                  "description": "Filter by contract ID",
+                  "key": "filter[contract_id]",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve a list of developer teams."
+          },
+          "response": [
+            {
+              "id": "7a7988db-b8a2-4a58-a320-67731d19c083",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/teams?page[size]=20&page[number]=1&filter[contract_id]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "teams"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by contract ID",
+                      "key": "filter[contract_id]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"team\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"contract\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"team\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"contract\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": \"<integer>\",\n    \"per_page\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"total_pages\": \"<integer>\"\n  },\n  \"links\": {\n    \"self\": \"<uri>\",\n    \"first\": \"<uri>\",\n    \"prev\": \"<uri>\",\n    \"next\": \"<uri>\",\n    \"last\": \"<uri>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:34:41.000Z",
+              "updatedAt": "2026-07-28T01:34:41.000Z",
+              "uid": "35240-7a7988db-b8a2-4a58-a320-67731d19c083"
+            },
+            {
+              "id": "a45ea338-e08b-406a-837e-1cc2a6cb4008",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/teams?page[size]=20&page[number]=1&filter[contract_id]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "teams"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by contract ID",
+                      "key": "filter[contract_id]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:34:41.000Z",
+              "updatedAt": "2026-07-28T01:34:41.000Z",
+              "uid": "35240-a45ea338-e08b-406a-837e-1cc2a6cb4008"
+            }
+          ],
+          "createdAt": "2026-07-28T01:34:41.000Z",
+          "updatedAt": "2026-07-28T01:34:41.000Z",
+          "uid": "35240-dc4ed97e-0f88-4800-b37e-a0d4a7845ddb"
+        },
+        {
+          "name": "Elastic.io Create a team",
+          "id": "350ef2c6-5097-4d04-bdd4-3213d5097e51",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"team\",\n    \"attributes\": {\n      \"name\": \"<string>\"\n    },\n    \"relationships\": {\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/teams",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "teams"
+              ]
+            },
+            "description": "Create a new developer team."
+          },
+          "response": [
+            {
+              "id": "f68dbb98-1a97-497d-9a4c-7fa9bd4d2472",
+              "name": "Team created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"team\",\n    \"attributes\": {\n      \"name\": \"<string>\"\n    },\n    \"relationships\": {\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/teams",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "teams"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"team\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "createdAt": "2026-07-28T01:34:41.000Z",
+              "updatedAt": "2026-07-28T01:34:41.000Z",
+              "uid": "35240-f68dbb98-1a97-497d-9a4c-7fa9bd4d2472"
+            },
+            {
+              "id": "7c414fb0-8339-460c-a8b1-78dd3b5b7fb9",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"team\",\n    \"attributes\": {\n      \"name\": \"<string>\"\n    },\n    \"relationships\": {\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/teams",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "teams"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:34:41.000Z",
+              "updatedAt": "2026-07-28T01:34:41.000Z",
+              "uid": "35240-7c414fb0-8339-460c-a8b1-78dd3b5b7fb9"
+            }
+          ],
+          "createdAt": "2026-07-28T01:34:41.000Z",
+          "updatedAt": "2026-07-28T01:34:41.000Z",
+          "uid": "35240-350ef2c6-5097-4d04-bdd4-3213d5097e51"
+        }
+      ],
+      "id": "74833598-5856-4f6c-96f1-b69800f3bebf",
+      "createdAt": "2026-07-28T01:34:41.000Z",
+      "updatedAt": "2026-07-28T01:34:41.000Z",
+      "uid": "35240-74833598-5856-4f6c-96f1-b69800f3bebf"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.elastic.io/v2"
+    }
+  ]
+}

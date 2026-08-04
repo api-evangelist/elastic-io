@@ -1,0 +1,1617 @@
+{
+  "info": {
+    "_postman_id": "f08fdf7f-cef1-4661-a0f5-aeef60acb0c9",
+    "name": "elastic.io Platform REST Agents Flows API",
+    "description": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:33:54.000Z",
+    "updatedAt": "2026-07-28T01:33:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f08fdf7f-cef1-4661-a0f5-aeef60acb0c9"
+  },
+  "item": [
+    {
+      "name": "flows",
+      "item": [
+        {
+          "name": "{flow_id}",
+          "item": [
+            {
+              "name": "start",
+              "item": [
+                {
+                  "name": "Elastic.io Start a flow",
+                  "id": "974287ee-a48e-4762-98ec-3683de760dae",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flows/:flow_id/start",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flows",
+                        ":flow_id",
+                        "start"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2825495c-3b16-4b99-9859-f57e66bba69c",
+                          "key": "flow_id",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the flow"
+                        }
+                      ]
+                    },
+                    "description": "Start an integration flow to begin processing data."
+                  },
+                  "response": [
+                    {
+                      "id": "d488a26a-4c99-47b6-b7ba-b78ffb71c0f9",
+                      "name": "Flow started successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/flows/:flow_id/start",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "flows",
+                            ":flow_id",
+                            "start"
+                          ],
+                          "variable": [
+                            {
+                              "key": "flow_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"flow\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"status\": \"active\",\n      \"type\": \"ordinary\",\n      \"graph\": {},\n      \"cron\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"user\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:33:55.000Z",
+                      "updatedAt": "2026-07-28T01:33:55.000Z",
+                      "uid": "35240-d488a26a-4c99-47b6-b7ba-b78ffb71c0f9"
+                    },
+                    {
+                      "id": "f442d495-9a0b-441a-bbd8-33ffc289d0f4",
+                      "name": "Authentication required or token is invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/flows/:flow_id/start",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "flows",
+                            ":flow_id",
+                            "start"
+                          ],
+                          "variable": [
+                            {
+                              "key": "flow_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:33:55.000Z",
+                      "updatedAt": "2026-07-28T01:33:55.000Z",
+                      "uid": "35240-f442d495-9a0b-441a-bbd8-33ffc289d0f4"
+                    },
+                    {
+                      "id": "c102be42-7405-4805-945d-afc1dfbe8119",
+                      "name": "The requested resource was not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/flows/:flow_id/start",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "flows",
+                            ":flow_id",
+                            "start"
+                          ],
+                          "variable": [
+                            {
+                              "key": "flow_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:33:55.000Z",
+                      "updatedAt": "2026-07-28T01:33:55.000Z",
+                      "uid": "35240-c102be42-7405-4805-945d-afc1dfbe8119"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:55.000Z",
+                  "updatedAt": "2026-07-28T01:33:55.000Z",
+                  "uid": "35240-974287ee-a48e-4762-98ec-3683de760dae"
+                }
+              ],
+              "id": "10f1645e-c117-46a2-aeab-a836d3e2c809",
+              "createdAt": "2026-07-28T01:33:55.000Z",
+              "updatedAt": "2026-07-28T01:33:55.000Z",
+              "uid": "35240-10f1645e-c117-46a2-aeab-a836d3e2c809"
+            },
+            {
+              "name": "stop",
+              "item": [
+                {
+                  "name": "Elastic.io Stop a flow",
+                  "id": "2b63c2b0-53a2-44e8-bd26-0b5643fce0a2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flows/:flow_id/stop",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flows",
+                        ":flow_id",
+                        "stop"
+                      ],
+                      "variable": [
+                        {
+                          "id": "104c16fe-8356-4e56-b247-8a4df06ada2b",
+                          "key": "flow_id",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the flow"
+                        }
+                      ]
+                    },
+                    "description": "Stop a running integration flow."
+                  },
+                  "response": [
+                    {
+                      "id": "dba57513-8907-458a-ab2c-f99c652b58d2",
+                      "name": "Flow stopped successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/flows/:flow_id/stop",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "flows",
+                            ":flow_id",
+                            "stop"
+                          ],
+                          "variable": [
+                            {
+                              "key": "flow_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"flow\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"status\": \"active\",\n      \"type\": \"ordinary\",\n      \"graph\": {},\n      \"cron\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"user\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:33:55.000Z",
+                      "updatedAt": "2026-07-28T01:33:55.000Z",
+                      "uid": "35240-dba57513-8907-458a-ab2c-f99c652b58d2"
+                    },
+                    {
+                      "id": "b96a4542-b921-46f3-adfc-ffd3a3f05cee",
+                      "name": "Authentication required or token is invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/flows/:flow_id/stop",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "flows",
+                            ":flow_id",
+                            "stop"
+                          ],
+                          "variable": [
+                            {
+                              "key": "flow_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:33:55.000Z",
+                      "updatedAt": "2026-07-28T01:33:55.000Z",
+                      "uid": "35240-b96a4542-b921-46f3-adfc-ffd3a3f05cee"
+                    },
+                    {
+                      "id": "0547f606-ec67-40f5-9745-88f61b61856b",
+                      "name": "The requested resource was not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/flows/:flow_id/stop",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "flows",
+                            ":flow_id",
+                            "stop"
+                          ],
+                          "variable": [
+                            {
+                              "key": "flow_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:33:55.000Z",
+                      "updatedAt": "2026-07-28T01:33:55.000Z",
+                      "uid": "35240-0547f606-ec67-40f5-9745-88f61b61856b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:55.000Z",
+                  "updatedAt": "2026-07-28T01:33:55.000Z",
+                  "uid": "35240-2b63c2b0-53a2-44e8-bd26-0b5643fce0a2"
+                }
+              ],
+              "id": "ea0778cb-80a9-497d-9cdc-ca0a4a5134e5",
+              "createdAt": "2026-07-28T01:33:55.000Z",
+              "updatedAt": "2026-07-28T01:33:55.000Z",
+              "uid": "35240-ea0778cb-80a9-497d-9cdc-ca0a4a5134e5"
+            },
+            {
+              "name": "run-now",
+              "item": [
+                {
+                  "name": "Elastic.io Run a flow on demand",
+                  "id": "772348a0-7f86-45ef-992b-c587a277fe2c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flows/:flow_id/run-now",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flows",
+                        ":flow_id",
+                        "run-now"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e0c1f455-0f37-4f59-af42-ba7fefd016c4",
+                          "key": "flow_id",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the flow"
+                        }
+                      ]
+                    },
+                    "description": "Trigger an on-demand execution of an integration flow."
+                  },
+                  "response": [
+                    {
+                      "id": "29ab0cc1-e227-4ff8-9121-514935f328b9",
+                      "name": "Flow execution triggered",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/flows/:flow_id/run-now",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "flows",
+                            ":flow_id",
+                            "run-now"
+                          ],
+                          "variable": [
+                            {
+                              "key": "flow_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"flow\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"status\": \"active\",\n      \"type\": \"ordinary\",\n      \"graph\": {},\n      \"cron\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"user\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:33:55.000Z",
+                      "updatedAt": "2026-07-28T01:33:55.000Z",
+                      "uid": "35240-29ab0cc1-e227-4ff8-9121-514935f328b9"
+                    },
+                    {
+                      "id": "a3e37b33-fe79-4f63-96c4-4161c9b1f88d",
+                      "name": "Authentication required or token is invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/flows/:flow_id/run-now",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "flows",
+                            ":flow_id",
+                            "run-now"
+                          ],
+                          "variable": [
+                            {
+                              "key": "flow_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:33:55.000Z",
+                      "updatedAt": "2026-07-28T01:33:55.000Z",
+                      "uid": "35240-a3e37b33-fe79-4f63-96c4-4161c9b1f88d"
+                    },
+                    {
+                      "id": "9b27d4ba-bce4-48e0-89cc-62b399d171e2",
+                      "name": "The requested resource was not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/flows/:flow_id/run-now",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "flows",
+                            ":flow_id",
+                            "run-now"
+                          ],
+                          "variable": [
+                            {
+                              "key": "flow_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:33:55.000Z",
+                      "updatedAt": "2026-07-28T01:33:55.000Z",
+                      "uid": "35240-9b27d4ba-bce4-48e0-89cc-62b399d171e2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:33:55.000Z",
+                  "updatedAt": "2026-07-28T01:33:55.000Z",
+                  "uid": "35240-772348a0-7f86-45ef-992b-c587a277fe2c"
+                }
+              ],
+              "id": "f496a7bc-4594-4849-8ac6-cdf8946fb2f1",
+              "createdAt": "2026-07-28T01:33:55.000Z",
+              "updatedAt": "2026-07-28T01:33:55.000Z",
+              "uid": "35240-f496a7bc-4594-4849-8ac6-cdf8946fb2f1"
+            },
+            {
+              "name": "Elastic.io Get a flow",
+              "id": "bd22186d-d0fe-4434-9764-116aa3732dff",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/flows/:flow_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flows",
+                    ":flow_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "bdc12e2e-08ae-4bce-ac2b-00c0f3e77fd6",
+                      "key": "flow_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the flow"
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific integration flow."
+              },
+              "response": [
+                {
+                  "id": "25b2f343-4473-4f06-92da-703c97187e6d",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flows/:flow_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flows",
+                        ":flow_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"flow\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"status\": \"active\",\n      \"type\": \"ordinary\",\n      \"graph\": {},\n      \"cron\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"user\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:33:55.000Z",
+                  "updatedAt": "2026-07-28T01:33:55.000Z",
+                  "uid": "35240-25b2f343-4473-4f06-92da-703c97187e6d"
+                },
+                {
+                  "id": "648679e6-4994-4e1e-9c94-af41823d9ea1",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flows/:flow_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flows",
+                        ":flow_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:55.000Z",
+                  "updatedAt": "2026-07-28T01:33:55.000Z",
+                  "uid": "35240-648679e6-4994-4e1e-9c94-af41823d9ea1"
+                },
+                {
+                  "id": "3690e7d1-58df-47d3-8b5c-84ff7741dcdf",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flows/:flow_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flows",
+                        ":flow_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:55.000Z",
+                  "updatedAt": "2026-07-28T01:33:55.000Z",
+                  "uid": "35240-3690e7d1-58df-47d3-8b5c-84ff7741dcdf"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:55.000Z",
+              "updatedAt": "2026-07-28T01:33:55.000Z",
+              "uid": "35240-bd22186d-d0fe-4434-9764-116aa3732dff"
+            },
+            {
+              "name": "Elastic.io Update a flow",
+              "id": "8429bc27-4572-4204-a05a-ccba9769e5a9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"flow\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"graph\": {},\n      \"cron\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/flows/:flow_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flows",
+                    ":flow_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0b599087-42dc-4d6b-a845-683aad3cb954",
+                      "key": "flow_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the flow"
+                    }
+                  ]
+                },
+                "description": "Update an existing integration flow."
+              },
+              "response": [
+                {
+                  "id": "7521dc77-2681-41ba-9e69-9bb83bb0b88c",
+                  "name": "Flow updated successfully",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"flow\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"graph\": {},\n      \"cron\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/flows/:flow_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flows",
+                        ":flow_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"flow\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"status\": \"active\",\n      \"type\": \"ordinary\",\n      \"graph\": {},\n      \"cron\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"user\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:33:55.000Z",
+                  "updatedAt": "2026-07-28T01:33:55.000Z",
+                  "uid": "35240-7521dc77-2681-41ba-9e69-9bb83bb0b88c"
+                },
+                {
+                  "id": "aa48d61e-a2ab-453d-9f8a-b2db78c91951",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"flow\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"graph\": {},\n      \"cron\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/flows/:flow_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flows",
+                        ":flow_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:55.000Z",
+                  "updatedAt": "2026-07-28T01:33:55.000Z",
+                  "uid": "35240-aa48d61e-a2ab-453d-9f8a-b2db78c91951"
+                },
+                {
+                  "id": "deae26fc-e661-4ef2-90c1-f2a72d88be7a",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"flow\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"graph\": {},\n      \"cron\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/flows/:flow_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flows",
+                        ":flow_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:55.000Z",
+                  "updatedAt": "2026-07-28T01:33:55.000Z",
+                  "uid": "35240-deae26fc-e661-4ef2-90c1-f2a72d88be7a"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:55.000Z",
+              "updatedAt": "2026-07-28T01:33:55.000Z",
+              "uid": "35240-8429bc27-4572-4204-a05a-ccba9769e5a9"
+            },
+            {
+              "name": "Elastic.io Delete a flow",
+              "id": "4b0558f3-7f60-4dc4-ae05-51dbb84f8680",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/flows/:flow_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flows",
+                    ":flow_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d4034dc5-2d82-4f19-b714-e5539d23f501",
+                      "key": "flow_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the flow"
+                    }
+                  ]
+                },
+                "description": "Delete an integration flow."
+              },
+              "response": [
+                {
+                  "id": "78690040-0906-4b4b-abf5-21904742149f",
+                  "name": "Flow deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flows/:flow_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flows",
+                        ":flow_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:33:55.000Z",
+                  "updatedAt": "2026-07-28T01:33:55.000Z",
+                  "uid": "35240-78690040-0906-4b4b-abf5-21904742149f"
+                },
+                {
+                  "id": "d83df63e-edca-4837-ad8c-f819e0aa34be",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flows/:flow_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flows",
+                        ":flow_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:55.000Z",
+                  "updatedAt": "2026-07-28T01:33:55.000Z",
+                  "uid": "35240-d83df63e-edca-4837-ad8c-f819e0aa34be"
+                },
+                {
+                  "id": "e5991f56-594b-49c3-9d33-1acf6ffe25a1",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flows/:flow_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flows",
+                        ":flow_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:55.000Z",
+                  "updatedAt": "2026-07-28T01:33:55.000Z",
+                  "uid": "35240-e5991f56-594b-49c3-9d33-1acf6ffe25a1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:55.000Z",
+              "updatedAt": "2026-07-28T01:33:55.000Z",
+              "uid": "35240-4b0558f3-7f60-4dc4-ae05-51dbb84f8680"
+            }
+          ],
+          "id": "cc34f75a-07b1-44d9-b166-85fd82dec953",
+          "createdAt": "2026-07-28T01:33:55.000Z",
+          "updatedAt": "2026-07-28T01:33:55.000Z",
+          "uid": "35240-cc34f75a-07b1-44d9-b166-85fd82dec953"
+        },
+        {
+          "name": "Elastic.io List flows",
+          "id": "9dfb355c-04cf-42ea-8362-ec8f3bfedf95",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/flows?page[size]=20&page[number]=1&filter[workspace_id]=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "flows"
+              ],
+              "query": [
+                {
+                  "description": "Number of items per page",
+                  "key": "page[size]",
+                  "value": "20"
+                },
+                {
+                  "description": "Page number to retrieve",
+                  "key": "page[number]",
+                  "value": "1"
+                },
+                {
+                  "description": "Filter by workspace ID",
+                  "key": "filter[workspace_id]",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve a list of integration flows accessible to the user."
+          },
+          "response": [
+            {
+              "id": "915e2490-86a3-4492-a6d0-c7595da0aa3f",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/flows?page[size]=20&page[number]=1&filter[workspace_id]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flows"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by workspace ID",
+                      "key": "filter[workspace_id]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"flow\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"status\": \"active\",\n        \"type\": \"ordinary\",\n        \"graph\": {},\n        \"cron\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"workspace\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"user\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"flow\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"status\": \"active\",\n        \"type\": \"long_running\",\n        \"graph\": {},\n        \"cron\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"workspace\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"user\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": \"<integer>\",\n    \"per_page\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"total_pages\": \"<integer>\"\n  },\n  \"links\": {\n    \"self\": \"<uri>\",\n    \"first\": \"<uri>\",\n    \"prev\": \"<uri>\",\n    \"next\": \"<uri>\",\n    \"last\": \"<uri>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:33:55.000Z",
+              "updatedAt": "2026-07-28T01:33:55.000Z",
+              "uid": "35240-915e2490-86a3-4492-a6d0-c7595da0aa3f"
+            },
+            {
+              "id": "06fbf6e3-a121-40f7-9396-7cf309680b30",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/flows?page[size]=20&page[number]=1&filter[workspace_id]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flows"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by workspace ID",
+                      "key": "filter[workspace_id]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:33:55.000Z",
+              "updatedAt": "2026-07-28T01:33:55.000Z",
+              "uid": "35240-06fbf6e3-a121-40f7-9396-7cf309680b30"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:55.000Z",
+          "updatedAt": "2026-07-28T01:33:55.000Z",
+          "uid": "35240-9dfb355c-04cf-42ea-8362-ec8f3bfedf95"
+        },
+        {
+          "name": "Elastic.io Create a flow",
+          "id": "0e486ac3-1d29-403f-bff8-97dc854d410f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"flow\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"type\": \"ordinary\",\n      \"graph\": {},\n      \"cron\": \"<string>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/flows",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "flows"
+              ]
+            },
+            "description": "Create a new integration flow in a workspace."
+          },
+          "response": [
+            {
+              "id": "5c056088-a44c-458d-b9d8-2658e5dc363d",
+              "name": "Flow created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"flow\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"type\": \"ordinary\",\n      \"graph\": {},\n      \"cron\": \"<string>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/flows",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flows"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"flow\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"status\": \"active\",\n      \"type\": \"ordinary\",\n      \"graph\": {},\n      \"cron\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"user\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "createdAt": "2026-07-28T01:33:55.000Z",
+              "updatedAt": "2026-07-28T01:33:55.000Z",
+              "uid": "35240-5c056088-a44c-458d-b9d8-2658e5dc363d"
+            },
+            {
+              "id": "e088659a-9098-4d10-8018-0f779fa46e24",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"flow\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"type\": \"ordinary\",\n      \"graph\": {},\n      \"cron\": \"<string>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/flows",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flows"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:33:55.000Z",
+              "updatedAt": "2026-07-28T01:33:55.000Z",
+              "uid": "35240-e088659a-9098-4d10-8018-0f779fa46e24"
+            },
+            {
+              "id": "a1765adf-8526-4475-b06a-3249fc5e103a",
+              "name": "Resource conflict",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"flow\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"type\": \"ordinary\",\n      \"graph\": {},\n      \"cron\": \"<string>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/flows",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flows"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:33:55.000Z",
+              "updatedAt": "2026-07-28T01:33:55.000Z",
+              "uid": "35240-a1765adf-8526-4475-b06a-3249fc5e103a"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:55.000Z",
+          "updatedAt": "2026-07-28T01:33:55.000Z",
+          "uid": "35240-0e486ac3-1d29-403f-bff8-97dc854d410f"
+        }
+      ],
+      "id": "41f0cecf-c00c-46ae-8bdb-82ac73c38a46",
+      "createdAt": "2026-07-28T01:33:55.000Z",
+      "updatedAt": "2026-07-28T01:33:55.000Z",
+      "uid": "35240-41f0cecf-c00c-46ae-8bdb-82ac73c38a46"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.elastic.io/v2"
+    }
+  ]
+}

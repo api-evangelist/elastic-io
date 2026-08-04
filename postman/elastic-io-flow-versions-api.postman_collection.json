@@ -1,0 +1,232 @@
+{
+  "info": {
+    "_postman_id": "11d58a51-8eae-4926-8ec7-519acf714f93",
+    "name": "elastic.io Platform REST Agents Flow Versions API",
+    "description": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:33:48.000Z",
+    "updatedAt": "2026-07-28T01:33:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-11d58a51-8eae-4926-8ec7-519acf714f93"
+  },
+  "item": [
+    {
+      "name": "flow-versions",
+      "item": [
+        {
+          "name": "{flow_version_id}",
+          "item": [
+            {
+              "name": "Elastic.io Get a flow version",
+              "id": "7e37b717-d8f2-4685-a3fe-2d61887bf472",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/flow-versions/:flow_version_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flow-versions",
+                    ":flow_version_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "8dec0b5a-b95d-4dff-bef4-3afbf782b7bb",
+                      "key": "flow_version_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve a specific version of a flow."
+              },
+              "response": [
+                {
+                  "id": "ba347996-67db-4412-9d25-4695524b9cfc",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flow-versions/:flow_version_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flow-versions",
+                        ":flow_version_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_version_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"flow-version\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"graph\": {},\n      \"created_at\": \"<dateTime>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:33:48.000Z",
+                  "updatedAt": "2026-07-28T01:33:48.000Z",
+                  "uid": "35240-ba347996-67db-4412-9d25-4695524b9cfc"
+                },
+                {
+                  "id": "41b90ebb-4eae-48f5-8ad4-e1b98d1661d3",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flow-versions/:flow_version_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flow-versions",
+                        ":flow_version_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_version_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:48.000Z",
+                  "updatedAt": "2026-07-28T01:33:48.000Z",
+                  "uid": "35240-41b90ebb-4eae-48f5-8ad4-e1b98d1661d3"
+                },
+                {
+                  "id": "8ee745cd-f2bb-4ddd-ab37-f96bd04a788b",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flow-versions/:flow_version_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flow-versions",
+                        ":flow_version_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_version_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:48.000Z",
+                  "updatedAt": "2026-07-28T01:33:48.000Z",
+                  "uid": "35240-8ee745cd-f2bb-4ddd-ab37-f96bd04a788b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:48.000Z",
+              "updatedAt": "2026-07-28T01:33:48.000Z",
+              "uid": "35240-7e37b717-d8f2-4685-a3fe-2d61887bf472"
+            }
+          ],
+          "id": "8fcd955b-143f-4d8c-be71-6ad299c407c1",
+          "createdAt": "2026-07-28T01:33:48.000Z",
+          "updatedAt": "2026-07-28T01:33:48.000Z",
+          "uid": "35240-8fcd955b-143f-4d8c-be71-6ad299c407c1"
+        }
+      ],
+      "id": "c537f3cd-d853-4733-9c92-49111d3557e5",
+      "createdAt": "2026-07-28T01:33:48.000Z",
+      "updatedAt": "2026-07-28T01:33:48.000Z",
+      "uid": "35240-c537f3cd-d853-4733-9c92-49111d3557e5"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.elastic.io/v2"
+    }
+  ]
+}

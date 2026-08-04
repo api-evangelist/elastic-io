@@ -1,0 +1,451 @@
+{
+  "info": {
+    "_postman_id": "6876a5c4-98f0-4a55-81f2-fca0e5870ca7",
+    "name": "elastic.io Platform REST Agents Quota Usages API",
+    "description": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:34:24.000Z",
+    "updatedAt": "2026-07-28T01:34:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6876a5c4-98f0-4a55-81f2-fca0e5870ca7"
+  },
+  "item": [
+    {
+      "name": "quota-usages",
+      "item": [
+        {
+          "name": "workspaces",
+          "item": [
+            {
+              "name": "{workspace_id}",
+              "item": [
+                {
+                  "name": "Elastic.io Get workspace quota usage",
+                  "id": "3b84a7b0-5e2d-4084-ac60-1cf52971afe5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/quota-usages/workspaces/:workspace_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "quota-usages",
+                        "workspaces",
+                        ":workspace_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5a7b23c2-fab0-427f-88ad-9c027b3fcd0d",
+                          "key": "workspace_id",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the workspace"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve quota usage statistics for a workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "405ac0a7-e552-41d8-ba6c-42f2af2fe3e0",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/quota-usages/workspaces/:workspace_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "quota-usages",
+                            "workspaces",
+                            ":workspace_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"quota-usage\",\n    \"attributes\": {\n      \"memory\": {\n        \"used\": \"<integer>\",\n        \"limit\": \"<integer>\"\n      },\n      \"cpu\": {\n        \"used\": \"<integer>\",\n        \"limit\": \"<integer>\"\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:34:24.000Z",
+                      "updatedAt": "2026-07-28T01:34:24.000Z",
+                      "uid": "35240-405ac0a7-e552-41d8-ba6c-42f2af2fe3e0"
+                    },
+                    {
+                      "id": "863e78a0-adbf-4b68-a9d8-63bf90784dfb",
+                      "name": "Authentication required or token is invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/quota-usages/workspaces/:workspace_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "quota-usages",
+                            "workspaces",
+                            ":workspace_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:34:24.000Z",
+                      "updatedAt": "2026-07-28T01:34:24.000Z",
+                      "uid": "35240-863e78a0-adbf-4b68-a9d8-63bf90784dfb"
+                    },
+                    {
+                      "id": "48636ad8-392d-472c-a62c-7dbdbde81446",
+                      "name": "The requested resource was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/quota-usages/workspaces/:workspace_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "quota-usages",
+                            "workspaces",
+                            ":workspace_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:34:24.000Z",
+                      "updatedAt": "2026-07-28T01:34:24.000Z",
+                      "uid": "35240-48636ad8-392d-472c-a62c-7dbdbde81446"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:34:24.000Z",
+                  "updatedAt": "2026-07-28T01:34:24.000Z",
+                  "uid": "35240-3b84a7b0-5e2d-4084-ac60-1cf52971afe5"
+                }
+              ],
+              "id": "27c0bb52-9201-4c89-9db9-d4b57e2b6b7b",
+              "createdAt": "2026-07-28T01:34:24.000Z",
+              "updatedAt": "2026-07-28T01:34:24.000Z",
+              "uid": "35240-27c0bb52-9201-4c89-9db9-d4b57e2b6b7b"
+            }
+          ],
+          "id": "f4b127bb-7f78-4dd0-813b-dd91a9a2bdd0",
+          "createdAt": "2026-07-28T01:34:24.000Z",
+          "updatedAt": "2026-07-28T01:34:24.000Z",
+          "uid": "35240-f4b127bb-7f78-4dd0-813b-dd91a9a2bdd0"
+        },
+        {
+          "name": "contracts",
+          "item": [
+            {
+              "name": "{contract_id}",
+              "item": [
+                {
+                  "name": "Elastic.io Get contract quota usage",
+                  "id": "a1987448-7567-49d9-90f0-c8162499ad2b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/quota-usages/contracts/:contract_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "quota-usages",
+                        "contracts",
+                        ":contract_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a7ecb835-f0b9-4189-a4b6-c30c459dc4a1",
+                          "key": "contract_id",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the contract"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve quota usage statistics for all workspaces in a contract."
+                  },
+                  "response": [
+                    {
+                      "id": "7bef61b1-7d0d-4b17-9a58-65d94a42d8cf",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/quota-usages/contracts/:contract_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "quota-usages",
+                            "contracts",
+                            ":contract_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "contract_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"quota-usage\",\n    \"attributes\": {\n      \"memory\": {\n        \"used\": \"<integer>\",\n        \"limit\": \"<integer>\"\n      },\n      \"cpu\": {\n        \"used\": \"<integer>\",\n        \"limit\": \"<integer>\"\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:34:24.000Z",
+                      "updatedAt": "2026-07-28T01:34:24.000Z",
+                      "uid": "35240-7bef61b1-7d0d-4b17-9a58-65d94a42d8cf"
+                    },
+                    {
+                      "id": "ff7b7576-7d71-4853-b487-abc6a6e227c5",
+                      "name": "Authentication required or token is invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/quota-usages/contracts/:contract_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "quota-usages",
+                            "contracts",
+                            ":contract_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "contract_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:34:24.000Z",
+                      "updatedAt": "2026-07-28T01:34:24.000Z",
+                      "uid": "35240-ff7b7576-7d71-4853-b487-abc6a6e227c5"
+                    },
+                    {
+                      "id": "5c0add1d-bf5e-42e6-8c46-e2868591a705",
+                      "name": "The requested resource was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/quota-usages/contracts/:contract_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "quota-usages",
+                            "contracts",
+                            ":contract_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "contract_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:34:24.000Z",
+                      "updatedAt": "2026-07-28T01:34:24.000Z",
+                      "uid": "35240-5c0add1d-bf5e-42e6-8c46-e2868591a705"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:34:24.000Z",
+                  "updatedAt": "2026-07-28T01:34:24.000Z",
+                  "uid": "35240-a1987448-7567-49d9-90f0-c8162499ad2b"
+                }
+              ],
+              "id": "8669e0e7-44eb-45dd-8a9f-ba809f2f241f",
+              "createdAt": "2026-07-28T01:34:24.000Z",
+              "updatedAt": "2026-07-28T01:34:24.000Z",
+              "uid": "35240-8669e0e7-44eb-45dd-8a9f-ba809f2f241f"
+            }
+          ],
+          "id": "e4511a91-1c77-4e17-9b6a-16651d3b3a9d",
+          "createdAt": "2026-07-28T01:34:24.000Z",
+          "updatedAt": "2026-07-28T01:34:24.000Z",
+          "uid": "35240-e4511a91-1c77-4e17-9b6a-16651d3b3a9d"
+        }
+      ],
+      "id": "f7bbac94-5af1-4f61-b560-55479ee586af",
+      "createdAt": "2026-07-28T01:34:24.000Z",
+      "updatedAt": "2026-07-28T01:34:24.000Z",
+      "uid": "35240-f7bbac94-5af1-4f61-b560-55479ee586af"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.elastic.io/v2"
+    }
+  ]
+}

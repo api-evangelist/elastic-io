@@ -1,0 +1,730 @@
+{
+  "info": {
+    "_postman_id": "7375733c-be27-4af4-8e73-a34fd7639ca1",
+    "name": "elastic.io Platform REST Agents Topics API",
+    "description": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:34:42.000Z",
+    "updatedAt": "2026-07-28T01:34:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7375733c-be27-4af4-8e73-a34fd7639ca1"
+  },
+  "item": [
+    {
+      "name": "topics",
+      "item": [
+        {
+          "name": "{topic_id}",
+          "item": [
+            {
+              "name": "Elastic.io Get a topic",
+              "id": "f2a3dc75-c3e9-4f3c-8f3b-a1488a7c8ce5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/topics/:topic_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "topics",
+                    ":topic_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "1b9d033b-405d-44f3-9a3a-74a7efb2a34f",
+                      "key": "topic_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific topic."
+              },
+              "response": [
+                {
+                  "id": "db879b4a-6eab-47af-87f1-36ea30ef6b4f",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/topics/:topic_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "topics",
+                        ":topic_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "topic_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"topic\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"schema\": {},\n      \"created_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:34:43.000Z",
+                  "updatedAt": "2026-07-28T01:34:43.000Z",
+                  "uid": "35240-db879b4a-6eab-47af-87f1-36ea30ef6b4f"
+                },
+                {
+                  "id": "5ee36862-4969-4443-8ed5-d8e29a0e5ea9",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/topics/:topic_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "topics",
+                        ":topic_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "topic_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:43.000Z",
+                  "updatedAt": "2026-07-28T01:34:43.000Z",
+                  "uid": "35240-5ee36862-4969-4443-8ed5-d8e29a0e5ea9"
+                },
+                {
+                  "id": "89b59416-6045-4b24-9f59-9ef0c914c0d2",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/topics/:topic_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "topics",
+                        ":topic_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "topic_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:43.000Z",
+                  "updatedAt": "2026-07-28T01:34:43.000Z",
+                  "uid": "35240-89b59416-6045-4b24-9f59-9ef0c914c0d2"
+                }
+              ],
+              "createdAt": "2026-07-28T01:34:43.000Z",
+              "updatedAt": "2026-07-28T01:34:43.000Z",
+              "uid": "35240-f2a3dc75-c3e9-4f3c-8f3b-a1488a7c8ce5"
+            },
+            {
+              "name": "Elastic.io Delete a topic",
+              "id": "90a18021-d8ad-4293-b6d1-e9a4f25399e0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/topics/:topic_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "topics",
+                    ":topic_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0736d61e-de33-4bd2-a946-574ed6f27726",
+                      "key": "topic_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Delete a pub/sub topic."
+              },
+              "response": [
+                {
+                  "id": "c9a9abd0-e2ea-442a-bf83-efd6ea7e2a69",
+                  "name": "Topic deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/topics/:topic_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "topics",
+                        ":topic_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "topic_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:34:43.000Z",
+                  "updatedAt": "2026-07-28T01:34:43.000Z",
+                  "uid": "35240-c9a9abd0-e2ea-442a-bf83-efd6ea7e2a69"
+                },
+                {
+                  "id": "b9bd204a-80b4-479d-b8a7-394d3a78d1b7",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/topics/:topic_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "topics",
+                        ":topic_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "topic_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:43.000Z",
+                  "updatedAt": "2026-07-28T01:34:43.000Z",
+                  "uid": "35240-b9bd204a-80b4-479d-b8a7-394d3a78d1b7"
+                },
+                {
+                  "id": "525a06f8-486c-4500-9779-f8edfbdef76b",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/topics/:topic_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "topics",
+                        ":topic_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "topic_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:43.000Z",
+                  "updatedAt": "2026-07-28T01:34:43.000Z",
+                  "uid": "35240-525a06f8-486c-4500-9779-f8edfbdef76b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:34:43.000Z",
+              "updatedAt": "2026-07-28T01:34:43.000Z",
+              "uid": "35240-90a18021-d8ad-4293-b6d1-e9a4f25399e0"
+            }
+          ],
+          "id": "b79ea89e-1fc1-4956-95f4-d5c07d36823c",
+          "createdAt": "2026-07-28T01:34:43.000Z",
+          "updatedAt": "2026-07-28T01:34:43.000Z",
+          "uid": "35240-b79ea89e-1fc1-4956-95f4-d5c07d36823c"
+        },
+        {
+          "name": "Elastic.io List topics",
+          "id": "ce08f9ea-4fa2-4c9a-a096-6de6236286cc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/topics?page[size]=20&page[number]=1&filter[workspace_id]=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "topics"
+              ],
+              "query": [
+                {
+                  "description": "Number of items per page",
+                  "key": "page[size]",
+                  "value": "20"
+                },
+                {
+                  "description": "Page number to retrieve",
+                  "key": "page[number]",
+                  "value": "1"
+                },
+                {
+                  "description": "Filter by workspace ID",
+                  "key": "filter[workspace_id]",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve a list of pub/sub topics."
+          },
+          "response": [
+            {
+              "id": "e84c8d20-263c-4af8-b46f-166ea98e9216",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/topics?page[size]=20&page[number]=1&filter[workspace_id]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "topics"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by workspace ID",
+                      "key": "filter[workspace_id]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"schema\": {}\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"schema\": {}\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": \"<integer>\",\n    \"per_page\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"total_pages\": \"<integer>\"\n  },\n  \"links\": {\n    \"self\": \"<uri>\",\n    \"first\": \"<uri>\",\n    \"prev\": \"<uri>\",\n    \"next\": \"<uri>\",\n    \"last\": \"<uri>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:34:43.000Z",
+              "updatedAt": "2026-07-28T01:34:43.000Z",
+              "uid": "35240-e84c8d20-263c-4af8-b46f-166ea98e9216"
+            },
+            {
+              "id": "41b01094-057d-433a-9669-e2a5cd9b22a6",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/topics?page[size]=20&page[number]=1&filter[workspace_id]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "topics"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by workspace ID",
+                      "key": "filter[workspace_id]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:34:43.000Z",
+              "updatedAt": "2026-07-28T01:34:43.000Z",
+              "uid": "35240-41b01094-057d-433a-9669-e2a5cd9b22a6"
+            }
+          ],
+          "createdAt": "2026-07-28T01:34:43.000Z",
+          "updatedAt": "2026-07-28T01:34:43.000Z",
+          "uid": "35240-ce08f9ea-4fa2-4c9a-a096-6de6236286cc"
+        },
+        {
+          "name": "Elastic.io Create a topic",
+          "id": "94ab59ae-edeb-4980-904a-7a9576fbf75d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"topic\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"schema\": {}\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/topics",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "topics"
+              ]
+            },
+            "description": "Create a new pub/sub topic."
+          },
+          "response": [
+            {
+              "id": "87f711a5-7658-4723-add5-b7650716d0a3",
+              "name": "Topic created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"topic\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"schema\": {}\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/topics",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "topics"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"topic\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"schema\": {},\n      \"created_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "createdAt": "2026-07-28T01:34:43.000Z",
+              "updatedAt": "2026-07-28T01:34:43.000Z",
+              "uid": "35240-87f711a5-7658-4723-add5-b7650716d0a3"
+            },
+            {
+              "id": "d0da373f-c62d-453b-9eda-226b80703d52",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"topic\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"schema\": {}\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/topics",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "topics"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:34:43.000Z",
+              "updatedAt": "2026-07-28T01:34:43.000Z",
+              "uid": "35240-d0da373f-c62d-453b-9eda-226b80703d52"
+            }
+          ],
+          "createdAt": "2026-07-28T01:34:43.000Z",
+          "updatedAt": "2026-07-28T01:34:43.000Z",
+          "uid": "35240-94ab59ae-edeb-4980-904a-7a9576fbf75d"
+        }
+      ],
+      "id": "8f303df4-e084-4dc8-bc3e-bc5ee03b385f",
+      "createdAt": "2026-07-28T01:34:43.000Z",
+      "updatedAt": "2026-07-28T01:34:43.000Z",
+      "uid": "35240-8f303df4-e084-4dc8-bc3e-bc5ee03b385f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.elastic.io/v2"
+    }
+  ]
+}

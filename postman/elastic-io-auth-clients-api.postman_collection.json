@@ -1,0 +1,955 @@
+{
+  "info": {
+    "_postman_id": "a6bedb4e-75d1-4197-a3f2-b18ca8a2f00e",
+    "name": "elastic.io Platform REST Agents Auth Clients API",
+    "description": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:33:28.000Z",
+    "updatedAt": "2026-07-28T01:33:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a6bedb4e-75d1-4197-a3f2-b18ca8a2f00e"
+  },
+  "item": [
+    {
+      "name": "auth-clients",
+      "item": [
+        {
+          "name": "{auth_client_id}",
+          "item": [
+            {
+              "name": "Elastic.io Get an auth client",
+              "id": "6fcd4886-520c-4062-9850-de2b31e5c058",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth-clients/:auth_client_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth-clients",
+                    ":auth_client_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ffdec2ec-5605-4019-a673-320676c1b1ab",
+                      "key": "auth_client_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the auth client"
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific auth client."
+              },
+              "response": [
+                {
+                  "id": "a52f37f1-5677-44d9-b022-63be8ed82670",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth-clients/:auth_client_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth-clients",
+                        ":auth_client_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "auth_client_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"auth-client\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"client_id\": \"<string>\",\n      \"client_secret\": \"<string>\",\n      \"auth_uri\": \"<uri>\",\n      \"token_uri\": \"<uri>\",\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"access_level\": \"tenant\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"component\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:33:29.000Z",
+                  "updatedAt": "2026-07-28T01:33:29.000Z",
+                  "uid": "35240-a52f37f1-5677-44d9-b022-63be8ed82670"
+                },
+                {
+                  "id": "7c386566-2396-4eb2-aca5-5f1fa4603a24",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth-clients/:auth_client_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth-clients",
+                        ":auth_client_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "auth_client_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:29.000Z",
+                  "updatedAt": "2026-07-28T01:33:29.000Z",
+                  "uid": "35240-7c386566-2396-4eb2-aca5-5f1fa4603a24"
+                },
+                {
+                  "id": "deb90be1-b367-44cd-8147-66459664ecb1",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth-clients/:auth_client_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth-clients",
+                        ":auth_client_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "auth_client_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:29.000Z",
+                  "updatedAt": "2026-07-28T01:33:29.000Z",
+                  "uid": "35240-deb90be1-b367-44cd-8147-66459664ecb1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:29.000Z",
+              "updatedAt": "2026-07-28T01:33:29.000Z",
+              "uid": "35240-6fcd4886-520c-4062-9850-de2b31e5c058"
+            },
+            {
+              "name": "Elastic.io Update an auth client",
+              "id": "0609cda1-b1f0-41e6-8d5d-e87df297fe82",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"auth-client\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"client_id\": \"<string>\",\n      \"client_secret\": \"<string>\",\n      \"auth_uri\": \"<uri>\",\n      \"token_uri\": \"<uri>\",\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth-clients/:auth_client_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth-clients",
+                    ":auth_client_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ed1a94d3-0904-4108-8836-9355fa338d71",
+                      "key": "auth_client_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the auth client"
+                    }
+                  ]
+                },
+                "description": "Update an existing auth client."
+              },
+              "response": [
+                {
+                  "id": "266fd9b2-6cb8-437b-be37-0b4aea773c4b",
+                  "name": "Auth client updated successfully",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"auth-client\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"client_id\": \"<string>\",\n      \"client_secret\": \"<string>\",\n      \"auth_uri\": \"<uri>\",\n      \"token_uri\": \"<uri>\",\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/auth-clients/:auth_client_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth-clients",
+                        ":auth_client_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "auth_client_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"auth-client\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"client_id\": \"<string>\",\n      \"client_secret\": \"<string>\",\n      \"auth_uri\": \"<uri>\",\n      \"token_uri\": \"<uri>\",\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"access_level\": \"tenant\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"component\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:33:29.000Z",
+                  "updatedAt": "2026-07-28T01:33:29.000Z",
+                  "uid": "35240-266fd9b2-6cb8-437b-be37-0b4aea773c4b"
+                },
+                {
+                  "id": "443537d4-e881-44aa-9bea-e70aeb1a9a04",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"auth-client\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"client_id\": \"<string>\",\n      \"client_secret\": \"<string>\",\n      \"auth_uri\": \"<uri>\",\n      \"token_uri\": \"<uri>\",\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/auth-clients/:auth_client_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth-clients",
+                        ":auth_client_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "auth_client_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:29.000Z",
+                  "updatedAt": "2026-07-28T01:33:29.000Z",
+                  "uid": "35240-443537d4-e881-44aa-9bea-e70aeb1a9a04"
+                },
+                {
+                  "id": "42c64dc9-b167-4b2d-b201-036b7f5b90ab",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"auth-client\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"client_id\": \"<string>\",\n      \"client_secret\": \"<string>\",\n      \"auth_uri\": \"<uri>\",\n      \"token_uri\": \"<uri>\",\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/auth-clients/:auth_client_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth-clients",
+                        ":auth_client_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "auth_client_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:29.000Z",
+                  "updatedAt": "2026-07-28T01:33:29.000Z",
+                  "uid": "35240-42c64dc9-b167-4b2d-b201-036b7f5b90ab"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:29.000Z",
+              "updatedAt": "2026-07-28T01:33:29.000Z",
+              "uid": "35240-0609cda1-b1f0-41e6-8d5d-e87df297fe82"
+            },
+            {
+              "name": "Elastic.io Delete an auth client",
+              "id": "098c25a2-38b6-4bc4-8639-7579786e1ceb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth-clients/:auth_client_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth-clients",
+                    ":auth_client_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "30781197-5618-4ae1-a81d-5c539d8ceaa0",
+                      "key": "auth_client_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the auth client"
+                    }
+                  ]
+                },
+                "description": "Delete an auth client."
+              },
+              "response": [
+                {
+                  "id": "f77e3d67-aba6-4cd1-95bf-b1aa33f80c6e",
+                  "name": "Auth client deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth-clients/:auth_client_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth-clients",
+                        ":auth_client_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "auth_client_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:33:29.000Z",
+                  "updatedAt": "2026-07-28T01:33:29.000Z",
+                  "uid": "35240-f77e3d67-aba6-4cd1-95bf-b1aa33f80c6e"
+                },
+                {
+                  "id": "f08e5929-47d2-4e84-9a99-c708e203f165",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth-clients/:auth_client_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth-clients",
+                        ":auth_client_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "auth_client_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:29.000Z",
+                  "updatedAt": "2026-07-28T01:33:29.000Z",
+                  "uid": "35240-f08e5929-47d2-4e84-9a99-c708e203f165"
+                },
+                {
+                  "id": "843c728b-e60b-46bc-ae66-2e102b7eb50e",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth-clients/:auth_client_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth-clients",
+                        ":auth_client_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "auth_client_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:29.000Z",
+                  "updatedAt": "2026-07-28T01:33:29.000Z",
+                  "uid": "35240-843c728b-e60b-46bc-ae66-2e102b7eb50e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:29.000Z",
+              "updatedAt": "2026-07-28T01:33:29.000Z",
+              "uid": "35240-098c25a2-38b6-4bc4-8639-7579786e1ceb"
+            }
+          ],
+          "id": "dda83ed2-aad0-46db-9367-f3b8b2088010",
+          "createdAt": "2026-07-28T01:33:29.000Z",
+          "updatedAt": "2026-07-28T01:33:29.000Z",
+          "uid": "35240-dda83ed2-aad0-46db-9367-f3b8b2088010"
+        },
+        {
+          "name": "Elastic.io List auth clients",
+          "id": "6d693657-36fe-4b60-baa2-9646e3b642a3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth-clients?page[size]=20&page[number]=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth-clients"
+              ],
+              "query": [
+                {
+                  "description": "Number of items per page",
+                  "key": "page[size]",
+                  "value": "20"
+                },
+                {
+                  "description": "Page number to retrieve",
+                  "key": "page[number]",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Retrieve a list of OAuth authentication clients."
+          },
+          "response": [
+            {
+              "id": "e392dbdc-7e31-46ef-bdc2-5e432d5bdfa7",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth-clients?page[size]=20&page[number]=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth-clients"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"auth-client\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"client_id\": \"<string>\",\n        \"client_secret\": \"<string>\",\n        \"auth_uri\": \"<uri>\",\n        \"token_uri\": \"<uri>\",\n        \"scopes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"access_level\": \"workspace\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"workspace\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"component\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"auth-client\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"client_id\": \"<string>\",\n        \"client_secret\": \"<string>\",\n        \"auth_uri\": \"<uri>\",\n        \"token_uri\": \"<uri>\",\n        \"scopes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"access_level\": \"contract\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"workspace\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"component\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": \"<integer>\",\n    \"per_page\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"total_pages\": \"<integer>\"\n  },\n  \"links\": {\n    \"self\": \"<uri>\",\n    \"first\": \"<uri>\",\n    \"prev\": \"<uri>\",\n    \"next\": \"<uri>\",\n    \"last\": \"<uri>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:33:29.000Z",
+              "updatedAt": "2026-07-28T01:33:29.000Z",
+              "uid": "35240-e392dbdc-7e31-46ef-bdc2-5e432d5bdfa7"
+            },
+            {
+              "id": "3d98d357-7432-40fc-a062-ec14380fbfb6",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth-clients?page[size]=20&page[number]=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth-clients"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:33:29.000Z",
+              "updatedAt": "2026-07-28T01:33:29.000Z",
+              "uid": "35240-3d98d357-7432-40fc-a062-ec14380fbfb6"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:29.000Z",
+          "updatedAt": "2026-07-28T01:33:29.000Z",
+          "uid": "35240-6d693657-36fe-4b60-baa2-9646e3b642a3"
+        },
+        {
+          "name": "Elastic.io Create an auth client",
+          "id": "fb30c073-b2c5-448b-9ade-3a359b4a8b2a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"auth-client\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"client_id\": \"<string>\",\n      \"client_secret\": \"<string>\",\n      \"auth_uri\": \"<uri>\",\n      \"token_uri\": \"<uri>\",\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"component\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth-clients",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth-clients"
+              ]
+            },
+            "description": "Create a new OAuth authentication client."
+          },
+          "response": [
+            {
+              "id": "824a1357-3fe0-4816-9f0d-015e327787af",
+              "name": "Auth client created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"auth-client\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"client_id\": \"<string>\",\n      \"client_secret\": \"<string>\",\n      \"auth_uri\": \"<uri>\",\n      \"token_uri\": \"<uri>\",\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"component\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth-clients",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth-clients"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"auth-client\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"client_id\": \"<string>\",\n      \"client_secret\": \"<string>\",\n      \"auth_uri\": \"<uri>\",\n      \"token_uri\": \"<uri>\",\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"access_level\": \"tenant\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"component\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "createdAt": "2026-07-28T01:33:29.000Z",
+              "updatedAt": "2026-07-28T01:33:29.000Z",
+              "uid": "35240-824a1357-3fe0-4816-9f0d-015e327787af"
+            },
+            {
+              "id": "469be9d4-6a6e-4dcc-81f8-aeabaf17719c",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"auth-client\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"client_id\": \"<string>\",\n      \"client_secret\": \"<string>\",\n      \"auth_uri\": \"<uri>\",\n      \"token_uri\": \"<uri>\",\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"component\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth-clients",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth-clients"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:33:29.000Z",
+              "updatedAt": "2026-07-28T01:33:29.000Z",
+              "uid": "35240-469be9d4-6a6e-4dcc-81f8-aeabaf17719c"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:29.000Z",
+          "updatedAt": "2026-07-28T01:33:29.000Z",
+          "uid": "35240-fb30c073-b2c5-448b-9ade-3a359b4a8b2a"
+        }
+      ],
+      "id": "051d486f-adc7-4e48-b7e8-20dfba72e674",
+      "createdAt": "2026-07-28T01:33:29.000Z",
+      "updatedAt": "2026-07-28T01:33:29.000Z",
+      "uid": "35240-051d486f-adc7-4e48-b7e8-20dfba72e674"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.elastic.io/v2"
+    }
+  ]
+}

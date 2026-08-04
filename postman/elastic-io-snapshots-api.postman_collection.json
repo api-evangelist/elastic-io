@@ -1,0 +1,205 @@
+{
+  "info": {
+    "_postman_id": "954490ea-21cb-4fd9-bcad-3357c93b6e36",
+    "name": "elastic.io Platform REST Agents Snapshots API",
+    "description": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:34:30.000Z",
+    "updatedAt": "2026-07-28T01:34:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-954490ea-21cb-4fd9-bcad-3357c93b6e36"
+  },
+  "item": [
+    {
+      "name": "snapshots",
+      "item": [
+        {
+          "name": "Elastic.io List snapshots",
+          "id": "1929ea88-5eb0-476f-9920-53ed96f211fd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/snapshots?page[size]=20&page[number]=1&filter[flow_id]=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "snapshots"
+              ],
+              "query": [
+                {
+                  "description": "Number of items per page",
+                  "key": "page[size]",
+                  "value": "20"
+                },
+                {
+                  "description": "Page number to retrieve",
+                  "key": "page[number]",
+                  "value": "1"
+                },
+                {
+                  "description": "Filter by flow ID",
+                  "key": "filter[flow_id]",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve a list of flow step snapshots."
+          },
+          "response": [
+            {
+              "id": "52239f4c-956b-43e9-93ad-69bf655dcd88",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/snapshots?page[size]=20&page[number]=1&filter[flow_id]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "snapshots"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by flow ID",
+                      "key": "filter[flow_id]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"snapshot\",\n      \"attributes\": {\n        \"step_id\": \"<string>\",\n        \"data\": {},\n        \"created_at\": \"<dateTime>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"snapshot\",\n      \"attributes\": {\n        \"step_id\": \"<string>\",\n        \"data\": {},\n        \"created_at\": \"<dateTime>\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": \"<integer>\",\n    \"per_page\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"total_pages\": \"<integer>\"\n  },\n  \"links\": {\n    \"self\": \"<uri>\",\n    \"first\": \"<uri>\",\n    \"prev\": \"<uri>\",\n    \"next\": \"<uri>\",\n    \"last\": \"<uri>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:34:31.000Z",
+              "updatedAt": "2026-07-28T01:34:31.000Z",
+              "uid": "35240-52239f4c-956b-43e9-93ad-69bf655dcd88"
+            },
+            {
+              "id": "40177410-f9c9-48f8-b5f5-36658499adc1",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/snapshots?page[size]=20&page[number]=1&filter[flow_id]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "snapshots"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by flow ID",
+                      "key": "filter[flow_id]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:34:31.000Z",
+              "updatedAt": "2026-07-28T01:34:31.000Z",
+              "uid": "35240-40177410-f9c9-48f8-b5f5-36658499adc1"
+            }
+          ],
+          "createdAt": "2026-07-28T01:34:31.000Z",
+          "updatedAt": "2026-07-28T01:34:31.000Z",
+          "uid": "35240-1929ea88-5eb0-476f-9920-53ed96f211fd"
+        }
+      ],
+      "id": "87c7d4f6-cc8e-47fd-96fc-06067d7f221f",
+      "createdAt": "2026-07-28T01:34:31.000Z",
+      "updatedAt": "2026-07-28T01:34:31.000Z",
+      "uid": "35240-87c7d4f6-cc8e-47fd-96fc-06067d7f221f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.elastic.io/v2"
+    }
+  ]
+}

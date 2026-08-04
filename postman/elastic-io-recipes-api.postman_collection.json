@@ -1,0 +1,1223 @@
+{
+  "info": {
+    "_postman_id": "97b20d09-1872-4b07-92e3-a791f2d76e8a",
+    "name": "elastic.io Platform REST Agents Recipes API",
+    "description": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:34:25.000Z",
+    "updatedAt": "2026-07-28T01:34:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-97b20d09-1872-4b07-92e3-a791f2d76e8a"
+  },
+  "item": [
+    {
+      "name": "recipes",
+      "item": [
+        {
+          "name": "{recipe_id}",
+          "item": [
+            {
+              "name": "visibility",
+              "item": [
+                {
+                  "name": "Elastic.io Update recipe visibility",
+                  "id": "a1667091-f0f4-41c3-830c-7e535eb74fbf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"visibility\": \"global\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/recipes/:recipe_id/visibility",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recipes",
+                        ":recipe_id",
+                        "visibility"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f8207270-dc39-41ae-8fe9-e52c4f9369d2",
+                          "key": "recipe_id",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the recipe"
+                        }
+                      ]
+                    },
+                    "description": "Update the visibility settings of a recipe."
+                  },
+                  "response": [
+                    {
+                      "id": "5bde2e3a-a67f-43bd-b384-f74987a60f5a",
+                      "name": "Visibility updated successfully",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"visibility\": \"global\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/recipes/:recipe_id/visibility",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "recipes",
+                            ":recipe_id",
+                            "visibility"
+                          ],
+                          "variable": [
+                            {
+                              "key": "recipe_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"recipe\",\n    \"attributes\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"visibility\": \"tenant\",\n      \"graph\": {},\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:34:25.000Z",
+                      "updatedAt": "2026-07-28T01:34:25.000Z",
+                      "uid": "35240-5bde2e3a-a67f-43bd-b384-f74987a60f5a"
+                    },
+                    {
+                      "id": "460aa709-6860-42dd-87c6-510d710816ad",
+                      "name": "Authentication required or token is invalid",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"visibility\": \"global\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/recipes/:recipe_id/visibility",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "recipes",
+                            ":recipe_id",
+                            "visibility"
+                          ],
+                          "variable": [
+                            {
+                              "key": "recipe_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:34:25.000Z",
+                      "updatedAt": "2026-07-28T01:34:25.000Z",
+                      "uid": "35240-460aa709-6860-42dd-87c6-510d710816ad"
+                    },
+                    {
+                      "id": "58709264-99ef-4fc8-8838-9f99804849a0",
+                      "name": "The requested resource was not found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"visibility\": \"global\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/recipes/:recipe_id/visibility",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "recipes",
+                            ":recipe_id",
+                            "visibility"
+                          ],
+                          "variable": [
+                            {
+                              "key": "recipe_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:34:25.000Z",
+                      "updatedAt": "2026-07-28T01:34:25.000Z",
+                      "uid": "35240-58709264-99ef-4fc8-8838-9f99804849a0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:34:25.000Z",
+                  "updatedAt": "2026-07-28T01:34:25.000Z",
+                  "uid": "35240-a1667091-f0f4-41c3-830c-7e535eb74fbf"
+                }
+              ],
+              "id": "e80a8c39-bb36-4689-8297-69714122cb8d",
+              "createdAt": "2026-07-28T01:34:25.000Z",
+              "updatedAt": "2026-07-28T01:34:25.000Z",
+              "uid": "35240-e80a8c39-bb36-4689-8297-69714122cb8d"
+            },
+            {
+              "name": "Elastic.io Get a recipe",
+              "id": "6f171498-7777-45cb-b9d1-8375f171e162",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/recipes/:recipe_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recipes",
+                    ":recipe_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4ada5755-9b26-4437-b15f-d2518a2aefe4",
+                      "key": "recipe_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the recipe"
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific recipe."
+              },
+              "response": [
+                {
+                  "id": "78968eb4-24e3-41ff-9878-55ff33a2d4e4",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recipes/:recipe_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recipes",
+                        ":recipe_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recipe_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"recipe\",\n    \"attributes\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"visibility\": \"tenant\",\n      \"graph\": {},\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:34:25.000Z",
+                  "updatedAt": "2026-07-28T01:34:25.000Z",
+                  "uid": "35240-78968eb4-24e3-41ff-9878-55ff33a2d4e4"
+                },
+                {
+                  "id": "a75b610b-71dd-4ff2-84ac-7ecac7d1d3da",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recipes/:recipe_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recipes",
+                        ":recipe_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recipe_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:25.000Z",
+                  "updatedAt": "2026-07-28T01:34:25.000Z",
+                  "uid": "35240-a75b610b-71dd-4ff2-84ac-7ecac7d1d3da"
+                },
+                {
+                  "id": "9a472522-a058-41f4-8555-c7ed4fff094d",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recipes/:recipe_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recipes",
+                        ":recipe_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recipe_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:25.000Z",
+                  "updatedAt": "2026-07-28T01:34:25.000Z",
+                  "uid": "35240-9a472522-a058-41f4-8555-c7ed4fff094d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:34:25.000Z",
+              "updatedAt": "2026-07-28T01:34:25.000Z",
+              "uid": "35240-6f171498-7777-45cb-b9d1-8375f171e162"
+            },
+            {
+              "name": "Elastic.io Update a recipe",
+              "id": "91ef0c9d-6504-4e38-ab89-b2fbb7d141e1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"recipe\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"graph\": {}\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/recipes/:recipe_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recipes",
+                    ":recipe_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "860e0bbd-3281-468b-9aa4-54d283ede024",
+                      "key": "recipe_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the recipe"
+                    }
+                  ]
+                },
+                "description": "Update an existing recipe."
+              },
+              "response": [
+                {
+                  "id": "6e921020-acbf-45ab-a1a6-d2bdf3514194",
+                  "name": "Recipe updated successfully",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"recipe\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"graph\": {}\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/recipes/:recipe_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recipes",
+                        ":recipe_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recipe_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"recipe\",\n    \"attributes\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"visibility\": \"tenant\",\n      \"graph\": {},\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:34:25.000Z",
+                  "updatedAt": "2026-07-28T01:34:25.000Z",
+                  "uid": "35240-6e921020-acbf-45ab-a1a6-d2bdf3514194"
+                },
+                {
+                  "id": "cca6956b-e87d-4a66-9d80-4fd998e510ab",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"recipe\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"graph\": {}\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/recipes/:recipe_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recipes",
+                        ":recipe_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recipe_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:25.000Z",
+                  "updatedAt": "2026-07-28T01:34:25.000Z",
+                  "uid": "35240-cca6956b-e87d-4a66-9d80-4fd998e510ab"
+                },
+                {
+                  "id": "2a65ec85-9493-4bcf-9d22-1b1ca05e5b96",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"recipe\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"graph\": {}\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/recipes/:recipe_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recipes",
+                        ":recipe_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recipe_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:25.000Z",
+                  "updatedAt": "2026-07-28T01:34:25.000Z",
+                  "uid": "35240-2a65ec85-9493-4bcf-9d22-1b1ca05e5b96"
+                }
+              ],
+              "createdAt": "2026-07-28T01:34:25.000Z",
+              "updatedAt": "2026-07-28T01:34:25.000Z",
+              "uid": "35240-91ef0c9d-6504-4e38-ab89-b2fbb7d141e1"
+            },
+            {
+              "name": "Elastic.io Delete a recipe",
+              "id": "caa5d066-8ed7-447d-9077-f894797a3a75",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/recipes/:recipe_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recipes",
+                    ":recipe_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5380c88a-0d10-4bff-bc0c-504a01f7cad3",
+                      "key": "recipe_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the recipe"
+                    }
+                  ]
+                },
+                "description": "Delete a recipe."
+              },
+              "response": [
+                {
+                  "id": "58cd33c4-31e5-4d28-9ab4-1b8984db43e2",
+                  "name": "Recipe deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recipes/:recipe_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recipes",
+                        ":recipe_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recipe_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:34:25.000Z",
+                  "updatedAt": "2026-07-28T01:34:25.000Z",
+                  "uid": "35240-58cd33c4-31e5-4d28-9ab4-1b8984db43e2"
+                },
+                {
+                  "id": "db135dab-cfb4-4f8a-bcc0-ca4007cd12a9",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recipes/:recipe_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recipes",
+                        ":recipe_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recipe_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:25.000Z",
+                  "updatedAt": "2026-07-28T01:34:25.000Z",
+                  "uid": "35240-db135dab-cfb4-4f8a-bcc0-ca4007cd12a9"
+                },
+                {
+                  "id": "87059976-2527-43cb-af4d-edfa261b7185",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recipes/:recipe_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recipes",
+                        ":recipe_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recipe_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:25.000Z",
+                  "updatedAt": "2026-07-28T01:34:25.000Z",
+                  "uid": "35240-87059976-2527-43cb-af4d-edfa261b7185"
+                }
+              ],
+              "createdAt": "2026-07-28T01:34:25.000Z",
+              "updatedAt": "2026-07-28T01:34:25.000Z",
+              "uid": "35240-caa5d066-8ed7-447d-9077-f894797a3a75"
+            }
+          ],
+          "id": "0791037d-30c2-4c8d-b708-c6e77fc47692",
+          "createdAt": "2026-07-28T01:34:25.000Z",
+          "updatedAt": "2026-07-28T01:34:25.000Z",
+          "uid": "35240-0791037d-30c2-4c8d-b708-c6e77fc47692"
+        },
+        {
+          "name": "Elastic.io List recipes",
+          "id": "468a6c1d-76a3-45da-b353-83715931fabd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/recipes?page[size]=20&page[number]=1&filter[contract_id]=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "recipes"
+              ],
+              "query": [
+                {
+                  "description": "Number of items per page",
+                  "key": "page[size]",
+                  "value": "20"
+                },
+                {
+                  "description": "Page number to retrieve",
+                  "key": "page[number]",
+                  "value": "1"
+                },
+                {
+                  "description": "Filter by contract ID",
+                  "key": "filter[contract_id]",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve a list of available integration recipes."
+          },
+          "response": [
+            {
+              "id": "f1e9fb69-1e6d-44d6-814e-18ffdcc12d61",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/recipes?page[size]=20&page[number]=1&filter[contract_id]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recipes"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by contract ID",
+                      "key": "filter[contract_id]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"recipe\",\n      \"attributes\": {\n        \"title\": \"<string>\",\n        \"description\": \"<string>\",\n        \"visibility\": \"contract\",\n        \"graph\": {},\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"workspace\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"contract\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"recipe\",\n      \"attributes\": {\n        \"title\": \"<string>\",\n        \"description\": \"<string>\",\n        \"visibility\": \"global\",\n        \"graph\": {},\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"workspace\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"contract\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": \"<integer>\",\n    \"per_page\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"total_pages\": \"<integer>\"\n  },\n  \"links\": {\n    \"self\": \"<uri>\",\n    \"first\": \"<uri>\",\n    \"prev\": \"<uri>\",\n    \"next\": \"<uri>\",\n    \"last\": \"<uri>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:34:25.000Z",
+              "updatedAt": "2026-07-28T01:34:25.000Z",
+              "uid": "35240-f1e9fb69-1e6d-44d6-814e-18ffdcc12d61"
+            },
+            {
+              "id": "e756fdb7-48f0-4d9d-bf7e-af41750a2b2f",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/recipes?page[size]=20&page[number]=1&filter[contract_id]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recipes"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by contract ID",
+                      "key": "filter[contract_id]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:34:25.000Z",
+              "updatedAt": "2026-07-28T01:34:25.000Z",
+              "uid": "35240-e756fdb7-48f0-4d9d-bf7e-af41750a2b2f"
+            }
+          ],
+          "createdAt": "2026-07-28T01:34:25.000Z",
+          "updatedAt": "2026-07-28T01:34:25.000Z",
+          "uid": "35240-468a6c1d-76a3-45da-b353-83715931fabd"
+        },
+        {
+          "name": "Elastic.io Create a recipe",
+          "id": "b2501dbe-78f0-4155-9db5-235b550e3330",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"recipe\",\n    \"attributes\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"graph\": {}\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/recipes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "recipes"
+              ]
+            },
+            "description": "Create a new integration recipe."
+          },
+          "response": [
+            {
+              "id": "f78f3c74-615e-4ed6-b9b1-cbd3fa1ca95d",
+              "name": "Recipe created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"recipe\",\n    \"attributes\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"graph\": {}\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/recipes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recipes"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"recipe\",\n    \"attributes\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"visibility\": \"tenant\",\n      \"graph\": {},\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "createdAt": "2026-07-28T01:34:25.000Z",
+              "updatedAt": "2026-07-28T01:34:25.000Z",
+              "uid": "35240-f78f3c74-615e-4ed6-b9b1-cbd3fa1ca95d"
+            },
+            {
+              "id": "e5b79887-aa94-4383-a25e-33a0d9247677",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"recipe\",\n    \"attributes\": {\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"graph\": {}\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/recipes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recipes"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:34:25.000Z",
+              "updatedAt": "2026-07-28T01:34:25.000Z",
+              "uid": "35240-e5b79887-aa94-4383-a25e-33a0d9247677"
+            }
+          ],
+          "createdAt": "2026-07-28T01:34:25.000Z",
+          "updatedAt": "2026-07-28T01:34:25.000Z",
+          "uid": "35240-b2501dbe-78f0-4155-9db5-235b550e3330"
+        }
+      ],
+      "id": "2a9c73ce-5021-4afc-8afc-2ff7afb56347",
+      "createdAt": "2026-07-28T01:34:25.000Z",
+      "updatedAt": "2026-07-28T01:34:25.000Z",
+      "uid": "35240-2a9c73ce-5021-4afc-8afc-2ff7afb56347"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.elastic.io/v2"
+    }
+  ]
+}

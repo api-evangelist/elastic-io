@@ -1,0 +1,519 @@
+{
+  "info": {
+    "_postman_id": "aaaf4696-fb54-4513-b7fd-e16dd04f26a8",
+    "name": "elastic.io Platform REST Agents Users API",
+    "description": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:34:44.000Z",
+    "updatedAt": "2026-07-28T01:34:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-aaaf4696-fb54-4513-b7fd-e16dd04f26a8"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "me",
+          "item": [
+            {
+              "name": "Elastic.io Get current user",
+              "id": "7eb02b0f-e2ae-4d28-bc90-38e14e99fa0d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "me"
+                  ]
+                },
+                "description": "Retrieve the profile of the currently authenticated user."
+              },
+              "response": [
+                {
+                  "id": "2ed7649f-399a-4c6f-a592-f23dcaf2cf77",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "me"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"user\",\n    \"attributes\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"registered\": \"<dateTime>\",\n      \"last_login\": \"<dateTime>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:34:44.000Z",
+                  "updatedAt": "2026-07-28T01:34:44.000Z",
+                  "uid": "35240-2ed7649f-399a-4c6f-a592-f23dcaf2cf77"
+                },
+                {
+                  "id": "5749a57a-cd3a-450c-9a5e-ecba3f44efd6",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "me"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:44.000Z",
+                  "updatedAt": "2026-07-28T01:34:44.000Z",
+                  "uid": "35240-5749a57a-cd3a-450c-9a5e-ecba3f44efd6"
+                }
+              ],
+              "createdAt": "2026-07-28T01:34:44.000Z",
+              "updatedAt": "2026-07-28T01:34:44.000Z",
+              "uid": "35240-7eb02b0f-e2ae-4d28-bc90-38e14e99fa0d"
+            },
+            {
+              "name": "Elastic.io Update current user",
+              "id": "4e7d3868-fd86-44f1-b2aa-3d2b469d603a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"user\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "me"
+                  ]
+                },
+                "description": "Update the profile of the currently authenticated user."
+              },
+              "response": [
+                {
+                  "id": "1e3c7c46-b5cc-49b3-ab99-66c44850377b",
+                  "name": "User updated successfully",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"user\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "me"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"user\",\n    \"attributes\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"registered\": \"<dateTime>\",\n      \"last_login\": \"<dateTime>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:34:44.000Z",
+                  "updatedAt": "2026-07-28T01:34:44.000Z",
+                  "uid": "35240-1e3c7c46-b5cc-49b3-ab99-66c44850377b"
+                },
+                {
+                  "id": "50062328-6647-4c27-a424-e9585254188c",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"user\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "me"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:44.000Z",
+                  "updatedAt": "2026-07-28T01:34:44.000Z",
+                  "uid": "35240-50062328-6647-4c27-a424-e9585254188c"
+                }
+              ],
+              "createdAt": "2026-07-28T01:34:44.000Z",
+              "updatedAt": "2026-07-28T01:34:44.000Z",
+              "uid": "35240-4e7d3868-fd86-44f1-b2aa-3d2b469d603a"
+            }
+          ],
+          "id": "809b5601-a1f3-4f2e-8ebb-747ef7b1c71f",
+          "createdAt": "2026-07-28T01:34:44.000Z",
+          "updatedAt": "2026-07-28T01:34:44.000Z",
+          "uid": "35240-809b5601-a1f3-4f2e-8ebb-747ef7b1c71f"
+        },
+        {
+          "name": "{user_id}",
+          "item": [
+            {
+              "name": "Elastic.io Get a user",
+              "id": "921bebf5-c9c2-44e1-8861-dd582cf37094",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:user_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":user_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0cffe345-3dc8-4a46-ae5a-b4dc61474619",
+                      "key": "user_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the user"
+                    }
+                  ]
+                },
+                "description": "Retrieve the profile of a specific user."
+              },
+              "response": [
+                {
+                  "id": "613e001d-1ca4-4047-b8c4-dcfffd6b10a5",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:user_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":user_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "user_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"user\",\n    \"attributes\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"registered\": \"<dateTime>\",\n      \"last_login\": \"<dateTime>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:34:44.000Z",
+                  "updatedAt": "2026-07-28T01:34:44.000Z",
+                  "uid": "35240-613e001d-1ca4-4047-b8c4-dcfffd6b10a5"
+                },
+                {
+                  "id": "f667a10c-a5e7-40a3-b4e7-f4dd2246d35a",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:user_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":user_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "user_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:44.000Z",
+                  "updatedAt": "2026-07-28T01:34:44.000Z",
+                  "uid": "35240-f667a10c-a5e7-40a3-b4e7-f4dd2246d35a"
+                },
+                {
+                  "id": "53c175ac-75f5-4346-80b6-e45cdfaa7390",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:user_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":user_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "user_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:44.000Z",
+                  "updatedAt": "2026-07-28T01:34:44.000Z",
+                  "uid": "35240-53c175ac-75f5-4346-80b6-e45cdfaa7390"
+                }
+              ],
+              "createdAt": "2026-07-28T01:34:44.000Z",
+              "updatedAt": "2026-07-28T01:34:44.000Z",
+              "uid": "35240-921bebf5-c9c2-44e1-8861-dd582cf37094"
+            }
+          ],
+          "id": "7286bbf0-23a7-4c3f-a51b-972b67065aa1",
+          "createdAt": "2026-07-28T01:34:44.000Z",
+          "updatedAt": "2026-07-28T01:34:44.000Z",
+          "uid": "35240-7286bbf0-23a7-4c3f-a51b-972b67065aa1"
+        }
+      ],
+      "id": "b2eec0a6-a884-46d3-9299-780609b1c4be",
+      "createdAt": "2026-07-28T01:34:44.000Z",
+      "updatedAt": "2026-07-28T01:34:44.000Z",
+      "uid": "35240-b2eec0a6-a884-46d3-9299-780609b1c4be"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.elastic.io/v2"
+    }
+  ]
+}

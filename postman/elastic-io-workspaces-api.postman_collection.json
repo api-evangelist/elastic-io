@@ -1,0 +1,1506 @@
+{
+  "info": {
+    "_postman_id": "c717a031-f8d7-43ae-a20a-5922d7eab642",
+    "name": "elastic.io Platform REST Agents Workspaces API",
+    "description": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:34:45.000Z",
+    "updatedAt": "2026-07-28T01:34:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c717a031-f8d7-43ae-a20a-5922d7eab642"
+  },
+  "item": [
+    {
+      "name": "workspaces",
+      "item": [
+        {
+          "name": "{workspace_id}",
+          "item": [
+            {
+              "name": "members",
+              "item": [
+                {
+                  "name": "{user_id}",
+                  "item": [
+                    {
+                      "name": "Elastic.io Remove a workspace member",
+                      "id": "72af565b-f037-4672-ba44-e7651b93b55a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/members/:user_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "members",
+                            ":user_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "42b212c5-0d9f-4bfc-b498-317f4c2ebdc2",
+                              "key": "workspace_id",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the workspace"
+                            },
+                            {
+                              "id": "38e5472c-b296-49c3-b8f4-7faf51e9d6d5",
+                              "key": "user_id",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the user"
+                            }
+                          ]
+                        },
+                        "description": "Remove a member from a workspace."
+                      },
+                      "response": [
+                        {
+                          "id": "54419546-19ed-4a80-834f-d91fa112ac17",
+                          "name": "Member removed successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/members/:user_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "members",
+                                ":user_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "user_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:34:46.000Z",
+                          "updatedAt": "2026-07-28T01:34:46.000Z",
+                          "uid": "35240-54419546-19ed-4a80-834f-d91fa112ac17"
+                        },
+                        {
+                          "id": "2b6d2c38-6be0-4b83-9ab9-a675a0ba6127",
+                          "name": "Authentication required or token is invalid",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/members/:user_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "members",
+                                ":user_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "user_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:34:46.000Z",
+                          "updatedAt": "2026-07-28T01:34:46.000Z",
+                          "uid": "35240-2b6d2c38-6be0-4b83-9ab9-a675a0ba6127"
+                        },
+                        {
+                          "id": "4e46dcdd-5b14-4697-8c33-e9e2f8ecca07",
+                          "name": "The requested resource was not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/members/:user_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "members",
+                                ":user_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "user_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:34:46.000Z",
+                          "updatedAt": "2026-07-28T01:34:46.000Z",
+                          "uid": "35240-4e46dcdd-5b14-4697-8c33-e9e2f8ecca07"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:34:46.000Z",
+                      "updatedAt": "2026-07-28T01:34:46.000Z",
+                      "uid": "35240-72af565b-f037-4672-ba44-e7651b93b55a"
+                    }
+                  ],
+                  "id": "cfe1ecb6-1bbb-4967-9bd5-e96bbaafd569",
+                  "createdAt": "2026-07-28T01:34:46.000Z",
+                  "updatedAt": "2026-07-28T01:34:46.000Z",
+                  "uid": "35240-cfe1ecb6-1bbb-4967-9bd5-e96bbaafd569"
+                },
+                {
+                  "name": "Elastic.io List workspace members",
+                  "id": "588f422f-8199-4a93-880a-62f61351aee6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id/members",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id",
+                        "members"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b0f8b7bb-c0a9-469c-9c85-eecf996f5d38",
+                          "key": "workspace_id",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the workspace"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve the list of members in a workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "01191420-8c34-47f8-ae29-353b95e8ac9f",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/members",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "members"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attributes\": {\n        \"roles\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"relationships\": {\n        \"user\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attributes\": {\n        \"roles\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"relationships\": {\n        \"user\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": \"<integer>\",\n    \"per_page\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"total_pages\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:34:46.000Z",
+                      "updatedAt": "2026-07-28T01:34:46.000Z",
+                      "uid": "35240-01191420-8c34-47f8-ae29-353b95e8ac9f"
+                    },
+                    {
+                      "id": "e2bd32da-eb38-479b-b601-11dd3ef0e658",
+                      "name": "Authentication required or token is invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/members",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "members"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:34:46.000Z",
+                      "updatedAt": "2026-07-28T01:34:46.000Z",
+                      "uid": "35240-e2bd32da-eb38-479b-b601-11dd3ef0e658"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:34:46.000Z",
+                  "updatedAt": "2026-07-28T01:34:46.000Z",
+                  "uid": "35240-588f422f-8199-4a93-880a-62f61351aee6"
+                },
+                {
+                  "name": "Elastic.io Add a workspace member",
+                  "id": "515fc505-9560-4ca9-8483-5bbda9dc2540",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"member\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id/members",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id",
+                        "members"
+                      ],
+                      "variable": [
+                        {
+                          "id": "85bfdde4-c234-4b79-bada-a61f65f5e14d",
+                          "key": "workspace_id",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the workspace"
+                        }
+                      ]
+                    },
+                    "description": "Add a user as a member of a workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "926d5b22-969f-44b2-b535-25926812341e",
+                      "name": "Member added successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"type\": \"member\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/members",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "members"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"member\",\n    \"attributes\": {\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"relationships\": {\n      \"user\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:34:46.000Z",
+                      "updatedAt": "2026-07-28T01:34:46.000Z",
+                      "uid": "35240-926d5b22-969f-44b2-b535-25926812341e"
+                    },
+                    {
+                      "id": "a37468f1-3ae8-401b-b43c-65d5e4146ad0",
+                      "name": "Authentication required or token is invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"type\": \"member\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"roles\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/members",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "members"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:34:46.000Z",
+                      "updatedAt": "2026-07-28T01:34:46.000Z",
+                      "uid": "35240-a37468f1-3ae8-401b-b43c-65d5e4146ad0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:34:46.000Z",
+                  "updatedAt": "2026-07-28T01:34:46.000Z",
+                  "uid": "35240-515fc505-9560-4ca9-8483-5bbda9dc2540"
+                }
+              ],
+              "id": "1646a04e-4aa8-40bb-af40-d1b1cbe75d94",
+              "createdAt": "2026-07-28T01:34:46.000Z",
+              "updatedAt": "2026-07-28T01:34:46.000Z",
+              "uid": "35240-1646a04e-4aa8-40bb-af40-d1b1cbe75d94"
+            },
+            {
+              "name": "Elastic.io Get a workspace",
+              "id": "5ae65edf-139f-4031-b830-3d41c114fb5a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workspaces/:workspace_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workspaces",
+                    ":workspace_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f24934b8-e1b2-4c3e-a25b-2beec0d6c5d2",
+                      "key": "workspace_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the workspace"
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific workspace."
+              },
+              "response": [
+                {
+                  "id": "4e1a86fc-fc17-4250-875a-99fe65cfd5f4",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workspace_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"workspace\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"type\": \"full\",\n      \"flow_count\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:34:46.000Z",
+                  "updatedAt": "2026-07-28T01:34:46.000Z",
+                  "uid": "35240-4e1a86fc-fc17-4250-875a-99fe65cfd5f4"
+                },
+                {
+                  "id": "c1035b15-7ef5-4e1d-a2c5-50d0b2ca6ac8",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workspace_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:46.000Z",
+                  "updatedAt": "2026-07-28T01:34:46.000Z",
+                  "uid": "35240-c1035b15-7ef5-4e1d-a2c5-50d0b2ca6ac8"
+                },
+                {
+                  "id": "1ec4975d-e27b-4f16-a7d7-1cae696ffdce",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workspace_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:46.000Z",
+                  "updatedAt": "2026-07-28T01:34:46.000Z",
+                  "uid": "35240-1ec4975d-e27b-4f16-a7d7-1cae696ffdce"
+                }
+              ],
+              "createdAt": "2026-07-28T01:34:46.000Z",
+              "updatedAt": "2026-07-28T01:34:46.000Z",
+              "uid": "35240-5ae65edf-139f-4031-b830-3d41c114fb5a"
+            },
+            {
+              "name": "Elastic.io Update a workspace",
+              "id": "80f7a7a6-a0c7-4bc7-8c87-2fc93b7ac7bd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"workspace\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/workspaces/:workspace_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workspaces",
+                    ":workspace_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f96a26a7-ddae-41be-9945-9b3675cc0f74",
+                      "key": "workspace_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the workspace"
+                    }
+                  ]
+                },
+                "description": "Update an existing workspace."
+              },
+              "response": [
+                {
+                  "id": "34b71868-7965-4269-bac3-7318c79de70d",
+                  "name": "Workspace updated successfully",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"workspace\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workspace_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"workspace\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"type\": \"full\",\n      \"flow_count\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:34:46.000Z",
+                  "updatedAt": "2026-07-28T01:34:46.000Z",
+                  "uid": "35240-34b71868-7965-4269-bac3-7318c79de70d"
+                },
+                {
+                  "id": "43f40ad6-5566-4bc9-a1df-8233a94276a0",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"workspace\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workspace_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:46.000Z",
+                  "updatedAt": "2026-07-28T01:34:46.000Z",
+                  "uid": "35240-43f40ad6-5566-4bc9-a1df-8233a94276a0"
+                },
+                {
+                  "id": "7f97bf47-03bd-4310-b117-e4c9e7b6c331",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"workspace\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workspace_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:46.000Z",
+                  "updatedAt": "2026-07-28T01:34:46.000Z",
+                  "uid": "35240-7f97bf47-03bd-4310-b117-e4c9e7b6c331"
+                }
+              ],
+              "createdAt": "2026-07-28T01:34:46.000Z",
+              "updatedAt": "2026-07-28T01:34:46.000Z",
+              "uid": "35240-80f7a7a6-a0c7-4bc7-8c87-2fc93b7ac7bd"
+            },
+            {
+              "name": "Elastic.io Delete a workspace",
+              "id": "131d3082-e7d6-467f-b9cf-7da897e4e668",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workspaces/:workspace_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workspaces",
+                    ":workspace_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4b3d25d7-7153-4eff-8d71-79569eab4e1f",
+                      "key": "workspace_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the workspace"
+                    }
+                  ]
+                },
+                "description": "Delete a workspace."
+              },
+              "response": [
+                {
+                  "id": "9facaee7-391a-4641-8fdc-0feb5cceadaa",
+                  "name": "Workspace deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workspace_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:34:46.000Z",
+                  "updatedAt": "2026-07-28T01:34:46.000Z",
+                  "uid": "35240-9facaee7-391a-4641-8fdc-0feb5cceadaa"
+                },
+                {
+                  "id": "7e66fd01-5c6a-4660-b3ee-aed26d5f1d08",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workspace_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:46.000Z",
+                  "updatedAt": "2026-07-28T01:34:46.000Z",
+                  "uid": "35240-7e66fd01-5c6a-4660-b3ee-aed26d5f1d08"
+                },
+                {
+                  "id": "f63e5bf6-7314-4970-ac84-5591ac016565",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workspace_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:46.000Z",
+                  "updatedAt": "2026-07-28T01:34:46.000Z",
+                  "uid": "35240-f63e5bf6-7314-4970-ac84-5591ac016565"
+                }
+              ],
+              "createdAt": "2026-07-28T01:34:46.000Z",
+              "updatedAt": "2026-07-28T01:34:46.000Z",
+              "uid": "35240-131d3082-e7d6-467f-b9cf-7da897e4e668"
+            }
+          ],
+          "id": "0f2b4523-a463-4828-8dca-dbba73f04db7",
+          "createdAt": "2026-07-28T01:34:46.000Z",
+          "updatedAt": "2026-07-28T01:34:46.000Z",
+          "uid": "35240-0f2b4523-a463-4828-8dca-dbba73f04db7"
+        },
+        {
+          "name": "Elastic.io List workspaces",
+          "id": "9ebe23cb-8680-4b53-a4f0-2d5b00aa0f74",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workspaces?page[size]=20&page[number]=1&filter[contract_id]=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "workspaces"
+              ],
+              "query": [
+                {
+                  "description": "Number of items per page",
+                  "key": "page[size]",
+                  "value": "20"
+                },
+                {
+                  "description": "Page number to retrieve",
+                  "key": "page[number]",
+                  "value": "1"
+                },
+                {
+                  "description": "Filter by contract ID",
+                  "key": "filter[contract_id]",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve a list of workspaces accessible to the user."
+          },
+          "response": [
+            {
+              "id": "d71e5d4e-a3bc-4588-8e2a-f972355d48ec",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workspaces?page[size]=20&page[number]=1&filter[contract_id]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workspaces"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by contract ID",
+                      "key": "filter[contract_id]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"workspace\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"type\": \"full\",\n        \"flow_count\": \"<integer>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"contract\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"workspace\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"type\": \"limited\",\n        \"flow_count\": \"<integer>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"contract\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": \"<integer>\",\n    \"per_page\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"total_pages\": \"<integer>\"\n  },\n  \"links\": {\n    \"self\": \"<uri>\",\n    \"first\": \"<uri>\",\n    \"prev\": \"<uri>\",\n    \"next\": \"<uri>\",\n    \"last\": \"<uri>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:34:46.000Z",
+              "updatedAt": "2026-07-28T01:34:46.000Z",
+              "uid": "35240-d71e5d4e-a3bc-4588-8e2a-f972355d48ec"
+            },
+            {
+              "id": "cbabd2a9-366a-49a1-b32e-ec49c8fc23f0",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workspaces?page[size]=20&page[number]=1&filter[contract_id]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workspaces"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by contract ID",
+                      "key": "filter[contract_id]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:34:46.000Z",
+              "updatedAt": "2026-07-28T01:34:46.000Z",
+              "uid": "35240-cbabd2a9-366a-49a1-b32e-ec49c8fc23f0"
+            }
+          ],
+          "createdAt": "2026-07-28T01:34:46.000Z",
+          "updatedAt": "2026-07-28T01:34:46.000Z",
+          "uid": "35240-9ebe23cb-8680-4b53-a4f0-2d5b00aa0f74"
+        },
+        {
+          "name": "Elastic.io Create a workspace",
+          "id": "b82ee840-238c-4eae-8ca1-fd3dfad0072e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"workspace\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"type\": \"full\"\n    },\n    \"relationships\": {\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/workspaces",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "workspaces"
+              ]
+            },
+            "description": "Create a new workspace within a contract."
+          },
+          "response": [
+            {
+              "id": "36089d17-d43d-49c6-8f25-6a17d449c0e7",
+              "name": "Workspace created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"workspace\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"type\": \"full\"\n    },\n    \"relationships\": {\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/workspaces",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workspaces"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"workspace\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"type\": \"full\",\n      \"flow_count\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "createdAt": "2026-07-28T01:34:46.000Z",
+              "updatedAt": "2026-07-28T01:34:46.000Z",
+              "uid": "35240-36089d17-d43d-49c6-8f25-6a17d449c0e7"
+            },
+            {
+              "id": "8867dada-6215-42df-af8a-d366a8a20389",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"workspace\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"type\": \"full\"\n    },\n    \"relationships\": {\n      \"contract\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/workspaces",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workspaces"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:34:46.000Z",
+              "updatedAt": "2026-07-28T01:34:46.000Z",
+              "uid": "35240-8867dada-6215-42df-af8a-d366a8a20389"
+            }
+          ],
+          "createdAt": "2026-07-28T01:34:46.000Z",
+          "updatedAt": "2026-07-28T01:34:46.000Z",
+          "uid": "35240-b82ee840-238c-4eae-8ca1-fd3dfad0072e"
+        }
+      ],
+      "id": "68bd1673-18d1-4e9b-8c5f-49cf206e6413",
+      "createdAt": "2026-07-28T01:34:46.000Z",
+      "updatedAt": "2026-07-28T01:34:46.000Z",
+      "uid": "35240-68bd1673-18d1-4e9b-8c5f-49cf206e6413"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.elastic.io/v2"
+    }
+  ]
+}

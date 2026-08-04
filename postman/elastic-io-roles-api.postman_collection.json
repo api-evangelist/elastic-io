@@ -1,0 +1,1054 @@
+{
+  "info": {
+    "_postman_id": "df9c081b-1104-49b6-94c5-af719fd19f48",
+    "name": "elastic.io Platform REST Agents Roles API",
+    "description": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:34:26.000Z",
+    "updatedAt": "2026-07-28T01:34:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-df9c081b-1104-49b6-94c5-af719fd19f48"
+  },
+  "item": [
+    {
+      "name": "tenants",
+      "item": [
+        {
+          "name": "{tenant_id}",
+          "item": [
+            {
+              "name": "roles",
+              "item": [
+                {
+                  "name": "{role_id}",
+                  "item": [
+                    {
+                      "name": "Elastic.io Get a role",
+                      "id": "16482986-ceae-40de-9984-5dfd2c58bead",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tenants/:tenant_id/roles/:role_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tenants",
+                            ":tenant_id",
+                            "roles",
+                            ":role_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "17fd44aa-c9e2-403b-8eeb-d9d95b0315f1",
+                              "key": "tenant_id",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the tenant"
+                            },
+                            {
+                              "id": "3db5f684-f2bf-436f-80a3-9f7a0b88a2fa",
+                              "key": "role_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve details of a specific role."
+                      },
+                      "response": [
+                        {
+                          "id": "3ad874f1-af27-41d1-8f63-35b696219405",
+                          "name": "Successful response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/tenants/:tenant_id/roles/:role_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tenants",
+                                ":tenant_id",
+                                "roles",
+                                ":role_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                },
+                                {
+                                  "key": "role_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"role\",\n    \"attributes\": {\n      \"role\": \"<string>\",\n      \"scope\": \"contracts\",\n      \"permissions\": {}\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:34:26.000Z",
+                          "updatedAt": "2026-07-28T01:34:26.000Z",
+                          "uid": "35240-3ad874f1-af27-41d1-8f63-35b696219405"
+                        },
+                        {
+                          "id": "235742b0-615e-4cc0-9640-ae0a61efd30b",
+                          "name": "Authentication required or token is invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/tenants/:tenant_id/roles/:role_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tenants",
+                                ":tenant_id",
+                                "roles",
+                                ":role_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                },
+                                {
+                                  "key": "role_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:34:26.000Z",
+                          "updatedAt": "2026-07-28T01:34:26.000Z",
+                          "uid": "35240-235742b0-615e-4cc0-9640-ae0a61efd30b"
+                        },
+                        {
+                          "id": "ae8d48a6-3897-4104-8f56-07f977f385fe",
+                          "name": "The requested resource was not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/tenants/:tenant_id/roles/:role_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tenants",
+                                ":tenant_id",
+                                "roles",
+                                ":role_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                },
+                                {
+                                  "key": "role_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:34:26.000Z",
+                          "updatedAt": "2026-07-28T01:34:26.000Z",
+                          "uid": "35240-ae8d48a6-3897-4104-8f56-07f977f385fe"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:34:26.000Z",
+                      "updatedAt": "2026-07-28T01:34:26.000Z",
+                      "uid": "35240-16482986-ceae-40de-9984-5dfd2c58bead"
+                    },
+                    {
+                      "name": "Elastic.io Update a role",
+                      "id": "c731f2d6-5a8f-4438-b4a6-6deca8506187",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"type\": \"role\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"permissions\": {}\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tenants/:tenant_id/roles/:role_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tenants",
+                            ":tenant_id",
+                            "roles",
+                            ":role_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "64f6a638-1239-4411-81db-0b7e110eb7e0",
+                              "key": "tenant_id",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the tenant"
+                            },
+                            {
+                              "id": "e415d75b-aa84-4750-a77a-e1433b5ede01",
+                              "key": "role_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update an existing role."
+                      },
+                      "response": [
+                        {
+                          "id": "245d20fe-3b79-4f43-89eb-c4467c4fc3f7",
+                          "name": "Role updated successfully",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"type\": \"role\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"permissions\": {}\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/tenants/:tenant_id/roles/:role_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tenants",
+                                ":tenant_id",
+                                "roles",
+                                ":role_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                },
+                                {
+                                  "key": "role_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"role\",\n    \"attributes\": {\n      \"role\": \"<string>\",\n      \"scope\": \"contracts\",\n      \"permissions\": {}\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:34:26.000Z",
+                          "updatedAt": "2026-07-28T01:34:26.000Z",
+                          "uid": "35240-245d20fe-3b79-4f43-89eb-c4467c4fc3f7"
+                        },
+                        {
+                          "id": "f690b809-76a2-45c0-8a43-bc16c1166a25",
+                          "name": "Authentication required or token is invalid",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"type\": \"role\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"permissions\": {}\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/tenants/:tenant_id/roles/:role_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tenants",
+                                ":tenant_id",
+                                "roles",
+                                ":role_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                },
+                                {
+                                  "key": "role_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:34:26.000Z",
+                          "updatedAt": "2026-07-28T01:34:26.000Z",
+                          "uid": "35240-f690b809-76a2-45c0-8a43-bc16c1166a25"
+                        },
+                        {
+                          "id": "2c51730a-9473-402e-bd22-af3c4fe3582d",
+                          "name": "The requested resource was not found",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"type\": \"role\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"permissions\": {}\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/tenants/:tenant_id/roles/:role_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tenants",
+                                ":tenant_id",
+                                "roles",
+                                ":role_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                },
+                                {
+                                  "key": "role_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:34:26.000Z",
+                          "updatedAt": "2026-07-28T01:34:26.000Z",
+                          "uid": "35240-2c51730a-9473-402e-bd22-af3c4fe3582d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:34:26.000Z",
+                      "updatedAt": "2026-07-28T01:34:26.000Z",
+                      "uid": "35240-c731f2d6-5a8f-4438-b4a6-6deca8506187"
+                    },
+                    {
+                      "name": "Elastic.io Delete a role",
+                      "id": "16b61254-cd88-4fc7-8dc7-52ca215a32ae",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tenants/:tenant_id/roles/:role_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tenants",
+                            ":tenant_id",
+                            "roles",
+                            ":role_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d51cd2ee-0bf0-4566-a56a-f20bf443f72c",
+                              "key": "tenant_id",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the tenant"
+                            },
+                            {
+                              "id": "697446d5-18f8-4d80-a0bc-900353a55503",
+                              "key": "role_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete a user role."
+                      },
+                      "response": [
+                        {
+                          "id": "8b1f7860-f422-4a37-9af1-1142888e15f3",
+                          "name": "Role deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/tenants/:tenant_id/roles/:role_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tenants",
+                                ":tenant_id",
+                                "roles",
+                                ":role_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                },
+                                {
+                                  "key": "role_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:34:26.000Z",
+                          "updatedAt": "2026-07-28T01:34:26.000Z",
+                          "uid": "35240-8b1f7860-f422-4a37-9af1-1142888e15f3"
+                        },
+                        {
+                          "id": "95e8acfe-c693-4121-a300-e64eb375f9c2",
+                          "name": "Authentication required or token is invalid",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/tenants/:tenant_id/roles/:role_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tenants",
+                                ":tenant_id",
+                                "roles",
+                                ":role_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                },
+                                {
+                                  "key": "role_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:34:26.000Z",
+                          "updatedAt": "2026-07-28T01:34:26.000Z",
+                          "uid": "35240-95e8acfe-c693-4121-a300-e64eb375f9c2"
+                        },
+                        {
+                          "id": "2d31c2e1-f1ab-42b9-809f-36a023d71450",
+                          "name": "The requested resource was not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/tenants/:tenant_id/roles/:role_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tenants",
+                                ":tenant_id",
+                                "roles",
+                                ":role_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                },
+                                {
+                                  "key": "role_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:34:26.000Z",
+                          "updatedAt": "2026-07-28T01:34:26.000Z",
+                          "uid": "35240-2d31c2e1-f1ab-42b9-809f-36a023d71450"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:34:26.000Z",
+                      "updatedAt": "2026-07-28T01:34:26.000Z",
+                      "uid": "35240-16b61254-cd88-4fc7-8dc7-52ca215a32ae"
+                    }
+                  ],
+                  "id": "fbd0075e-80dd-4086-bce7-0d3317caf35e",
+                  "createdAt": "2026-07-28T01:34:26.000Z",
+                  "updatedAt": "2026-07-28T01:34:26.000Z",
+                  "uid": "35240-fbd0075e-80dd-4086-bce7-0d3317caf35e"
+                },
+                {
+                  "name": "Elastic.io List roles",
+                  "id": "f606cb23-3277-413b-8ba7-247bdc27a8f9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenant_id/roles",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenant_id",
+                        "roles"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3c18b0fc-d0ec-4d89-8c45-480cd367eade",
+                          "key": "tenant_id",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the tenant"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a list of user roles and permissions for a tenant."
+                  },
+                  "response": [
+                    {
+                      "id": "af8aaf3c-7968-4a48-9d18-11ed4e28745b",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tenants/:tenant_id/roles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tenants",
+                            ":tenant_id",
+                            "roles"
+                          ],
+                          "variable": [
+                            {
+                              "key": "tenant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attributes\": {\n        \"role\": \"<string>\",\n        \"scope\": \"<string>\",\n        \"permissions\": {}\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attributes\": {\n        \"role\": \"<string>\",\n        \"scope\": \"<string>\",\n        \"permissions\": {}\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": \"<integer>\",\n    \"per_page\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"total_pages\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:34:26.000Z",
+                      "updatedAt": "2026-07-28T01:34:26.000Z",
+                      "uid": "35240-af8aaf3c-7968-4a48-9d18-11ed4e28745b"
+                    },
+                    {
+                      "id": "dee7854c-ce6c-498f-8698-08f9500d1eab",
+                      "name": "Authentication required or token is invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tenants/:tenant_id/roles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tenants",
+                            ":tenant_id",
+                            "roles"
+                          ],
+                          "variable": [
+                            {
+                              "key": "tenant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:34:26.000Z",
+                      "updatedAt": "2026-07-28T01:34:26.000Z",
+                      "uid": "35240-dee7854c-ce6c-498f-8698-08f9500d1eab"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:34:26.000Z",
+                  "updatedAt": "2026-07-28T01:34:26.000Z",
+                  "uid": "35240-f606cb23-3277-413b-8ba7-247bdc27a8f9"
+                },
+                {
+                  "name": "Elastic.io Create a role",
+                  "id": "6bfd7a05-b2a1-4451-8a66-db1a5b6bd530",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"role\",\n    \"attributes\": {\n      \"role\": \"<string>\",\n      \"scope\": \"workspaces\",\n      \"permissions\": {}\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenant_id/roles",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenant_id",
+                        "roles"
+                      ],
+                      "variable": [
+                        {
+                          "id": "98d97f20-9277-479a-bede-b0cadb363e80",
+                          "key": "tenant_id",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the tenant"
+                        }
+                      ]
+                    },
+                    "description": "Create a new user role with specific permissions."
+                  },
+                  "response": [
+                    {
+                      "id": "177a2793-144d-4ee5-b14a-36ba5ac0a8e5",
+                      "name": "Role created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"type\": \"role\",\n    \"attributes\": {\n      \"role\": \"<string>\",\n      \"scope\": \"workspaces\",\n      \"permissions\": {}\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tenants/:tenant_id/roles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tenants",
+                            ":tenant_id",
+                            "roles"
+                          ],
+                          "variable": [
+                            {
+                              "key": "tenant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"role\",\n    \"attributes\": {\n      \"role\": \"<string>\",\n      \"scope\": \"contracts\",\n      \"permissions\": {}\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:34:26.000Z",
+                      "updatedAt": "2026-07-28T01:34:26.000Z",
+                      "uid": "35240-177a2793-144d-4ee5-b14a-36ba5ac0a8e5"
+                    },
+                    {
+                      "id": "ef27229d-a161-40bc-9b3f-44699b05cfa3",
+                      "name": "Authentication required or token is invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"type\": \"role\",\n    \"attributes\": {\n      \"role\": \"<string>\",\n      \"scope\": \"workspaces\",\n      \"permissions\": {}\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tenants/:tenant_id/roles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tenants",
+                            ":tenant_id",
+                            "roles"
+                          ],
+                          "variable": [
+                            {
+                              "key": "tenant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:34:26.000Z",
+                      "updatedAt": "2026-07-28T01:34:26.000Z",
+                      "uid": "35240-ef27229d-a161-40bc-9b3f-44699b05cfa3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:34:26.000Z",
+                  "updatedAt": "2026-07-28T01:34:26.000Z",
+                  "uid": "35240-6bfd7a05-b2a1-4451-8a66-db1a5b6bd530"
+                }
+              ],
+              "id": "e2f7dfa9-1402-4bb8-8454-a98a9515a01e",
+              "createdAt": "2026-07-28T01:34:26.000Z",
+              "updatedAt": "2026-07-28T01:34:26.000Z",
+              "uid": "35240-e2f7dfa9-1402-4bb8-8454-a98a9515a01e"
+            }
+          ],
+          "id": "c00a3d11-ad87-4632-a7d8-31874fe9b3e6",
+          "createdAt": "2026-07-28T01:34:26.000Z",
+          "updatedAt": "2026-07-28T01:34:26.000Z",
+          "uid": "35240-c00a3d11-ad87-4632-a7d8-31874fe9b3e6"
+        }
+      ],
+      "id": "8c665b4f-7694-4edb-b916-8679b3423642",
+      "createdAt": "2026-07-28T01:34:26.000Z",
+      "updatedAt": "2026-07-28T01:34:26.000Z",
+      "uid": "35240-8c665b4f-7694-4edb-b916-8679b3423642"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.elastic.io/v2"
+    }
+  ]
+}

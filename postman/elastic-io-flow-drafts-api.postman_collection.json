@@ -1,0 +1,970 @@
+{
+  "info": {
+    "_postman_id": "9a7728c0-940a-4305-b106-9b925374307c",
+    "name": "elastic.io Platform REST Agents Flow Drafts API",
+    "description": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:33:47.000Z",
+    "updatedAt": "2026-07-28T01:33:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9a7728c0-940a-4305-b106-9b925374307c"
+  },
+  "item": [
+    {
+      "name": "flow-drafts",
+      "item": [
+        {
+          "name": "{flow_draft_id}",
+          "item": [
+            {
+              "name": "Elastic.io Get a flow draft",
+              "id": "0def04e4-4e67-4539-aa6e-be0ccd460809",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/flow-drafts/:flow_draft_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flow-drafts",
+                    ":flow_draft_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "47a2f7a8-7a09-4bc8-a874-9e800658c9ad",
+                      "key": "flow_draft_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the flow draft"
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific flow draft."
+              },
+              "response": [
+                {
+                  "id": "5c7b6705-ca5d-4833-aff0-1430ccd13a53",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flow-drafts/:flow_draft_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flow-drafts",
+                        ":flow_draft_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_draft_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"flow-draft\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"graph\": {},\n      \"cron\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"flow\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:33:47.000Z",
+                  "updatedAt": "2026-07-28T01:33:47.000Z",
+                  "uid": "35240-5c7b6705-ca5d-4833-aff0-1430ccd13a53"
+                },
+                {
+                  "id": "5e95b839-b814-4216-8c40-c976fb3c2497",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flow-drafts/:flow_draft_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flow-drafts",
+                        ":flow_draft_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_draft_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:47.000Z",
+                  "updatedAt": "2026-07-28T01:33:47.000Z",
+                  "uid": "35240-5e95b839-b814-4216-8c40-c976fb3c2497"
+                },
+                {
+                  "id": "5c532511-608f-4729-9600-548205f35f7a",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flow-drafts/:flow_draft_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flow-drafts",
+                        ":flow_draft_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_draft_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:47.000Z",
+                  "updatedAt": "2026-07-28T01:33:47.000Z",
+                  "uid": "35240-5c532511-608f-4729-9600-548205f35f7a"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:47.000Z",
+              "updatedAt": "2026-07-28T01:33:47.000Z",
+              "uid": "35240-0def04e4-4e67-4539-aa6e-be0ccd460809"
+            },
+            {
+              "name": "Elastic.io Update a flow draft",
+              "id": "a8174796-ffb7-42f7-a155-137698949a19",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"flow-draft\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"graph\": {},\n      \"cron\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/flow-drafts/:flow_draft_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flow-drafts",
+                    ":flow_draft_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "dbe22831-289d-466b-9a84-d6e695f4f524",
+                      "key": "flow_draft_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the flow draft"
+                    }
+                  ]
+                },
+                "description": "Update an existing flow draft."
+              },
+              "response": [
+                {
+                  "id": "099f40a6-390f-4c35-b34c-dd7cbff30db5",
+                  "name": "Flow draft updated successfully",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"flow-draft\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"graph\": {},\n      \"cron\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/flow-drafts/:flow_draft_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flow-drafts",
+                        ":flow_draft_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_draft_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"flow-draft\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"graph\": {},\n      \"cron\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"flow\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:33:47.000Z",
+                  "updatedAt": "2026-07-28T01:33:47.000Z",
+                  "uid": "35240-099f40a6-390f-4c35-b34c-dd7cbff30db5"
+                },
+                {
+                  "id": "ed7b8bbc-7933-4191-b280-60e9861b3c96",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"flow-draft\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"graph\": {},\n      \"cron\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/flow-drafts/:flow_draft_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flow-drafts",
+                        ":flow_draft_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_draft_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:47.000Z",
+                  "updatedAt": "2026-07-28T01:33:47.000Z",
+                  "uid": "35240-ed7b8bbc-7933-4191-b280-60e9861b3c96"
+                },
+                {
+                  "id": "630ad28b-ece5-4452-bbd5-e65d05ec9f40",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"flow-draft\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"graph\": {},\n      \"cron\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/flow-drafts/:flow_draft_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flow-drafts",
+                        ":flow_draft_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_draft_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:47.000Z",
+                  "updatedAt": "2026-07-28T01:33:47.000Z",
+                  "uid": "35240-630ad28b-ece5-4452-bbd5-e65d05ec9f40"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:47.000Z",
+              "updatedAt": "2026-07-28T01:33:47.000Z",
+              "uid": "35240-a8174796-ffb7-42f7-a155-137698949a19"
+            },
+            {
+              "name": "Elastic.io Delete a flow draft",
+              "id": "22448025-6a45-4e04-a758-190c0a85a4a1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/flow-drafts/:flow_draft_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flow-drafts",
+                    ":flow_draft_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0596ddd8-fdc0-4703-a223-d45415d37943",
+                      "key": "flow_draft_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the flow draft"
+                    }
+                  ]
+                },
+                "description": "Delete a flow draft."
+              },
+              "response": [
+                {
+                  "id": "fede006e-83ca-4ed4-95fd-8d6dabdaf824",
+                  "name": "Flow draft deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flow-drafts/:flow_draft_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flow-drafts",
+                        ":flow_draft_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_draft_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:33:47.000Z",
+                  "updatedAt": "2026-07-28T01:33:47.000Z",
+                  "uid": "35240-fede006e-83ca-4ed4-95fd-8d6dabdaf824"
+                },
+                {
+                  "id": "0dba8e45-1159-4bf1-9335-d3381e4b4e57",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flow-drafts/:flow_draft_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flow-drafts",
+                        ":flow_draft_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_draft_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:47.000Z",
+                  "updatedAt": "2026-07-28T01:33:47.000Z",
+                  "uid": "35240-0dba8e45-1159-4bf1-9335-d3381e4b4e57"
+                },
+                {
+                  "id": "107fab34-8897-46d2-adeb-dd0c1639adf4",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/flow-drafts/:flow_draft_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "flow-drafts",
+                        ":flow_draft_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "flow_draft_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:47.000Z",
+                  "updatedAt": "2026-07-28T01:33:47.000Z",
+                  "uid": "35240-107fab34-8897-46d2-adeb-dd0c1639adf4"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:47.000Z",
+              "updatedAt": "2026-07-28T01:33:47.000Z",
+              "uid": "35240-22448025-6a45-4e04-a758-190c0a85a4a1"
+            }
+          ],
+          "id": "9f1edb60-4228-454d-9920-ef6ed53ed7de",
+          "createdAt": "2026-07-28T01:33:47.000Z",
+          "updatedAt": "2026-07-28T01:33:47.000Z",
+          "uid": "35240-9f1edb60-4228-454d-9920-ef6ed53ed7de"
+        },
+        {
+          "name": "Elastic.io List flow drafts",
+          "id": "6104968b-fc7c-4ce2-ba95-3d517b61b36e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/flow-drafts?page[size]=20&page[number]=1&filter[workspace_id]=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "flow-drafts"
+              ],
+              "query": [
+                {
+                  "description": "Number of items per page",
+                  "key": "page[size]",
+                  "value": "20"
+                },
+                {
+                  "description": "Page number to retrieve",
+                  "key": "page[number]",
+                  "value": "1"
+                },
+                {
+                  "description": "Filter by workspace ID",
+                  "key": "filter[workspace_id]",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve a list of flow drafts."
+          },
+          "response": [
+            {
+              "id": "26a9739e-7ebf-4f22-9000-e7cd427461b8",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/flow-drafts?page[size]=20&page[number]=1&filter[workspace_id]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flow-drafts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by workspace ID",
+                      "key": "filter[workspace_id]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"flow-draft\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"graph\": {},\n        \"cron\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"workspace\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"flow\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"flow-draft\",\n      \"attributes\": {\n        \"name\": \"<string>\",\n        \"graph\": {},\n        \"cron\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"workspace\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"flow\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": \"<integer>\",\n    \"per_page\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"total_pages\": \"<integer>\"\n  },\n  \"links\": {\n    \"self\": \"<uri>\",\n    \"first\": \"<uri>\",\n    \"prev\": \"<uri>\",\n    \"next\": \"<uri>\",\n    \"last\": \"<uri>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:33:47.000Z",
+              "updatedAt": "2026-07-28T01:33:47.000Z",
+              "uid": "35240-26a9739e-7ebf-4f22-9000-e7cd427461b8"
+            },
+            {
+              "id": "1a296aca-fed7-4ede-a0b2-5183520f0097",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/flow-drafts?page[size]=20&page[number]=1&filter[workspace_id]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flow-drafts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by workspace ID",
+                      "key": "filter[workspace_id]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:33:47.000Z",
+              "updatedAt": "2026-07-28T01:33:47.000Z",
+              "uid": "35240-1a296aca-fed7-4ede-a0b2-5183520f0097"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:47.000Z",
+          "updatedAt": "2026-07-28T01:33:47.000Z",
+          "uid": "35240-6104968b-fc7c-4ce2-ba95-3d517b61b36e"
+        },
+        {
+          "name": "Elastic.io Create a flow draft",
+          "id": "7ad70af2-1eac-4246-a994-b2c35b9ec5fb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"flow-draft\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"graph\": {},\n      \"cron\": \"<string>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"flow\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/flow-drafts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "flow-drafts"
+              ]
+            },
+            "description": "Create a new flow draft for editing before publishing."
+          },
+          "response": [
+            {
+              "id": "014c8fee-721e-4674-ad05-cc1e0be47dde",
+              "name": "Flow draft created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"flow-draft\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"graph\": {},\n      \"cron\": \"<string>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"flow\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/flow-drafts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flow-drafts"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"flow-draft\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"graph\": {},\n      \"cron\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"flow\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "createdAt": "2026-07-28T01:33:47.000Z",
+              "updatedAt": "2026-07-28T01:33:47.000Z",
+              "uid": "35240-014c8fee-721e-4674-ad05-cc1e0be47dde"
+            },
+            {
+              "id": "32532842-d10a-4eb0-9865-108d08e71ab0",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"flow-draft\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"graph\": {},\n      \"cron\": \"<string>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"flow\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/flow-drafts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "flow-drafts"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:33:47.000Z",
+              "updatedAt": "2026-07-28T01:33:47.000Z",
+              "uid": "35240-32532842-d10a-4eb0-9865-108d08e71ab0"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:47.000Z",
+          "updatedAt": "2026-07-28T01:33:47.000Z",
+          "uid": "35240-7ad70af2-1eac-4246-a994-b2c35b9ec5fb"
+        }
+      ],
+      "id": "43994f39-b9c3-49a8-a1cc-bbf9c58fadbd",
+      "createdAt": "2026-07-28T01:33:47.000Z",
+      "updatedAt": "2026-07-28T01:33:47.000Z",
+      "uid": "35240-43994f39-b9c3-49a8-a1cc-bbf9c58fadbd"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.elastic.io/v2"
+    }
+  ]
+}

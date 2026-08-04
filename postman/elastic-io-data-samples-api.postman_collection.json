@@ -1,0 +1,970 @@
+{
+  "info": {
+    "_postman_id": "2c4ed3ae-c177-4da9-8b01-4d1a858c6778",
+    "name": "elastic.io Platform REST Agents Data Samples API",
+    "description": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:33:43.000Z",
+    "updatedAt": "2026-07-28T01:33:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2c4ed3ae-c177-4da9-8b01-4d1a858c6778"
+  },
+  "item": [
+    {
+      "name": "data-samples",
+      "item": [
+        {
+          "name": "{data_sample_id}",
+          "item": [
+            {
+              "name": "Elastic.io Get a data sample",
+              "id": "092b3933-c0d0-408c-8750-9f4769749b07",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/data-samples/:data_sample_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "data-samples",
+                    ":data_sample_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a7bd99fb-12cb-42fe-9bc0-f75e6a167840",
+                      "key": "data_sample_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific data sample."
+              },
+              "response": [
+                {
+                  "id": "150d60db-20d8-43a1-8ec3-8009eea66c68",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/data-samples/:data_sample_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-samples",
+                        ":data_sample_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "data_sample_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"data-sample\",\n    \"attributes\": {\n      \"data\": {},\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:33:44.000Z",
+                  "updatedAt": "2026-07-28T01:33:44.000Z",
+                  "uid": "35240-150d60db-20d8-43a1-8ec3-8009eea66c68"
+                },
+                {
+                  "id": "2f612518-d858-4508-9ae1-63310e5acb25",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/data-samples/:data_sample_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-samples",
+                        ":data_sample_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "data_sample_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:44.000Z",
+                  "updatedAt": "2026-07-28T01:33:44.000Z",
+                  "uid": "35240-2f612518-d858-4508-9ae1-63310e5acb25"
+                },
+                {
+                  "id": "a931265c-d92a-42c4-9f13-d92684c6c2d6",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/data-samples/:data_sample_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-samples",
+                        ":data_sample_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "data_sample_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:44.000Z",
+                  "updatedAt": "2026-07-28T01:33:44.000Z",
+                  "uid": "35240-a931265c-d92a-42c4-9f13-d92684c6c2d6"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:44.000Z",
+              "updatedAt": "2026-07-28T01:33:44.000Z",
+              "uid": "35240-092b3933-c0d0-408c-8750-9f4769749b07"
+            },
+            {
+              "name": "Elastic.io Update a data sample",
+              "id": "07f94b36-0d11-4713-a226-97225a885679",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"data-sample\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"data\": {}\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/data-samples/:data_sample_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "data-samples",
+                    ":data_sample_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4d3f4dde-d7f6-41aa-8b61-fa5405726c80",
+                      "key": "data_sample_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Update an existing data sample."
+              },
+              "response": [
+                {
+                  "id": "46cb2196-8650-44dd-aab4-323c9f863db8",
+                  "name": "Data sample updated successfully",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"data-sample\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"data\": {}\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/data-samples/:data_sample_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-samples",
+                        ":data_sample_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "data_sample_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"data-sample\",\n    \"attributes\": {\n      \"data\": {},\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:33:44.000Z",
+                  "updatedAt": "2026-07-28T01:33:44.000Z",
+                  "uid": "35240-46cb2196-8650-44dd-aab4-323c9f863db8"
+                },
+                {
+                  "id": "2a8338aa-2281-4a14-a531-fc90846d4d00",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"data-sample\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"data\": {}\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/data-samples/:data_sample_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-samples",
+                        ":data_sample_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "data_sample_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:44.000Z",
+                  "updatedAt": "2026-07-28T01:33:44.000Z",
+                  "uid": "35240-2a8338aa-2281-4a14-a531-fc90846d4d00"
+                },
+                {
+                  "id": "6b8c8669-203e-4825-a0fd-64f2a44dad9c",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"data-sample\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"data\": {}\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/data-samples/:data_sample_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-samples",
+                        ":data_sample_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "data_sample_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:44.000Z",
+                  "updatedAt": "2026-07-28T01:33:44.000Z",
+                  "uid": "35240-6b8c8669-203e-4825-a0fd-64f2a44dad9c"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:44.000Z",
+              "updatedAt": "2026-07-28T01:33:44.000Z",
+              "uid": "35240-07f94b36-0d11-4713-a226-97225a885679"
+            },
+            {
+              "name": "Elastic.io Delete a data sample",
+              "id": "74cd67ca-8a5f-4e3f-b2bc-7aba93e1731a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/data-samples/:data_sample_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "data-samples",
+                    ":data_sample_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9a6bf5b2-0511-49d4-8970-16ecc6245ecb",
+                      "key": "data_sample_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Delete a data sample."
+              },
+              "response": [
+                {
+                  "id": "ccdf393c-ad4b-4e2b-ba03-f3aa9fc146cb",
+                  "name": "Data sample deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/data-samples/:data_sample_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-samples",
+                        ":data_sample_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "data_sample_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:33:44.000Z",
+                  "updatedAt": "2026-07-28T01:33:44.000Z",
+                  "uid": "35240-ccdf393c-ad4b-4e2b-ba03-f3aa9fc146cb"
+                },
+                {
+                  "id": "991a3ae7-fe1e-49a4-9d07-b79f982bfb76",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/data-samples/:data_sample_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-samples",
+                        ":data_sample_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "data_sample_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:44.000Z",
+                  "updatedAt": "2026-07-28T01:33:44.000Z",
+                  "uid": "35240-991a3ae7-fe1e-49a4-9d07-b79f982bfb76"
+                },
+                {
+                  "id": "f223083c-678c-440f-be05-7d01d3011c37",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/data-samples/:data_sample_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-samples",
+                        ":data_sample_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "data_sample_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:33:44.000Z",
+                  "updatedAt": "2026-07-28T01:33:44.000Z",
+                  "uid": "35240-f223083c-678c-440f-be05-7d01d3011c37"
+                }
+              ],
+              "createdAt": "2026-07-28T01:33:44.000Z",
+              "updatedAt": "2026-07-28T01:33:44.000Z",
+              "uid": "35240-74cd67ca-8a5f-4e3f-b2bc-7aba93e1731a"
+            }
+          ],
+          "id": "4e71706e-727c-40fc-833e-a0fe487b0210",
+          "createdAt": "2026-07-28T01:33:44.000Z",
+          "updatedAt": "2026-07-28T01:33:44.000Z",
+          "uid": "35240-4e71706e-727c-40fc-833e-a0fe487b0210"
+        },
+        {
+          "name": "Elastic.io List data samples",
+          "id": "aee10d7d-e9fd-4d55-8109-1e68cda91f7a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/data-samples?page[size]=20&page[number]=1&filter[workspace_id]=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "data-samples"
+              ],
+              "query": [
+                {
+                  "description": "Number of items per page",
+                  "key": "page[size]",
+                  "value": "20"
+                },
+                {
+                  "description": "Page number to retrieve",
+                  "key": "page[number]",
+                  "value": "1"
+                },
+                {
+                  "description": "Filter by workspace ID",
+                  "key": "filter[workspace_id]",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve a list of data samples."
+          },
+          "response": [
+            {
+              "id": "193b8bac-6cc7-425d-8818-4d579a437047",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/data-samples?page[size]=20&page[number]=1&filter[workspace_id]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "data-samples"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by workspace ID",
+                      "key": "filter[workspace_id]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"data-sample\",\n      \"attributes\": {\n        \"data\": {},\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"workspace\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"data-sample\",\n      \"attributes\": {\n        \"data\": {},\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"relationships\": {\n        \"workspace\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": \"<integer>\",\n    \"per_page\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"total_pages\": \"<integer>\"\n  },\n  \"links\": {\n    \"self\": \"<uri>\",\n    \"first\": \"<uri>\",\n    \"prev\": \"<uri>\",\n    \"next\": \"<uri>\",\n    \"last\": \"<uri>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:33:44.000Z",
+              "updatedAt": "2026-07-28T01:33:44.000Z",
+              "uid": "35240-193b8bac-6cc7-425d-8818-4d579a437047"
+            },
+            {
+              "id": "480260c1-7da5-41f8-8bd4-34877e877748",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/data-samples?page[size]=20&page[number]=1&filter[workspace_id]=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "data-samples"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of items per page",
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Page number to retrieve",
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by workspace ID",
+                      "key": "filter[workspace_id]",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:33:44.000Z",
+              "updatedAt": "2026-07-28T01:33:44.000Z",
+              "uid": "35240-480260c1-7da5-41f8-8bd4-34877e877748"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:44.000Z",
+          "updatedAt": "2026-07-28T01:33:44.000Z",
+          "uid": "35240-aee10d7d-e9fd-4d55-8109-1e68cda91f7a"
+        },
+        {
+          "name": "Elastic.io Create a data sample",
+          "id": "18d8b929-309d-42e2-9925-061506c71f2c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"data-sample\",\n    \"attributes\": {\n      \"data\": {}\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/data-samples",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "data-samples"
+              ]
+            },
+            "description": "Create a new data sample for a component step."
+          },
+          "response": [
+            {
+              "id": "03d7f250-254c-422d-9cc1-b8a88791b6f4",
+              "name": "Data sample created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"data-sample\",\n    \"attributes\": {\n      \"data\": {}\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/data-samples",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "data-samples"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"data-sample\",\n    \"attributes\": {\n      \"data\": {},\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "createdAt": "2026-07-28T01:33:44.000Z",
+              "updatedAt": "2026-07-28T01:33:44.000Z",
+              "uid": "35240-03d7f250-254c-422d-9cc1-b8a88791b6f4"
+            },
+            {
+              "id": "966e4e16-0889-498d-9d7e-c53c6ffa71a1",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"data-sample\",\n    \"attributes\": {\n      \"data\": {}\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/data-samples",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "data-samples"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:33:44.000Z",
+              "updatedAt": "2026-07-28T01:33:44.000Z",
+              "uid": "35240-966e4e16-0889-498d-9d7e-c53c6ffa71a1"
+            }
+          ],
+          "createdAt": "2026-07-28T01:33:44.000Z",
+          "updatedAt": "2026-07-28T01:33:44.000Z",
+          "uid": "35240-18d8b929-309d-42e2-9925-061506c71f2c"
+        }
+      ],
+      "id": "10ceb756-fada-44a0-9c4b-5abf7367202a",
+      "createdAt": "2026-07-28T01:33:44.000Z",
+      "updatedAt": "2026-07-28T01:33:44.000Z",
+      "uid": "35240-10ceb756-fada-44a0-9c4b-5abf7367202a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.elastic.io/v2"
+    }
+  ]
+}

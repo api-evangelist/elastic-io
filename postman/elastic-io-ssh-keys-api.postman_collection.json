@@ -1,0 +1,495 @@
+{
+  "info": {
+    "_postman_id": "a8efdca6-f5ba-46da-b3cd-f544c1124773",
+    "name": "elastic.io Platform REST Agents SSH Keys API",
+    "description": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:34:37.000Z",
+    "updatedAt": "2026-07-28T01:34:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a8efdca6-f5ba-46da-b3cd-f544c1124773"
+  },
+  "item": [
+    {
+      "name": "sshkeys",
+      "item": [
+        {
+          "name": "{sshkey_id}",
+          "item": [
+            {
+              "name": "Elastic.io Delete an SSH key",
+              "id": "de8d3ef9-4cba-4ae5-b149-0aa897eab51b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sshkeys/:sshkey_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sshkeys",
+                    ":sshkey_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f1b039f1-a57d-4623-a347-23ee7942645d",
+                      "key": "sshkey_id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Delete an SSH key."
+              },
+              "response": [
+                {
+                  "id": "a1a17882-ba36-46b2-bb43-9554f3dd65f8",
+                  "name": "SSH key deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sshkeys/:sshkey_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sshkeys",
+                        ":sshkey_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sshkey_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:34:37.000Z",
+                  "updatedAt": "2026-07-28T01:34:37.000Z",
+                  "uid": "35240-a1a17882-ba36-46b2-bb43-9554f3dd65f8"
+                },
+                {
+                  "id": "78faf11c-2e0f-4f8c-9af4-387a145f16aa",
+                  "name": "Authentication required or token is invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sshkeys/:sshkey_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sshkeys",
+                        ":sshkey_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sshkey_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:37.000Z",
+                  "updatedAt": "2026-07-28T01:34:37.000Z",
+                  "uid": "35240-78faf11c-2e0f-4f8c-9af4-387a145f16aa"
+                },
+                {
+                  "id": "7efe5c62-f165-4c63-a317-cd33a2d59662",
+                  "name": "The requested resource was not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sshkeys/:sshkey_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sshkeys",
+                        ":sshkey_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sshkey_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:34:37.000Z",
+                  "updatedAt": "2026-07-28T01:34:37.000Z",
+                  "uid": "35240-7efe5c62-f165-4c63-a317-cd33a2d59662"
+                }
+              ],
+              "createdAt": "2026-07-28T01:34:37.000Z",
+              "updatedAt": "2026-07-28T01:34:37.000Z",
+              "uid": "35240-de8d3ef9-4cba-4ae5-b149-0aa897eab51b"
+            }
+          ],
+          "id": "fd19e164-abd5-4f70-8b0e-c5ca6719cf99",
+          "createdAt": "2026-07-28T01:34:37.000Z",
+          "updatedAt": "2026-07-28T01:34:37.000Z",
+          "uid": "35240-fd19e164-abd5-4f70-8b0e-c5ca6719cf99"
+        },
+        {
+          "name": "Elastic.io List SSH keys",
+          "id": "0cee226b-cd58-41d0-8d95-d2154c48838e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sshkeys",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sshkeys"
+              ]
+            },
+            "description": "Retrieve a list of SSH keys for the current user."
+          },
+          "response": [
+            {
+              "id": "60e691d6-b7bf-4667-bc63-eb7fd93848ef",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sshkeys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sshkeys"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attributes\": {\n        \"key\": \"<string>\",\n        \"fingerprint\": \"<string>\",\n        \"title\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attributes\": {\n        \"key\": \"<string>\",\n        \"fingerprint\": \"<string>\",\n        \"title\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:34:37.000Z",
+              "updatedAt": "2026-07-28T01:34:37.000Z",
+              "uid": "35240-60e691d6-b7bf-4667-bc63-eb7fd93848ef"
+            },
+            {
+              "id": "fa0c2f71-0c1f-4e76-ad9f-5d19c93b83b2",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sshkeys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sshkeys"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:34:37.000Z",
+              "updatedAt": "2026-07-28T01:34:37.000Z",
+              "uid": "35240-fa0c2f71-0c1f-4e76-ad9f-5d19c93b83b2"
+            }
+          ],
+          "createdAt": "2026-07-28T01:34:37.000Z",
+          "updatedAt": "2026-07-28T01:34:37.000Z",
+          "uid": "35240-0cee226b-cd58-41d0-8d95-d2154c48838e"
+        },
+        {
+          "name": "Elastic.io Create an SSH key",
+          "id": "6a00015c-db2d-4a4c-bff8-bd4dd2b3cac9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"sshkey\",\n    \"attributes\": {\n      \"key\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sshkeys",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sshkeys"
+              ]
+            },
+            "description": "Upload a new SSH key for component repository access."
+          },
+          "response": [
+            {
+              "id": "da48a51a-4a50-418c-b6e5-d666447137b3",
+              "name": "SSH key created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"sshkey\",\n    \"attributes\": {\n      \"key\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sshkeys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sshkeys"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"sshkey\",\n    \"attributes\": {\n      \"key\": \"<string>\",\n      \"fingerprint\": \"<string>\",\n      \"title\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  }\n}",
+              "createdAt": "2026-07-28T01:34:37.000Z",
+              "updatedAt": "2026-07-28T01:34:37.000Z",
+              "uid": "35240-da48a51a-4a50-418c-b6e5-d666447137b3"
+            },
+            {
+              "id": "8dd4e0e2-b342-4a97-805e-ae4d6520722b",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"sshkey\",\n    \"attributes\": {\n      \"key\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sshkeys",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sshkeys"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"status\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:34:37.000Z",
+              "updatedAt": "2026-07-28T01:34:37.000Z",
+              "uid": "35240-8dd4e0e2-b342-4a97-805e-ae4d6520722b"
+            }
+          ],
+          "createdAt": "2026-07-28T01:34:37.000Z",
+          "updatedAt": "2026-07-28T01:34:37.000Z",
+          "uid": "35240-6a00015c-db2d-4a4c-bff8-bd4dd2b3cac9"
+        }
+      ],
+      "id": "6bf63546-8a3b-400f-a6c4-44417a3b8700",
+      "createdAt": "2026-07-28T01:34:37.000Z",
+      "updatedAt": "2026-07-28T01:34:37.000Z",
+      "uid": "35240-6bf63546-8a3b-400f-a6c4-44417a3b8700"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.elastic.io/v2"
+    }
+  ]
+}
