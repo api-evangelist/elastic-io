@@ -1,0 +1,188 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "elastic.io Platform REST Agents Flows API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Flows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List flows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/flows",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[workspace_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workspace ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of integration flows accessible to the user."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/flows",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new integration flow in a workspace."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/flows/:flow_id",
+            "params": [
+              {
+                "name": "flow_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific integration flow."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/flows/:flow_id",
+            "params": [
+              {
+                "name": "flow_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing integration flow."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/flows/:flow_id",
+            "params": [
+              {
+                "name": "flow_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow"
+              }
+            ]
+          },
+          "docs": "Delete an integration flow."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Start a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/flows/:flow_id/start",
+            "params": [
+              {
+                "name": "flow_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow"
+              }
+            ]
+          },
+          "docs": "Start an integration flow to begin processing data."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Stop a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/flows/:flow_id/stop",
+            "params": [
+              {
+                "name": "flow_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow"
+              }
+            ]
+          },
+          "docs": "Stop a running integration flow."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Run a flow on demand",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/flows/:flow_id/run-now",
+            "params": [
+              {
+                "name": "flow_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow"
+              }
+            ]
+          },
+          "docs": "Trigger an on-demand execution of an integration flow."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

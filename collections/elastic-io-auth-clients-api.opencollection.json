@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "elastic.io Platform REST Agents Auth Clients API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auth Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List auth clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/auth-clients",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of OAuth authentication clients."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create an auth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/auth-clients",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new OAuth authentication client."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get an auth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/auth-clients/:auth_client_id",
+            "params": [
+              {
+                "name": "auth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the auth client"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific auth client."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update an auth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/auth-clients/:auth_client_id",
+            "params": [
+              {
+                "name": "auth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the auth client"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing auth client."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete an auth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/auth-clients/:auth_client_id",
+            "params": [
+              {
+                "name": "auth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the auth client"
+              }
+            ]
+          },
+          "docs": "Delete an auth client."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

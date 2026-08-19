@@ -1,0 +1,753 @@
+{
+  "item": [
+    {
+      "id": "241aa732-07ed-4312-830c-a3155955998a",
+      "name": "Subscriptions",
+      "description": {
+        "content": "Manage topic subscriptions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3c5ee7e6-a9ce-4e0f-ab13-7fb9698c9714",
+          "name": "Elastic.io List subscriptions",
+          "request": {
+            "name": "Elastic.io List subscriptions",
+            "description": {
+              "content": "Retrieve a list of topic subscriptions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "20",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1",
+                  "description": "Page number to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[workspace_id]",
+                  "value": "<string>",
+                  "description": "Filter by workspace ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2349c302-0109-4c1f-a061-cfef784ef982",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[workspace_id]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"string\",\n      \"attributes\": {},\n      \"relationships\": {}\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"string\",\n      \"attributes\": {},\n      \"relationships\": {}\n    }\n  ],\n  \"meta\": {\n    \"page\": 412,\n    \"per_page\": 7827,\n    \"total\": 3033,\n    \"total_pages\": 6300\n  },\n  \"links\": {\n    \"self\": \"https://DCIQTNqWCyAvtSyHP.poxrNKYBEgoerE9i9wZwaGZttQljJiF90kyiGgfOnCjOWPK.j1V\",\n    \"first\": \"http://VncrMoyyn.pinbOgOSwSqX2pnFE9EfR,GeJF9JY,vm4G.KYtGJG+Nu4v1lcwpsNO9vIRYyRm-c\",\n    \"prev\": \"http://bnGGrTKyiLoBmP.czgh6Sx.f6idciw9\",\n    \"next\": \"http://HZKhdfVqlRmQTDWVBOyjISSGbaFv.ykjwY5CCwnX\",\n    \"last\": \"https://igUdGWgYWkfldMNYDhfadJSgiGyAqAB.rihW0zpJmTQ4Th2TfBNB+z3wauR9dLQTROFKGez4+FactOF3eAFt7MaLagng+msxHJ\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "501c3930-76b9-4ba2-b4f7-3c76d885f9ee",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[workspace_id]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 8963,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 7687,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3f2880f-58a6-4b4c-9f83-7f099c46c4e1",
+          "name": "Elastic.io Create a subscription",
+          "request": {
+            "name": "Elastic.io Create a subscription",
+            "description": {
+              "content": "Create a new topic subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"relationships\": {\n      \"topic\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      },\n      \"flow\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c8842d03-7824-48ae-b43e-d4c2375b6c0f",
+              "name": "Subscription created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"relationships\": {\n      \"topic\": {\n        \"data\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      },\n      \"flow\": {\n        \"data\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"subscription\",\n    \"attributes\": {\n      \"created_at\": \"1990-11-17T14:05:57.595Z\"\n    },\n    \"relationships\": {\n      \"topic\": {\n        \"data\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      },\n      \"flow\": {\n        \"data\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad6e369b-548b-4052-98f1-ddefb6ef2eb9",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"relationships\": {\n      \"topic\": {\n        \"data\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      },\n      \"flow\": {\n        \"data\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 8028,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 1844,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96bd9f08-6716-4bc7-817b-d7b56e0fa1a4",
+          "name": "Elastic.io Get a subscription",
+          "request": {
+            "name": "Elastic.io Get a subscription",
+            "description": {
+              "content": "Retrieve details of a specific subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscription_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscription_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84b969db-b833-4291-85c1-a16bbf9a87e5",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscription_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscription_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"subscription\",\n    \"attributes\": {\n      \"created_at\": \"1990-11-17T14:05:57.595Z\"\n    },\n    \"relationships\": {\n      \"topic\": {\n        \"data\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      },\n      \"flow\": {\n        \"data\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad4e8944-dd0e-4385-a203-5409fedf6e9d",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscription_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscription_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 8028,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 1844,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8a5ddb8-c818-45a8-bead-bfc7480504c7",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscription_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscription_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 8963,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 7687,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6aa055e1-414b-4487-9342-4be18388ecfb",
+          "name": "Elastic.io Delete a subscription",
+          "request": {
+            "name": "Elastic.io Delete a subscription",
+            "description": {
+              "content": "Delete a topic subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscription_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscription_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b547cde6-a46a-4757-a693-87a75a758040",
+              "name": "Subscription deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscription_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscription_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b60dc9c9-6902-4bb9-bc1f-0c130699ae03",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscription_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscription_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 8028,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 1844,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42250c13-851e-4aa9-bdf2-50ad1f518203",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscription_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscription_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 8028,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 1844,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.elastic.io/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f3d743b6-2488-46ca-812e-0245c7019b47",
+    "name": "elastic.io Platform REST Agents Subscriptions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+      "type": "text/plain"
+    }
+  }
+}

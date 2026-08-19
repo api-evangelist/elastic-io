@@ -1,0 +1,249 @@
+{
+  "item": [
+    {
+      "id": "e77c22e1-d0df-4284-8d96-2c5e02c580c9",
+      "name": "Logs",
+      "description": {
+        "content": "Access execution and platform logs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5ce625ea-c24f-4e55-83fb-615a44710ae3",
+          "name": "Elastic.io List execution logs",
+          "request": {
+            "name": "Elastic.io List execution logs",
+            "description": {
+              "content": "Retrieve execution logs for flows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "20",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1",
+                  "description": "Page number to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[workspace_id]",
+                  "value": "<string>",
+                  "description": "Filter by workspace ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[flow_id]",
+                  "value": "<string>",
+                  "description": "Filter by flow ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[from]",
+                  "value": "<dateTime>",
+                  "description": "Filter logs from this timestamp"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[to]",
+                  "value": "<dateTime>",
+                  "description": "Filter logs to this timestamp"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fa8a5b2f-e99e-4900-b633-f939b8b70144",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[workspace_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[flow_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[from]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[to]",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"log\",\n      \"attributes\": {\n        \"level\": \"string\",\n        \"message\": \"string\",\n        \"created_at\": \"1965-09-08T13:52:03.162Z\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"log\",\n      \"attributes\": {\n        \"level\": \"string\",\n        \"message\": \"string\",\n        \"created_at\": \"1947-07-31T08:57:32.639Z\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": 4012,\n    \"per_page\": 3445,\n    \"total\": 6052,\n    \"total_pages\": 1303\n  },\n  \"links\": {\n    \"self\": \"http://iLYUEAONFPoj.hvSDisVrLgC.RxVyRAXahX\",\n    \"first\": \"https://UaAbDZPxTlwZhWTDBjHfyIXDcg.dhmxKuVQeE6jvrN\",\n    \"prev\": \"http://pBuYdUoKDKVRveMTJeaEcjoPb.whvhhHcf,CyI-JgUfEdcHFSA4u6JJ4h9vfxcy+fAdxMZOW96By34q\",\n    \"next\": \"http://pOfpcdctsZyFbiboPNpOJFsJPOGfqd.djhahBIxqlBNvg8NB3d1NZXT.zbSLl4Hd\",\n    \"last\": \"https://bZ.bnyB7NlF5a4QJLUPbR2xSDW2V\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b09e731d-d1b1-4dd2-893f-4812670a5107",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[workspace_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[flow_id]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[from]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[to]",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 4560,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 2335,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.elastic.io/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "779733a6-a8e3-47b1-a0a3-ae2d81f5687d",
+    "name": "elastic.io Platform REST Agents Logs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+      "type": "text/plain"
+    }
+  }
+}

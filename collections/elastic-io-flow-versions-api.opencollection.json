@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "elastic.io Platform REST Agents Flow Versions API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Flow Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io Get a flow version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/flow-versions/:flow_version_id",
+            "params": [
+              {
+                "name": "flow_version_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific version of a flow."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

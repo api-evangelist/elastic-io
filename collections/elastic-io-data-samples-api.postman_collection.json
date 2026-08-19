@@ -1,0 +1,990 @@
+{
+  "item": [
+    {
+      "id": "4ab1e7c0-aa54-4fff-a91d-140662d4b6c0",
+      "name": "Data Samples",
+      "description": {
+        "content": "Manage data samples for component steps",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ce62a31c-dd13-40c3-b2f4-0eb2a99afa07",
+          "name": "Elastic.io List data samples",
+          "request": {
+            "name": "Elastic.io List data samples",
+            "description": {
+              "content": "Retrieve a list of data samples.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-samples"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "20",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1",
+                  "description": "Page number to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[workspace_id]",
+                  "value": "<string>",
+                  "description": "Filter by workspace ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92c36b13-d1e0-4640-a87d-2fa693925527",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-samples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[workspace_id]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"data-sample\",\n      \"attributes\": {\n        \"data\": {},\n        \"created_at\": \"1988-09-20T01:18:28.659Z\",\n        \"updated_at\": \"1954-04-11T14:14:28.626Z\"\n      },\n      \"relationships\": {\n        \"workspace\": {\n          \"data\": {\n            \"id\": \"string\",\n            \"type\": \"string\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"data-sample\",\n      \"attributes\": {\n        \"data\": {},\n        \"created_at\": \"2022-01-17T01:25:50.617Z\",\n        \"updated_at\": \"1991-07-15T06:48:53.060Z\"\n      },\n      \"relationships\": {\n        \"workspace\": {\n          \"data\": {\n            \"id\": \"string\",\n            \"type\": \"string\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": 8320,\n    \"per_page\": 1885,\n    \"total\": 2062,\n    \"total_pages\": 1799\n  },\n  \"links\": {\n    \"self\": \"http://GPDHMJzpsNJuzRbwmmkxLIfmhoufRlTPO.hsgaNAh6l,8n+iAyr,Ono\",\n    \"first\": \"https://xoKCCWiKTUjfzUolwghVAun.rxqxWafHX26Ig,vvSHcHYOr7yXu\",\n    \"prev\": \"http://bVEsdxeNUQduyphvSXwOWSoFIGFpYOE.nevjp8kUsP\",\n    \"next\": \"http://eTmBwRjpOnKrCDpO.fpxLk33paRzICo47ftZYXJ+\",\n    \"last\": \"http://ladAVrHuPaCsJFukGmhtiBDSajgPu.lfhidlyyVR7H+dkj\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7c3df81-0b5c-466e-b7f8-6d85081c10e8",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-samples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[workspace_id]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 2932,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 8764,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c1744a8-54ce-4d5a-9610-2a695e52fa39",
+          "name": "Elastic.io Create a data sample",
+          "request": {
+            "name": "Elastic.io Create a data sample",
+            "description": {
+              "content": "Create a new data sample for a component step.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-samples"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"data\": \"<object>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "841ba737-14d2-4631-8033-9fbe50c1e369",
+              "name": "Data sample created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-samples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"data\": \"<object>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"data-sample\",\n    \"attributes\": {\n      \"data\": {},\n      \"created_at\": \"1963-08-17T09:02:39.825Z\",\n      \"updated_at\": \"1947-05-08T12:54:22.972Z\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6d51555-81e5-4dce-84ba-9acc7c6662fb",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-samples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"data\": \"<object>\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 2297,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 7664,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d39b2786-56b4-4fb7-b003-97ab8de7b57b",
+          "name": "Elastic.io Get a data sample",
+          "request": {
+            "name": "Elastic.io Get a data sample",
+            "description": {
+              "content": "Retrieve details of a specific data sample.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-samples",
+                ":data_sample_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "data_sample_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a34c705a-30e1-497b-873d-6614fe10fa53",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-samples",
+                    ":data_sample_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_sample_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"data-sample\",\n    \"attributes\": {\n      \"data\": {},\n      \"created_at\": \"1963-08-17T09:02:39.825Z\",\n      \"updated_at\": \"1947-05-08T12:54:22.972Z\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f095a94-74d9-436d-b6d5-54b26e104605",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-samples",
+                    ":data_sample_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_sample_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 2297,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 7664,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b30886b1-8312-43cc-9eb1-d93acc21bd8a",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-samples",
+                    ":data_sample_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_sample_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 2932,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 8764,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "617e1060-7b6b-4b48-aa84-2af91df675f2",
+          "name": "Elastic.io Update a data sample",
+          "request": {
+            "name": "Elastic.io Update a data sample",
+            "description": {
+              "content": "Update an existing data sample.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-samples",
+                ":data_sample_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "data_sample_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"data\": \"<object>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "98ec9656-8a8c-44fa-90f3-e3417a298807",
+              "name": "Data sample updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-samples",
+                    ":data_sample_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_sample_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"data\": \"<object>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"data-sample\",\n    \"attributes\": {\n      \"data\": {},\n      \"created_at\": \"1963-08-17T09:02:39.825Z\",\n      \"updated_at\": \"1947-05-08T12:54:22.972Z\"\n    },\n    \"relationships\": {\n      \"workspace\": {\n        \"data\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7e7db72-140a-4950-8767-065ba8075c96",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-samples",
+                    ":data_sample_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_sample_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"data\": \"<object>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 2297,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 7664,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f015bb83-1b23-4651-8796-09fcadac5056",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-samples",
+                    ":data_sample_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_sample_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"data\": \"<object>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 2297,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 7664,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7fe6f6b8-1aac-4e7b-be3e-5a27b037670c",
+          "name": "Elastic.io Delete a data sample",
+          "request": {
+            "name": "Elastic.io Delete a data sample",
+            "description": {
+              "content": "Delete a data sample.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-samples",
+                ":data_sample_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "data_sample_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "664fc3b9-300a-422d-bf3d-46fe135fd899",
+              "name": "Data sample deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-samples",
+                    ":data_sample_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_sample_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "255302ed-b1f4-4253-b362-6655dcadb02e",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-samples",
+                    ":data_sample_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_sample_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 2297,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 7664,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28033b1e-d3e1-4bb6-9725-340e5dc201b4",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-samples",
+                    ":data_sample_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_sample_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 2297,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 7664,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.elastic.io/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5d52916f-ac78-46b3-85f9-08024e791946",
+    "name": "elastic.io Platform REST Agents Data Samples API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+      "type": "text/plain"
+    }
+  }
+}

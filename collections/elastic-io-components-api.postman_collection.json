@@ -1,0 +1,840 @@
+{
+  "item": [
+    {
+      "id": "4616c6af-bbcd-41a8-a1e8-f6896d0fada2",
+      "name": "Components",
+      "description": {
+        "content": "Manage integration components",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e164f69b-e315-41d0-94fa-cc95014df4cf",
+          "name": "Elastic.io List components",
+          "request": {
+            "name": "Elastic.io List components",
+            "description": {
+              "content": "Retrieve a list of available integration components.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "components"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "20",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1",
+                  "description": "Page number to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[contract_id]",
+                  "value": "<string>",
+                  "description": "Filter by contract ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6cbee7c5-7e21-4a7a-88af-218cf532331a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "components"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[contract_id]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"component\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"icon\": \"string\",\n        \"triggers\": {},\n        \"actions\": {},\n        \"created_at\": \"1985-06-18T03:17:43.809Z\",\n        \"updated_at\": \"1966-06-08T11:14:18.400Z\"\n      },\n      \"relationships\": {\n        \"team\": {\n          \"data\": {\n            \"id\": \"string\",\n            \"type\": \"string\"\n          }\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"component\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"icon\": \"string\",\n        \"triggers\": {},\n        \"actions\": {},\n        \"created_at\": \"2024-07-15T19:41:48.847Z\",\n        \"updated_at\": \"1954-08-16T18:57:18.858Z\"\n      },\n      \"relationships\": {\n        \"team\": {\n          \"data\": {\n            \"id\": \"string\",\n            \"type\": \"string\"\n          }\n        }\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": 9713,\n    \"per_page\": 4461,\n    \"total\": 2442,\n    \"total_pages\": 9008\n  },\n  \"links\": {\n    \"self\": \"http://GmFKrIDdr.ljrgi29TjqsJ\",\n    \"first\": \"http://RounLZzlBqryaNrMKREqRlCzsJeKfTIZ.zfT.67bOF3nRWdNu3,eQxlN7UpNi4Z45VX3ZBsm0LJY1uhXWxJxT\",\n    \"prev\": \"https://v.zsWOC3C.PrYEEfXdlcFB4UJ2gHvt6MPXf0.IDTdh\",\n    \"next\": \"http://FsqNCqtjLZnfpXCrVaVLCnzZXHh.kmOIk0PqbLuzCUoBmayl+n5tqkl,UD\",\n    \"last\": \"http://FQbADZnZZhCkkXXmTqyLQvGp.ieD-FCchkUj3ZHMm-XtUh2wPQoCw,+zhnYXUvW+v9r4SJYVbSno,qL-EGI,5OB8\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edbffdbf-3ecb-4d7f-bb9e-e27e4448b885",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "components"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[contract_id]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 5066,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 6422,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3029aa8-5b4a-4ef9-9ab6-47124b1bce41",
+          "name": "Elastic.io Get a component",
+          "request": {
+            "name": "Elastic.io Get a component",
+            "description": {
+              "content": "Retrieve details of a specific component.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "components",
+                ":component_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "component_id",
+                  "description": "(Required) The unique identifier of the component"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1915112e-da72-4968-93a2-9cebe8e6350e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "components",
+                    ":component_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "component_id",
+                      "description": "(Required) The unique identifier of the component"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"component\",\n    \"attributes\": {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"icon\": \"string\",\n      \"triggers\": {},\n      \"actions\": {},\n      \"created_at\": \"2005-08-16T22:16:16.111Z\",\n      \"updated_at\": \"2000-01-28T11:01:20.751Z\"\n    },\n    \"relationships\": {\n      \"team\": {\n        \"data\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ef9315f-0be9-48e6-bfbe-4600eb15f3fd",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "components",
+                    ":component_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "component_id",
+                      "description": "(Required) The unique identifier of the component"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 2611,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 7436,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55dd7ae0-f303-4d48-987b-9e9a30cab797",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "components",
+                    ":component_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "component_id",
+                      "description": "(Required) The unique identifier of the component"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 5066,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 6422,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccb4a00a-1d4c-417d-9376-cbf297fa056f",
+          "name": "Elastic.io Update a component",
+          "request": {
+            "name": "Elastic.io Update a component",
+            "description": {
+              "content": "Update component metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "components",
+                ":component_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "component_id",
+                  "description": "(Required) The unique identifier of the component"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4c2a19c2-7947-4b25-bff1-192c5ae917aa",
+              "name": "Component updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "components",
+                    ":component_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "component_id",
+                      "description": "(Required) The unique identifier of the component"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"component\",\n    \"attributes\": {\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"icon\": \"string\",\n      \"triggers\": {},\n      \"actions\": {},\n      \"created_at\": \"2005-08-16T22:16:16.111Z\",\n      \"updated_at\": \"2000-01-28T11:01:20.751Z\"\n    },\n    \"relationships\": {\n      \"team\": {\n        \"data\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93e88682-24d7-443a-b8eb-a66c7e482ae7",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "components",
+                    ":component_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "component_id",
+                      "description": "(Required) The unique identifier of the component"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 2611,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 7436,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51d7a2f3-131a-4ba9-89bc-63d3fa85dadc",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "components",
+                    ":component_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "component_id",
+                      "description": "(Required) The unique identifier of the component"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 2611,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 7436,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6269db1-66a3-4f75-8a01-deb696c58f57",
+          "name": "Elastic.io Delete a component",
+          "request": {
+            "name": "Elastic.io Delete a component",
+            "description": {
+              "content": "Delete a component.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "components",
+                ":component_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "component_id",
+                  "description": "(Required) The unique identifier of the component"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3457f9f-a81e-4329-bafb-90e5a7c2fa92",
+              "name": "Component deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "components",
+                    ":component_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "component_id",
+                      "description": "(Required) The unique identifier of the component"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "07cf6347-9a05-44d8-8255-2af9362e966a",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "components",
+                    ":component_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "component_id",
+                      "description": "(Required) The unique identifier of the component"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 2611,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 7436,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2054152-0d30-4755-94b1-dfdf2e19811b",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "components",
+                    ":component_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "component_id",
+                      "description": "(Required) The unique identifier of the component"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 2611,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 7436,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.elastic.io/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0c7e3f36-1369-46d6-b845-d4ac0f88c80d",
+    "name": "elastic.io Platform REST Agents Components API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+      "type": "text/plain"
+    }
+  }
+}

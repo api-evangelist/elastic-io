@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "elastic.io Platform REST Agents Contracts API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contracts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List contracts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/contracts",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of contracts accessible to the user."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/contracts/:contract_id",
+            "params": [
+              {
+                "name": "contract_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the contract"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific contract."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update a contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/contracts/:contract_id",
+            "params": [
+              {
+                "name": "contract_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the contract"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update contract settings and attributes."
+        },
+        {
+          "info": {
+            "name": "Elastic.io List contract members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/contracts/:contract_id/members",
+            "params": [
+              {
+                "name": "contract_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the contract"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of members in a contract."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Add a contract member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/contracts/:contract_id/members",
+            "params": [
+              {
+                "name": "contract_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the contract"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a user as a member of a contract."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

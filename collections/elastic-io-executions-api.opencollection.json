@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "elastic.io Platform REST Agents Executions API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io Poll execution status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/exec/poll/:execution_id",
+            "params": [
+              {
+                "name": "execution_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Check the status of a flow execution by polling."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

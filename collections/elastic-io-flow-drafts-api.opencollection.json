@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "elastic.io Platform REST Agents Flow Drafts API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Flow Drafts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List flow drafts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/flow-drafts",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[workspace_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workspace ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of flow drafts."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create a flow draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/flow-drafts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new flow draft for editing before publishing."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a flow draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/flow-drafts/:flow_draft_id",
+            "params": [
+              {
+                "name": "flow_draft_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow draft"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific flow draft."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update a flow draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/flow-drafts/:flow_draft_id",
+            "params": [
+              {
+                "name": "flow_draft_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow draft"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing flow draft."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a flow draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/flow-drafts/:flow_draft_id",
+            "params": [
+              {
+                "name": "flow_draft_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow draft"
+              }
+            ]
+          },
+          "docs": "Delete a flow draft."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

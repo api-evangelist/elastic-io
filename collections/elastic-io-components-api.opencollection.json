@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "elastic.io Platform REST Agents Components API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Components",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List components",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/components",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[contract_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by contract ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of available integration components."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a component",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/components/:component_id",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the component"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific component."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update a component",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/components/:component_id",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the component"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update component metadata."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a component",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/components/:component_id",
+            "params": [
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the component"
+              }
+            ]
+          },
+          "docs": "Delete a component."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

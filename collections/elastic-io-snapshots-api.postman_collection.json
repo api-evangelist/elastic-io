@@ -1,0 +1,207 @@
+{
+  "item": [
+    {
+      "id": "08b6f6dc-e58e-4396-b7d4-4bc5a6a2fc7a",
+      "name": "Snapshots",
+      "description": {
+        "content": "Manage flow step snapshots",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "965f0045-355d-4928-9a7f-b75cdd134abf",
+          "name": "Elastic.io List snapshots",
+          "request": {
+            "name": "Elastic.io List snapshots",
+            "description": {
+              "content": "Retrieve a list of flow step snapshots.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "snapshots"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "20",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[number]",
+                  "value": "1",
+                  "description": "Page number to retrieve"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[flow_id]",
+                  "value": "<string>",
+                  "description": "Filter by flow ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "911d0048-fa16-4039-8ee1-cd51cda4a40a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[flow_id]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"snapshot\",\n      \"attributes\": {\n        \"step_id\": \"string\",\n        \"data\": {},\n        \"created_at\": \"2022-04-19T19:28:17.955Z\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"snapshot\",\n      \"attributes\": {\n        \"step_id\": \"string\",\n        \"data\": {},\n        \"created_at\": \"2006-05-05T06:42:25.032Z\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"page\": 4420,\n    \"per_page\": 8985,\n    \"total\": 3174,\n    \"total_pages\": 8140\n  },\n  \"links\": {\n    \"self\": \"https://AfUTNKGfCchvVYnMujgMnEnuSuLrNzAz.bqubrtGqegPkSfDwGQHS.pbpLtW8Af5bMuaTmBs0Cp-gZzKMDSLuAfuIfr2YGmOTwFln9nuF\",\n    \"first\": \"https://MtPltepshnCoSZUuhaKboiCzhV.jigzoaoPuryOfnSrzYtUzQ+084uvmpfoxauGhIH\",\n    \"prev\": \"http://GZLbxVBAbOTcjRXCYhjv.leHbY+YbX.7XtiolyK0dDKE2qDkeAJGQhu1mZPZNw\",\n    \"next\": \"https://dftl.olqpqub7ehHw\",\n    \"last\": \"http://ezBZTmCmBubpGvXonxYPFHRMYieirvLb.vvtxuhKhplivxZ6IZISd9c6ppW.bx6uH2t0\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9231d458-231b-4315-b21e-4a92c6d7e47b",
+              "name": "Authentication required or token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[size]",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page[number]",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[flow_id]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 8542,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"status\": 6075,\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.elastic.io/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e33e8b8d-087e-4ef4-9bf2-7d2692623b95",
+    "name": "elastic.io Platform REST Agents Snapshots API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: elastic.io",
+      "type": "text/plain"
+    }
+  }
+}

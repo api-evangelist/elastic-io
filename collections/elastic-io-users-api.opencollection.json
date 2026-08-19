@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "elastic.io Platform REST Agents Users API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io Get current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/users/me"
+          },
+          "docs": "Retrieve the profile of the currently authenticated user."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/users/me",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the profile of the currently authenticated user."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the user"
+              }
+            ]
+          },
+          "docs": "Retrieve the profile of a specific user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

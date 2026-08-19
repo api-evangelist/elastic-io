@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "elastic.io Platform REST Agents Teams API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/teams",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[contract_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by contract ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of developer teams."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/teams",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new developer team."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/teams/:team_id",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the team"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific developer team."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/teams/:team_id",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the team"
+              }
+            ]
+          },
+          "docs": "Delete a developer team."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

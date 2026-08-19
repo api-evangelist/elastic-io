@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "elastic.io Platform REST Agents Roles API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/tenants/:tenant_id/roles",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the tenant"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of user roles and permissions for a tenant."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/tenants/:tenant_id/roles",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the tenant"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new user role with specific permissions."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/tenants/:tenant_id/roles/:role_id",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the tenant"
+              },
+              {
+                "name": "role_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific role."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/tenants/:tenant_id/roles/:role_id",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the tenant"
+              },
+              {
+                "name": "role_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing role."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/tenants/:tenant_id/roles/:role_id",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the tenant"
+              },
+              {
+                "name": "role_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a user role."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

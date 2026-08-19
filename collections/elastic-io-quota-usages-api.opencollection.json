@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "elastic.io Platform REST Agents Quota Usages API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Quota Usages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io Get workspace quota usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/quota-usages/workspaces/:workspace_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the workspace"
+              }
+            ]
+          },
+          "docs": "Retrieve quota usage statistics for a workspace."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get contract quota usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/quota-usages/contracts/:contract_id",
+            "params": [
+              {
+                "name": "contract_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the contract"
+              }
+            ]
+          },
+          "docs": "Retrieve quota usage statistics for all workspaces in a contract."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

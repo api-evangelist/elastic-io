@@ -1,0 +1,154 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "elastic.io Platform REST Agents Recipes API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recipes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List recipes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/recipes",
+            "params": [
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "page[number]",
+                "value": "",
+                "type": "query",
+                "description": "Page number to retrieve"
+              },
+              {
+                "name": "filter[contract_id]",
+                "value": "",
+                "type": "query",
+                "description": "Filter by contract ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of available integration recipes."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create a recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/recipes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new integration recipe."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Get a recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/recipes/:recipe_id",
+            "params": [
+              {
+                "name": "recipe_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recipe"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific recipe."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update a recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/recipes/:recipe_id",
+            "params": [
+              {
+                "name": "recipe_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recipe"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing recipe."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete a recipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/recipes/:recipe_id",
+            "params": [
+              {
+                "name": "recipe_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recipe"
+              }
+            ]
+          },
+          "docs": "Delete a recipe."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Update recipe visibility",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.elastic.io/v2/recipes/:recipe_id/visibility",
+            "params": [
+              {
+                "name": "recipe_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recipe"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the visibility settings of a recipe."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

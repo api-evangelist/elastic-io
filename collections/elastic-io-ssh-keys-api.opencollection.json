@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "elastic.io Platform REST Agents SSH Keys API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SSH Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Elastic.io List SSH keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.elastic.io/v2/sshkeys"
+          },
+          "docs": "Retrieve a list of SSH keys for the current user."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Create an SSH key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.elastic.io/v2/sshkeys",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload a new SSH key for component repository access."
+        },
+        {
+          "info": {
+            "name": "Elastic.io Delete an SSH key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.elastic.io/v2/sshkeys/:sshkey_id",
+            "params": [
+              {
+                "name": "sshkey_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an SSH key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
