@@ -167,6 +167,8 @@ apis:
   description: Manage flow executions and logs
   humanURL: ' https://www.elastic.io/'
   tags:
+  - Execution
+  tags_raw:
   - Executions
   properties:
   - type: OpenAPI
@@ -397,6 +399,8 @@ apis:
   description: Manage topic subscriptions
   humanURL: ' https://www.elastic.io/'
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -420,6 +424,8 @@ apis:
   description: Manage developer teams
   humanURL: ' https://www.elastic.io/'
   tags:
+  - Team
+  tags_raw:
   - Teams
   properties:
   - type: OpenAPI
@@ -466,6 +472,8 @@ apis:
   description: Manage platform users
   humanURL: ' https://www.elastic.io/'
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -509,6 +517,10 @@ apis:
     url: graphql/elastic-io-graphql.md
 name: Elastic.io
 tags:
+- Integration
+- iPaaS
+- SaaS Integration
+tags_raw:
 - Integrations
 - iPaaS
 - SaaS Integration
