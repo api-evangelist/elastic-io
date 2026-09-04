@@ -544,11 +544,12 @@ accessModel:
   try_now: true
   public: false
   label: Freemium · Self-serve signup
-  confidence: high
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/elastic-io.png
 access: 3rd-Party
@@ -991,7 +992,7 @@ common:
   description: 'null'
 created: '2025-06-06'
 modified: '2026-05-19'
-position: Consumer
+position: Consuming
 description: >-
   Elastic IO is a cloud-based integration platform that helps businesses effortlessly connect their various
   applications, systems, and services. By providing a user-friendly interface and a wide range of pre-built connectors,
