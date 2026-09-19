@@ -238,6 +238,8 @@ apis:
   description: Manage integration flows
   humanURL: ' https://www.elastic.io/'
   tags:
+  - Flow
+  tags_raw:
   - Flows
   properties:
   - type: OpenAPI
@@ -449,6 +451,8 @@ apis:
   description: Manage pub/sub topics
   humanURL: ' https://www.elastic.io/'
   tags:
+  - Topic
+  tags_raw:
   - Topics
   properties:
   - type: OpenAPI
@@ -497,6 +501,8 @@ apis:
   description: Manage workspaces within contracts
   humanURL: ' https://www.elastic.io/'
   tags:
+  - Workspace
+  tags_raw:
   - Workspaces
   properties:
   - type: OpenAPI
