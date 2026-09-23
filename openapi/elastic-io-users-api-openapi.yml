@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: elastic.io Platform REST Agents Users API
+  title: elastic.io Platform REST Users API
   description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
   version: 2.0.0
   contact:
@@ -117,11 +117,6 @@ components:
             last_login:
               type: string
               format: date-time
-    UserResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/User'
     UserUpdateRequest:
       type: object
       required:
@@ -146,19 +141,11 @@ components:
                   type: string
                 last_name:
                   type: string
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    UserResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/User'
   parameters:
     UserId:
       name: user_id
@@ -167,6 +154,19 @@ components:
       description: The unique identifier of the user
       schema:
         type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http

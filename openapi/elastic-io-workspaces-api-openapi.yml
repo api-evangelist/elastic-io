@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: elastic.io Platform REST Agents Workspaces API
+  title: elastic.io Platform REST Workspaces API
   description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
   version: 2.0.0
   contact:
@@ -184,199 +184,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    MemberListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              type:
-                type: string
-              attributes:
-                type: object
-                properties:
-                  roles:
-                    type: array
-                    items:
-                      type: string
-              relationships:
-                type: object
-                properties:
-                  user:
-                    $ref: '#/components/schemas/JsonApiRelationship'
-        meta:
-          $ref: '#/components/schemas/JsonApiMeta'
-    WorkspaceUpdateRequest:
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          type: object
-          required:
-          - type
-          - id
-          properties:
-            type:
-              type: string
-              enum:
-              - workspace
-            id:
-              type: string
-            attributes:
-              type: object
-              properties:
-                name:
-                  type: string
-    MemberResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
-              enum:
-              - member
-            attributes:
-              type: object
-              properties:
-                roles:
-                  type: array
-                  items:
-                    type: string
-            relationships:
-              type: object
-              properties:
-                user:
-                  $ref: '#/components/schemas/JsonApiRelationship'
-    Workspace:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - workspace
-        attributes:
-          type: object
-          properties:
-            name:
-              type: string
-            type:
-              type: string
-              enum:
-              - full
-              - limited
-            flow_count:
-              type: integer
-            created_at:
-              type: string
-              format: date-time
-            updated_at:
-              type: string
-              format: date-time
-        relationships:
-          type: object
-          properties:
-            contract:
-              $ref: '#/components/schemas/JsonApiRelationship'
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
-    WorkspaceListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Workspace'
-        meta:
-          $ref: '#/components/schemas/JsonApiMeta'
-        links:
-          $ref: '#/components/schemas/JsonApiLinks'
-    JsonApiRelationship:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
-    MemberCreateRequest:
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          type: object
-          required:
-          - type
-          - id
-          properties:
-            type:
-              type: string
-              enum:
-              - member
-            id:
-              type: string
-              description: The user ID to add as member
-            attributes:
-              type: object
-              properties:
-                roles:
-                  type: array
-                  items:
-                    type: string
-    JsonApiMeta:
-      type: object
-      properties:
-        page:
-          type: integer
-        per_page:
-          type: integer
-        total:
-          type: integer
-        total_pages:
-          type: integer
-    JsonApiLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
     WorkspaceCreateRequest:
       type: object
       required:
@@ -412,12 +219,212 @@ components:
               properties:
                 contract:
                   $ref: '#/components/schemas/JsonApiRelationship'
+    JsonApiLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    MemberResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+              - member
+            attributes:
+              type: object
+              properties:
+                roles:
+                  type: array
+                  items:
+                    type: string
+            relationships:
+              type: object
+              properties:
+                user:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    WorkspaceListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Workspace'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    WorkspaceUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - workspace
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+    MemberListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              attributes:
+                type: object
+                properties:
+                  roles:
+                    type: array
+                    items:
+                      type: string
+              relationships:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/JsonApiRelationship'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+    MemberCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - member
+            id:
+              type: string
+              description: The user ID to add as member
+            attributes:
+              type: object
+              properties:
+                roles:
+                  type: array
+                  items:
+                    type: string
     WorkspaceResponse:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/Workspace'
+    Workspace:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - workspace
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            type:
+              type: string
+              enum:
+              - full
+              - limited
+            flow_count:
+              type: integer
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            contract:
+              $ref: '#/components/schemas/JsonApiRelationship'
   parameters:
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
     WorkspaceId:
       name: workspace_id
       in: path
@@ -439,22 +446,15 @@ components:
       schema:
         type: integer
         default: 1
-    PageSize:
-      name: page[size]
-      in: query
-      description: Number of items per page
-      schema:
-        type: integer
-        default: 20
   responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
+    NotFound:
+      description: The requested resource was not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found
+    Unauthorized:
+      description: Authentication required or token is invalid
       content:
         application/json:
           schema:

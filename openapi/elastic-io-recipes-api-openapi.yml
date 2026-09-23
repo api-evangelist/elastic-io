@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: elastic.io Platform REST Agents Recipes API
+  title: elastic.io Platform REST Recipes API
   description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
   version: 2.0.0
   contact:
@@ -163,46 +163,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    RecipeUpdateRequest:
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          type: object
-          required:
-          - type
-          - id
-          properties:
-            type:
-              type: string
-              enum:
-              - recipe
-            id:
-              type: string
-            attributes:
-              type: object
-              properties:
-                title:
-                  type: string
-                description:
-                  type: string
-                graph:
-                  type: object
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
     RecipeListResponse:
       type: object
       properties:
@@ -214,17 +174,6 @@ components:
           $ref: '#/components/schemas/JsonApiMeta'
         links:
           $ref: '#/components/schemas/JsonApiLinks'
-    JsonApiMeta:
-      type: object
-      properties:
-        page:
-          type: integer
-        per_page:
-          type: integer
-        total:
-          type: integer
-        total_pages:
-          type: integer
     JsonApiLinks:
       type: object
       properties:
@@ -243,11 +192,74 @@ components:
         last:
           type: string
           format: uri
-    RecipeResponse:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    RecipeCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - attributes
+          properties:
+            type:
+              type: string
+              enum:
+              - recipe
+            attributes:
+              type: object
+              required:
+              - title
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                graph:
+                  type: object
+            relationships:
+              type: object
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+                contract:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    JsonApiRelationship:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/Recipe'
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
     Recipe:
       type: object
       properties:
@@ -286,17 +298,7 @@ components:
               $ref: '#/components/schemas/JsonApiRelationship'
             contract:
               $ref: '#/components/schemas/JsonApiRelationship'
-    JsonApiRelationship:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
-    RecipeCreateRequest:
+    RecipeUpdateRequest:
       type: object
       required:
       - data
@@ -305,16 +307,16 @@ components:
           type: object
           required:
           - type
-          - attributes
+          - id
           properties:
             type:
               type: string
               enum:
               - recipe
+            id:
+              type: string
             attributes:
               type: object
-              required:
-              - title
               properties:
                 title:
                   type: string
@@ -322,27 +324,19 @@ components:
                   type: string
                 graph:
                   type: object
-            relationships:
-              type: object
-              properties:
-                workspace:
-                  $ref: '#/components/schemas/JsonApiRelationship'
-                contract:
-                  $ref: '#/components/schemas/JsonApiRelationship'
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    RecipeResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Recipe'
   parameters:
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
     RecipeId:
       name: recipe_id
       in: path
@@ -357,13 +351,19 @@ components:
       schema:
         type: integer
         default: 1
-    PageSize:
-      name: page[size]
-      in: query
-      description: Number of items per page
-      schema:
-        type: integer
-        default: 20
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http

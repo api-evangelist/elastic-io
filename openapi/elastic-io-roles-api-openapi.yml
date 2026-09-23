@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: elastic.io Platform REST Agents Roles API
+  title: elastic.io Platform REST Roles API
   description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
   version: 2.0.0
   contact:
@@ -137,6 +137,55 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    RoleResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+              - role
+            attributes:
+              type: object
+              properties:
+                role:
+                  type: string
+                scope:
+                  type: string
+                  enum:
+                  - contracts
+                  - workspaces
+                permissions:
+                  type: object
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
     RoleCreateRequest:
       type: object
       required:
@@ -168,20 +217,6 @@ components:
                   - workspaces
                 permissions:
                   type: object
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
     RoleListResponse:
       type: object
       properties:
@@ -205,17 +240,6 @@ components:
                     type: object
         meta:
           $ref: '#/components/schemas/JsonApiMeta'
-    JsonApiMeta:
-      type: object
-      properties:
-        page:
-          type: integer
-        per_page:
-          type: integer
-        total:
-          type: integer
-        total_pages:
-          type: integer
     RoleUpdateRequest:
       type: object
       required:
@@ -238,39 +262,15 @@ components:
               properties:
                 permissions:
                   type: object
-    RoleResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
-              enum:
-              - role
-            attributes:
-              type: object
-              properties:
-                role:
-                  type: string
-                scope:
-                  type: string
-                  enum:
-                  - contracts
-                  - workspaces
-                permissions:
-                  type: object
   responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
+    NotFound:
+      description: The requested resource was not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found
+    Unauthorized:
+      description: Authentication required or token is invalid
       content:
         application/json:
           schema:

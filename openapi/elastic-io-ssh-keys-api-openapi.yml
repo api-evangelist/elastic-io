@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: elastic.io Platform REST Agents SSH Keys API
+  title: elastic.io Platform REST SSH Keys API
   description: The elastic.io Platform REST API v2 provides programmatic access to the elastic.io iPaaS platform. It allows you to manage integration flows, workspaces, contracts, credentials, components, recipes, users, and other platform resources. The API follows the JSON:API specification and uses Bearer token authentication.
   version: 2.0.0
   contact:
@@ -92,31 +92,6 @@ components:
                 type: string
               detail:
                 type: string
-    SshKeyCreateRequest:
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          type: object
-          required:
-          - type
-          - attributes
-          properties:
-            type:
-              type: string
-              enum:
-              - sshkey
-            attributes:
-              type: object
-              required:
-              - key
-              properties:
-                key:
-                  type: string
-                  description: The public SSH key content
-                title:
-                  type: string
     SshKeyListResponse:
       type: object
       properties:
@@ -162,15 +137,40 @@ components:
                 created_at:
                   type: string
                   format: date-time
+    SshKeyCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - attributes
+          properties:
+            type:
+              type: string
+              enum:
+              - sshkey
+            attributes:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: The public SSH key content
+                title:
+                  type: string
   responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
+    NotFound:
+      description: The requested resource was not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found
+    Unauthorized:
+      description: Authentication required or token is invalid
       content:
         application/json:
           schema:

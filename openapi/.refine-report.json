@@ -1,28 +1,7 @@
 {
   "provider": "elastic-io",
   "sources": [
-    "elastic-io-agents-api-openapi.yml",
-    "elastic-io-auth-clients-api-openapi.yml",
-    "elastic-io-auth-secrets-api-openapi.yml",
-    "elastic-io-components-api-openapi.yml",
-    "elastic-io-contracts-api-openapi.yml",
-    "elastic-io-credentials-api-openapi.yml",
-    "elastic-io-data-samples-api-openapi.yml",
-    "elastic-io-executions-api-openapi.yml",
-    "elastic-io-flow-drafts-api-openapi.yml",
-    "elastic-io-flow-versions-api-openapi.yml",
-    "elastic-io-flows-api-openapi.yml",
-    "elastic-io-logs-api-openapi.yml",
-    "elastic-io-quota-usages-api-openapi.yml",
-    "elastic-io-recipes-api-openapi.yml",
-    "elastic-io-roles-api-openapi.yml",
-    "elastic-io-snapshots-api-openapi.yml",
-    "elastic-io-ssh-keys-api-openapi.yml",
-    "elastic-io-subscriptions-api-openapi.yml",
-    "elastic-io-teams-api-openapi.yml",
-    "elastic-io-topics-api-openapi.yml",
-    "elastic-io-users-api-openapi.yml",
-    "elastic-io-workspaces-api-openapi.yml"
+    "_original/elastic-io-platform-api-openapi.yml"
   ],
   "outputs": [
     "elastic-io-agents-api-openapi.yml",
@@ -40,8 +19,8 @@
     "elastic-io-quota-usages-api-openapi.yml",
     "elastic-io-recipes-api-openapi.yml",
     "elastic-io-roles-api-openapi.yml",
-    "elastic-io-snapshots-api-openapi.yml",
     "elastic-io-ssh-keys-api-openapi.yml",
+    "elastic-io-snapshots-api-openapi.yml",
     "elastic-io-subscriptions-api-openapi.yml",
     "elastic-io-teams-api-openapi.yml",
     "elastic-io-topics-api-openapi.yml",
@@ -51,6 +30,33 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "elastic-io-platform-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "elastic-io-agents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-auth-clients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-auth-secrets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-components-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-contracts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-credentials-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-data-samples-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-executions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-flow-drafts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-flow-versions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-flows-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-logs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-quota-usages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-recipes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-roles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-snapshots-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-ssh-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-teams-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-topics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "elastic-io-workspaces-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
