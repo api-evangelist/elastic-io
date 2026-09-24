@@ -4,7 +4,7 @@ apis:
 - aid: elastic-io:elastic-io-agents-api
   name: Elastic.io Agents API
   description: Manage on-premises integration agents
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Agents
   properties:
@@ -22,12 +22,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-auth-clients-api
   name: Elastic.io Auth Clients API
   description: Manage OAuth authentication clients
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Auth Clients
   properties:
@@ -45,12 +43,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-auth-secrets-api
   name: Elastic.io Auth Secrets API
   description: Manage authentication secrets
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Auth Secrets
   properties:
@@ -68,12 +64,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-components-api
   name: Elastic.io Components API
   description: Manage integration components
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Components
   properties:
@@ -91,12 +85,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-contracts-api
   name: Elastic.io Contracts API
   description: Manage contracts (tenants)
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Contracts
   properties:
@@ -114,12 +106,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-credentials-api
   name: Elastic.io Credentials API
   description: Manage authentication credentials for components
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Credentials
   properties:
@@ -137,12 +127,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-data-samples-api
   name: Elastic.io Data Samples API
   description: Manage data samples for component steps
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Data Samples
   properties:
@@ -160,12 +148,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-executions-api
   name: Elastic.io Executions API
   description: Manage flow executions and logs
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Execution
   tags_raw:
@@ -185,12 +171,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-flow-drafts-api
   name: Elastic.io Flow Drafts API
   description: Manage flow drafts before publishing
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Flow Drafts
   properties:
@@ -208,12 +192,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-flow-versions-api
   name: Elastic.io Flow Versions API
   description: Manage flow version history
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Flow Versions
   properties:
@@ -231,12 +213,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-flows-api
   name: Elastic.io Flows API
   description: Manage integration flows
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Flow
   tags_raw:
@@ -256,12 +236,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-logs-api
   name: Elastic.io Logs API
   description: Access execution and platform logs
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Logs
   properties:
@@ -279,12 +257,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-quota-usages-api
   name: Elastic.io Quota Usages API
   description: View quota usage statistics
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Quota Usages
   properties:
@@ -302,12 +278,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-recipes-api
   name: Elastic.io Recipes API
   description: Manage reusable integration recipes
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Recipes
   properties:
@@ -325,12 +299,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-roles-api
   name: Elastic.io Roles API
   description: Manage user roles and permissions
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Roles
   properties:
@@ -348,12 +320,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-snapshots-api
   name: Elastic.io Snapshots API
   description: Manage flow step snapshots
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Snapshots
   properties:
@@ -371,12 +341,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-ssh-keys-api
   name: Elastic.io SSH Keys API
   description: Manage SSH keys for component repositories
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - SSH Keys
   properties:
@@ -394,12 +362,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-subscriptions-api
   name: Elastic.io Subscriptions API
   description: Manage topic subscriptions
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Subscription
   tags_raw:
@@ -419,12 +385,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-teams-api
   name: Elastic.io Teams API
   description: Manage developer teams
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Team
   tags_raw:
@@ -444,12 +408,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-topics-api
   name: Elastic.io Topics API
   description: Manage pub/sub topics
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Topic
   tags_raw:
@@ -469,12 +431,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-users-api
   name: Elastic.io Users API
   description: Manage platform users
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - User
   tags_raw:
@@ -494,12 +454,10 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 - aid: elastic-io:elastic-io-workspaces-api
   name: Elastic.io Workspaces API
   description: Manage workspaces within contracts
-  humanURL: ' https://www.elastic.io/'
+  humanURL: https://www.elastic.io/
   tags:
   - Workspace
   tags_raw:
@@ -519,17 +477,17 @@ apis:
     url: json-schema/elastic-io-contract.json
   - type: JSONLD
     url: json-ld/elastic-io-context.jsonld
-  - type: GraphQL
-    url: graphql/elastic-io-graphql.md
 name: Elastic.io
 tags:
 - Integration
 - iPaaS
 - SaaS Integration
+- Real-Time
 tags_raw:
 - Integrations
 - iPaaS
 - SaaS Integration
+- Real-Time
 kind: contract
 deliveryModel:
   model: saas
