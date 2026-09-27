@@ -78,65 +78,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
-    SshKeyListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              type:
-                type: string
-              attributes:
-                type: object
-                properties:
-                  key:
-                    type: string
-                  fingerprint:
-                    type: string
-                  title:
-                    type: string
-    SshKeyResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
-              enum:
-              - sshkey
-            attributes:
-              type: object
-              properties:
-                key:
-                  type: string
-                fingerprint:
-                  type: string
-                title:
-                  type: string
-                created_at:
-                  type: string
-                  format: date-time
     SshKeyCreateRequest:
       type: object
       required:
@@ -162,6 +103,65 @@ components:
                   description: The public SSH key content
                 title:
                   type: string
+    SshKeyResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+              - sshkey
+            attributes:
+              type: object
+              properties:
+                key:
+                  type: string
+                fingerprint:
+                  type: string
+                title:
+                  type: string
+                created_at:
+                  type: string
+                  format: date-time
+    SshKeyListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              attributes:
+                type: object
+                properties:
+                  key:
+                    type: string
+                  fingerprint:
+                    type: string
+                  title:
+                    type: string
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
   responses:
     NotFound:
       description: The requested resource was not found

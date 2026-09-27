@@ -162,18 +162,34 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    RecipeId:
+      name: recipe_id
+      in: path
+      required: true
+      description: The unique identifier of the recipe
+      schema:
+        type: string
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
   schemas:
-    RecipeListResponse:
+    RecipeResponse:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Recipe'
-        meta:
-          $ref: '#/components/schemas/JsonApiMeta'
-        links:
-          $ref: '#/components/schemas/JsonApiLinks'
+          $ref: '#/components/schemas/Recipe'
     JsonApiLinks:
       type: object
       properties:
@@ -192,20 +208,17 @@ components:
         last:
           type: string
           format: uri
-    ErrorResponse:
+    RecipeListResponse:
       type: object
       properties:
-        errors:
+        data:
           type: array
           items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
+            $ref: '#/components/schemas/Recipe'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
     RecipeCreateRequest:
       type: object
       required:
@@ -239,27 +252,6 @@ components:
                   $ref: '#/components/schemas/JsonApiRelationship'
                 contract:
                   $ref: '#/components/schemas/JsonApiRelationship'
-    JsonApiMeta:
-      type: object
-      properties:
-        page:
-          type: integer
-        per_page:
-          type: integer
-        total:
-          type: integer
-        total_pages:
-          type: integer
-    JsonApiRelationship:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
     Recipe:
       type: object
       properties:
@@ -298,6 +290,27 @@ components:
               $ref: '#/components/schemas/JsonApiRelationship'
             contract:
               $ref: '#/components/schemas/JsonApiRelationship'
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
     RecipeUpdateRequest:
       type: object
       required:
@@ -324,33 +337,20 @@ components:
                   type: string
                 graph:
                   type: object
-    RecipeResponse:
+    ErrorResponse:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/Recipe'
-  parameters:
-    PageSize:
-      name: page[size]
-      in: query
-      description: Number of items per page
-      schema:
-        type: integer
-        default: 20
-    RecipeId:
-      name: recipe_id
-      in: path
-      required: true
-      description: The unique identifier of the recipe
-      schema:
-        type: string
-    PageNumber:
-      name: page[number]
-      in: query
-      description: Page number to retrieve
-      schema:
-        type: integer
-        default: 1
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
   responses:
     NotFound:
       description: The requested resource was not found

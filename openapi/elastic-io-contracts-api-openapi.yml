@@ -126,6 +126,31 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    MemberCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - member
+            id:
+              type: string
+              description: The user ID to add as member
+            attributes:
+              type: object
+              properties:
+                roles:
+                  type: array
+                  items:
+                    type: string
     JsonApiLinks:
       type: object
       properties:
@@ -144,20 +169,6 @@ components:
         last:
           type: string
           format: uri
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
     JsonApiMeta:
       type: object
       properties:
@@ -169,30 +180,6 @@ components:
           type: integer
         total_pages:
           type: integer
-    MemberResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
-              enum:
-              - member
-            attributes:
-              type: object
-              properties:
-                roles:
-                  type: array
-                  items:
-                    type: string
-            relationships:
-              type: object
-              properties:
-                user:
-                  $ref: '#/components/schemas/JsonApiRelationship'
     ContractUpdateRequest:
       type: object
       required:
@@ -241,6 +228,11 @@ components:
                     $ref: '#/components/schemas/JsonApiRelationship'
         meta:
           $ref: '#/components/schemas/JsonApiMeta'
+    ContractResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Contract'
     JsonApiRelationship:
       type: object
       properties:
@@ -251,6 +243,30 @@ components:
               type: string
             type:
               type: string
+    MemberResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+              - member
+            attributes:
+              type: object
+              properties:
+                roles:
+                  type: array
+                  items:
+                    type: string
+            relationships:
+              type: object
+              properties:
+                user:
+                  $ref: '#/components/schemas/JsonApiRelationship'
     ContractListResponse:
       type: object
       properties:
@@ -262,31 +278,6 @@ components:
           $ref: '#/components/schemas/JsonApiMeta'
         links:
           $ref: '#/components/schemas/JsonApiLinks'
-    MemberCreateRequest:
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          type: object
-          required:
-          - type
-          - id
-          properties:
-            type:
-              type: string
-              enum:
-              - member
-            id:
-              type: string
-              description: The user ID to add as member
-            attributes:
-              type: object
-              properties:
-                roles:
-                  type: array
-                  items:
-                    type: string
     Contract:
       type: object
       properties:
@@ -326,19 +317,34 @@ components:
                         type: string
                       type:
                         type: string
-    ContractResponse:
+    ErrorResponse:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/Contract'
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    PageSize:
-      name: page[size]
-      in: query
-      description: Number of items per page
-      schema:
-        type: integer
-        default: 20
     ContractId:
       name: contract_id
       in: path
@@ -353,19 +359,13 @@ components:
       schema:
         type: integer
         default: 1
-  responses:
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
   securitySchemes:
     bearerAuth:
       type: http

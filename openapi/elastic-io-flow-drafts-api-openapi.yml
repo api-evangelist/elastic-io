@@ -122,6 +122,11 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    FlowDraftResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/FlowDraft'
     JsonApiLinks:
       type: object
       properties:
@@ -140,25 +145,6 @@ components:
         last:
           type: string
           format: uri
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
-    FlowDraftResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/FlowDraft'
     JsonApiMeta:
       type: object
       properties:
@@ -203,17 +189,30 @@ components:
                   $ref: '#/components/schemas/JsonApiRelationship'
                 flow:
                   $ref: '#/components/schemas/JsonApiRelationship'
-    FlowDraftListResponse:
+    JsonApiRelationship:
       type: object
       properties:
         data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
           type: array
           items:
-            $ref: '#/components/schemas/FlowDraft'
-        meta:
-          $ref: '#/components/schemas/JsonApiMeta'
-        links:
-          $ref: '#/components/schemas/JsonApiLinks'
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
     FlowDraftUpdateRequest:
       type: object
       required:
@@ -240,16 +239,17 @@ components:
                   type: object
                 cron:
                   type: string
-    JsonApiRelationship:
+    FlowDraftListResponse:
       type: object
       properties:
         data:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/FlowDraft'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
     FlowDraft:
       type: object
       properties:
@@ -281,34 +281,6 @@ components:
               $ref: '#/components/schemas/JsonApiRelationship'
             flow:
               $ref: '#/components/schemas/JsonApiRelationship'
-  parameters:
-    PageSize:
-      name: page[size]
-      in: query
-      description: Number of items per page
-      schema:
-        type: integer
-        default: 20
-    FlowDraftId:
-      name: flow_draft_id
-      in: path
-      required: true
-      description: The unique identifier of the flow draft
-      schema:
-        type: string
-    PageNumber:
-      name: page[number]
-      in: query
-      description: Page number to retrieve
-      schema:
-        type: integer
-        default: 1
-    WorkspaceFilter:
-      name: filter[workspace_id]
-      in: query
-      description: Filter by workspace ID
-      schema:
-        type: string
   responses:
     NotFound:
       description: The requested resource was not found
@@ -322,6 +294,34 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    FlowDraftId:
+      name: flow_draft_id
+      in: path
+      required: true
+      description: The unique identifier of the flow draft
+      schema:
+        type: string
+    WorkspaceFilter:
+      name: filter[workspace_id]
+      in: query
+      description: Filter by workspace ID
+      schema:
+        type: string
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
   securitySchemes:
     bearerAuth:
       type: http

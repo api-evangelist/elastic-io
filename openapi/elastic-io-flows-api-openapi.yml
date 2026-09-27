@@ -184,12 +184,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    Conflict:
-      description: Resource conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: The requested resource was not found
       content:
@@ -198,6 +192,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: Resource conflict
       content:
         application/json:
           schema:
@@ -221,20 +221,6 @@ components:
         last:
           type: string
           format: uri
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
     JsonApiMeta:
       type: object
       properties:
@@ -246,6 +232,17 @@ components:
           type: integer
         total_pages:
           type: integer
+    FlowListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Flow'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
     FlowUpdateRequest:
       type: object
       required:
@@ -272,6 +269,16 @@ components:
                   type: object
                 cron:
                   type: string
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
     FlowCreateRequest:
       type: object
       required:
@@ -313,32 +320,25 @@ components:
               properties:
                 workspace:
                   $ref: '#/components/schemas/JsonApiRelationship'
-    JsonApiRelationship:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
     FlowResponse:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/Flow'
-    FlowListResponse:
+    ErrorResponse:
       type: object
       properties:
-        data:
+        errors:
           type: array
           items:
-            $ref: '#/components/schemas/Flow'
-        meta:
-          $ref: '#/components/schemas/JsonApiMeta'
-        links:
-          $ref: '#/components/schemas/JsonApiLinks'
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
     Flow:
       type: object
       properties:
@@ -395,13 +395,6 @@ components:
             user:
               $ref: '#/components/schemas/JsonApiRelationship'
   parameters:
-    PageSize:
-      name: page[size]
-      in: query
-      description: Number of items per page
-      schema:
-        type: integer
-        default: 20
     FlowId:
       name: flow_id
       in: path
@@ -422,6 +415,13 @@ components:
       description: Filter by workspace ID
       schema:
         type: string
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
   securitySchemes:
     bearerAuth:
       type: http

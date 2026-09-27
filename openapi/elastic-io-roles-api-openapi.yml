@@ -136,45 +136,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
-    RoleResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
-              enum:
-              - role
-            attributes:
-              type: object
-              properties:
-                role:
-                  type: string
-                scope:
-                  type: string
-                  enum:
-                  - contracts
-                  - workspaces
-                permissions:
-                  type: object
     JsonApiMeta:
       type: object
       properties:
@@ -186,6 +161,28 @@ components:
           type: integer
         total_pages:
           type: integer
+    RoleUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - role
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                permissions:
+                  type: object
     RoleCreateRequest:
       type: object
       required:
@@ -207,6 +204,30 @@ components:
               - role
               - scope
               - permissions
+              properties:
+                role:
+                  type: string
+                scope:
+                  type: string
+                  enum:
+                  - contracts
+                  - workspaces
+                permissions:
+                  type: object
+    RoleResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+              enum:
+              - role
+            attributes:
+              type: object
               properties:
                 role:
                   type: string
@@ -240,41 +261,20 @@ components:
                     type: object
         meta:
           $ref: '#/components/schemas/JsonApiMeta'
-    RoleUpdateRequest:
+    ErrorResponse:
       type: object
-      required:
-      - data
       properties:
-        data:
-          type: object
-          required:
-          - type
-          - id
-          properties:
-            type:
-              type: string
-              enum:
-              - role
-            id:
-              type: string
-            attributes:
-              type: object
-              properties:
-                permissions:
-                  type: object
-  responses:
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
   parameters:
     TenantId:
       name: tenant_id
