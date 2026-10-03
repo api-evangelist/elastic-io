@@ -78,31 +78,20 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    SshKeyCreateRequest:
+    ErrorResponse:
       type: object
-      required:
-      - data
       properties:
-        data:
-          type: object
-          required:
-          - type
-          - attributes
-          properties:
-            type:
-              type: string
-              enum:
-              - sshkey
-            attributes:
-              type: object
-              required:
-              - key
-              properties:
-                key:
-                  type: string
-                  description: The public SSH key content
-                title:
-                  type: string
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
     SshKeyResponse:
       type: object
       properties:
@@ -148,20 +137,31 @@ components:
                     type: string
                   title:
                     type: string
-    ErrorResponse:
+    SshKeyCreateRequest:
       type: object
+      required:
+      - data
       properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
+        data:
+          type: object
+          required:
+          - type
+          - attributes
+          properties:
+            type:
+              type: string
+              enum:
+              - sshkey
+            attributes:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: The public SSH key content
+                title:
+                  type: string
   responses:
     NotFound:
       description: The requested resource was not found

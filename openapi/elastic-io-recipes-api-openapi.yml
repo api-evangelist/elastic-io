@@ -162,34 +162,73 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    RecipeId:
-      name: recipe_id
-      in: path
-      required: true
-      description: The unique identifier of the recipe
-      schema:
-        type: string
-    PageNumber:
-      name: page[number]
-      in: query
-      description: Page number to retrieve
-      schema:
-        type: integer
-        default: 1
-    PageSize:
-      name: page[size]
-      in: query
-      description: Number of items per page
-      schema:
-        type: integer
-        default: 20
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
     RecipeResponse:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/Recipe'
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+    RecipeUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - recipe
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                graph:
+                  type: object
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
     JsonApiLinks:
       type: object
       properties:
@@ -208,17 +247,6 @@ components:
         last:
           type: string
           format: uri
-    RecipeListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Recipe'
-        meta:
-          $ref: '#/components/schemas/JsonApiMeta'
-        links:
-          $ref: '#/components/schemas/JsonApiLinks'
     RecipeCreateRequest:
       type: object
       required:
@@ -290,76 +318,48 @@ components:
               $ref: '#/components/schemas/JsonApiRelationship'
             contract:
               $ref: '#/components/schemas/JsonApiRelationship'
-    JsonApiMeta:
-      type: object
-      properties:
-        page:
-          type: integer
-        per_page:
-          type: integer
-        total:
-          type: integer
-        total_pages:
-          type: integer
-    JsonApiRelationship:
+    RecipeListResponse:
       type: object
       properties:
         data:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
-    RecipeUpdateRequest:
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          type: object
-          required:
-          - type
-          - id
-          properties:
-            type:
-              type: string
-              enum:
-              - recipe
-            id:
-              type: string
-            attributes:
-              type: object
-              properties:
-                title:
-                  type: string
-                description:
-                  type: string
-                graph:
-                  type: object
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
           type: array
           items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
+            $ref: '#/components/schemas/Recipe'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+  parameters:
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    RecipeId:
+      name: recipe_id
+      in: path
+      required: true
+      description: The unique identifier of the recipe
+      schema:
+        type: string
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
   responses:
-    NotFound:
-      description: The requested resource was not found
+    Unauthorized:
+      description: Authentication required or token is invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required or token is invalid
+    NotFound:
+      description: The requested resource was not found
       content:
         application/json:
           schema:

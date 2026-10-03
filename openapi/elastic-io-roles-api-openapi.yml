@@ -136,20 +136,75 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    RoleListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              attributes:
+                type: object
+                properties:
+                  role:
+                    type: string
+                  scope:
+                    type: string
+                  permissions:
+                    type: object
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+    RoleCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - attributes
+          properties:
+            type:
+              type: string
+              enum:
+              - role
+            attributes:
+              type: object
+              required:
+              - role
+              - scope
+              - permissions
+              properties:
+                role:
+                  type: string
+                scope:
+                  type: string
+                  enum:
+                  - contracts
+                  - workspaces
+                permissions:
+                  type: object
     JsonApiMeta:
       type: object
       properties:
@@ -183,37 +238,6 @@ components:
               properties:
                 permissions:
                   type: object
-    RoleCreateRequest:
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          type: object
-          required:
-          - type
-          - attributes
-          properties:
-            type:
-              type: string
-              enum:
-              - role
-            attributes:
-              type: object
-              required:
-              - role
-              - scope
-              - permissions
-              properties:
-                role:
-                  type: string
-                scope:
-                  type: string
-                  enum:
-                  - contracts
-                  - workspaces
-                permissions:
-                  type: object
     RoleResponse:
       type: object
       properties:
@@ -238,43 +262,19 @@ components:
                   - workspaces
                 permissions:
                   type: object
-    RoleListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              type:
-                type: string
-              attributes:
-                type: object
-                properties:
-                  role:
-                    type: string
-                  scope:
-                    type: string
-                  permissions:
-                    type: object
-        meta:
-          $ref: '#/components/schemas/JsonApiMeta'
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     TenantId:
       name: tenant_id
