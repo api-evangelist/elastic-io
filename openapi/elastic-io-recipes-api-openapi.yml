@@ -162,62 +162,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
-    RecipeResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Recipe'
-    JsonApiRelationship:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
-    RecipeUpdateRequest:
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          type: object
-          required:
-          - type
-          - id
-          properties:
-            type:
-              type: string
-              enum:
-              - recipe
-            id:
-              type: string
-            attributes:
-              type: object
-              properties:
-                title:
-                  type: string
-                description:
-                  type: string
-                graph:
-                  type: object
     JsonApiMeta:
       type: object
       properties:
@@ -229,57 +187,6 @@ components:
           type: integer
         total_pages:
           type: integer
-    JsonApiLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-    RecipeCreateRequest:
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          type: object
-          required:
-          - type
-          - attributes
-          properties:
-            type:
-              type: string
-              enum:
-              - recipe
-            attributes:
-              type: object
-              required:
-              - title
-              properties:
-                title:
-                  type: string
-                description:
-                  type: string
-                graph:
-                  type: object
-            relationships:
-              type: object
-              properties:
-                workspace:
-                  $ref: '#/components/schemas/JsonApiRelationship'
-                contract:
-                  $ref: '#/components/schemas/JsonApiRelationship'
     Recipe:
       type: object
       properties:
@@ -318,6 +225,48 @@ components:
               $ref: '#/components/schemas/JsonApiRelationship'
             contract:
               $ref: '#/components/schemas/JsonApiRelationship'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    JsonApiLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
     RecipeListResponse:
       type: object
       properties:
@@ -329,14 +278,71 @@ components:
           $ref: '#/components/schemas/JsonApiMeta'
         links:
           $ref: '#/components/schemas/JsonApiLinks'
+    RecipeResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Recipe'
+    RecipeUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - recipe
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                graph:
+                  type: object
+    RecipeCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - attributes
+          properties:
+            type:
+              type: string
+              enum:
+              - recipe
+            attributes:
+              type: object
+              required:
+              - title
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                graph:
+                  type: object
+            relationships:
+              type: object
+              properties:
+                workspace:
+                  $ref: '#/components/schemas/JsonApiRelationship'
+                contract:
+                  $ref: '#/components/schemas/JsonApiRelationship'
   parameters:
-    PageNumber:
-      name: page[number]
-      in: query
-      description: Page number to retrieve
-      schema:
-        type: integer
-        default: 1
     RecipeId:
       name: recipe_id
       in: path
@@ -344,6 +350,13 @@ components:
       description: The unique identifier of the recipe
       schema:
         type: string
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
     PageSize:
       name: page[size]
       in: query
@@ -351,19 +364,6 @@ components:
       schema:
         type: integer
         default: 20
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http

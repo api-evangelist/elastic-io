@@ -78,49 +78,11 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
     UserResponse:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/User'
-    UserUpdateRequest:
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          type: object
-          required:
-          - type
-          - id
-          properties:
-            type:
-              type: string
-              enum:
-              - user
-            id:
-              type: string
-            attributes:
-              type: object
-              properties:
-                first_name:
-                  type: string
-                last_name:
-                  type: string
     User:
       type: object
       properties:
@@ -146,6 +108,52 @@ components:
             last_login:
               type: string
               format: date-time
+    UserUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - user
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+  parameters:
+    UserId:
+      name: user_id
+      in: path
+      required: true
+      description: The unique identifier of the user
+      schema:
+        type: string
   responses:
     NotFound:
       description: The requested resource was not found
@@ -159,14 +167,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    UserId:
-      name: user_id
-      in: path
-      required: true
-      description: The unique identifier of the user
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

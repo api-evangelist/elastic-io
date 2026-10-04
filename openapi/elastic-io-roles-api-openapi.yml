@@ -136,21 +136,15 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    TenantId:
+      name: tenant_id
+      in: path
+      required: true
+      description: The unique identifier of the tenant
+      schema:
+        type: string
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
     RoleListResponse:
       type: object
       properties:
@@ -174,27 +168,20 @@ components:
                     type: object
         meta:
           $ref: '#/components/schemas/JsonApiMeta'
-    RoleCreateRequest:
+    RoleResponse:
       type: object
-      required:
-      - data
       properties:
         data:
           type: object
-          required:
-          - type
-          - attributes
           properties:
+            id:
+              type: string
             type:
               type: string
               enum:
               - role
             attributes:
               type: object
-              required:
-              - role
-              - scope
-              - permissions
               properties:
                 role:
                   type: string
@@ -238,20 +225,41 @@ components:
               properties:
                 permissions:
                   type: object
-    RoleResponse:
+    ErrorResponse:
       type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    RoleCreateRequest:
+      type: object
+      required:
+      - data
       properties:
         data:
           type: object
+          required:
+          - type
+          - attributes
           properties:
-            id:
-              type: string
             type:
               type: string
               enum:
               - role
             attributes:
               type: object
+              required:
+              - role
+              - scope
+              - permissions
               properties:
                 role:
                   type: string
@@ -275,14 +283,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    TenantId:
-      name: tenant_id
-      in: path
-      required: true
-      description: The unique identifier of the tenant
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

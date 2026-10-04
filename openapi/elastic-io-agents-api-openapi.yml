@@ -105,6 +105,22 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    AgentResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Agent'
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
     Agent:
       type: object
       properties:
@@ -146,32 +162,6 @@ components:
                 type: string
               detail:
                 type: string
-    JsonApiRelationship:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
-    AgentResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Agent'
-    JsonApiMeta:
-      type: object
-      properties:
-        page:
-          type: integer
-        per_page:
-          type: integer
-        total:
-          type: integer
-        total_pages:
-          type: integer
     JsonApiLinks:
       type: object
       properties:
@@ -190,17 +180,16 @@ components:
         last:
           type: string
           format: uri
-    AgentListResponse:
+    JsonApiRelationship:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Agent'
-        meta:
-          $ref: '#/components/schemas/JsonApiMeta'
-        links:
-          $ref: '#/components/schemas/JsonApiLinks'
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
     AgentCreateRequest:
       type: object
       required:
@@ -228,7 +217,37 @@ components:
               properties:
                 workspace:
                   $ref: '#/components/schemas/JsonApiRelationship'
+    AgentListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Agent'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
+    WorkspaceFilter:
+      name: filter[workspace_id]
+      in: query
+      description: Filter by workspace ID
+      schema:
+        type: string
     PageNumber:
       name: page[number]
       in: query
@@ -243,25 +262,6 @@ components:
       schema:
         type: integer
         default: 20
-    WorkspaceFilter:
-      name: filter[workspace_id]
-      in: query
-      description: Filter by workspace ID
-      schema:
-        type: string
-  responses:
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http
