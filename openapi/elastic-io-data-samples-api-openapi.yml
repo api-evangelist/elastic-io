@@ -134,19 +134,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
-    WorkspaceFilter:
-      name: filter[workspace_id]
-      in: query
-      description: Filter by workspace ID
-      schema:
-        type: string
-    PageNumber:
-      name: page[number]
-      in: query
-      description: Page number to retrieve
-      schema:
-        type: integer
-        default: 1
     PageSize:
       name: page[size]
       in: query
@@ -154,34 +141,20 @@ components:
       schema:
         type: integer
         default: 20
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    WorkspaceFilter:
+      name: filter[workspace_id]
+      in: query
+      description: Filter by workspace ID
+      schema:
+        type: string
   schemas:
-    DataSampleResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/DataSample'
-    DataSampleUpdateRequest:
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          type: object
-          required:
-          - type
-          - id
-          properties:
-            type:
-              type: string
-              enum:
-              - data-sample
-            id:
-              type: string
-            attributes:
-              type: object
-              properties:
-                data:
-                  type: object
     JsonApiMeta:
       type: object
       properties:
@@ -193,31 +166,6 @@ components:
           type: integer
         total_pages:
           type: integer
-    DataSample:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - data-sample
-        attributes:
-          type: object
-          properties:
-            data:
-              type: object
-            created_at:
-              type: string
-              format: date-time
-            updated_at:
-              type: string
-              format: date-time
-        relationships:
-          type: object
-          properties:
-            workspace:
-              $ref: '#/components/schemas/JsonApiRelationship'
     ErrorResponse:
       type: object
       properties:
@@ -232,45 +180,6 @@ components:
                 type: string
               detail:
                 type: string
-    JsonApiLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-    JsonApiRelationship:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
-    DataSampleListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataSample'
-        meta:
-          $ref: '#/components/schemas/JsonApiMeta'
-        links:
-          $ref: '#/components/schemas/JsonApiLinks'
     DataSampleCreateRequest:
       type: object
       required:
@@ -298,15 +207,106 @@ components:
               properties:
                 workspace:
                   $ref: '#/components/schemas/JsonApiRelationship'
+    DataSampleListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataSample'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    DataSample:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - data-sample
+        attributes:
+          type: object
+          properties:
+            data:
+              type: object
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            workspace:
+              $ref: '#/components/schemas/JsonApiRelationship'
+    DataSampleResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DataSample'
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+    JsonApiLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    DataSampleUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - data-sample
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                data:
+                  type: object
   responses:
-    NotFound:
-      description: The requested resource was not found
+    Unauthorized:
+      description: Authentication required or token is invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required or token is invalid
+    NotFound:
+      description: The requested resource was not found
       content:
         application/json:
           schema:

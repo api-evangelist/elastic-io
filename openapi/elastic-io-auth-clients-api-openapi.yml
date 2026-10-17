@@ -121,6 +121,53 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    AuthClientUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - auth-client
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+                auth_uri:
+                  type: string
+                  format: uri
+                token_uri:
+                  type: string
+                  format: uri
+                scopes:
+                  type: array
+                  items:
+                    type: string
+    AuthClientListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthClient'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
     AuthClientCreateRequest:
       type: object
       required:
@@ -166,42 +213,31 @@ components:
                   $ref: '#/components/schemas/JsonApiRelationship'
                 component:
                   $ref: '#/components/schemas/JsonApiRelationship'
-    AuthClientUpdateRequest:
+    JsonApiMeta:
       type: object
-      required:
-      - data
       properties:
-        data:
-          type: object
-          required:
-          - type
-          - id
-          properties:
-            type:
-              type: string
-              enum:
-              - auth-client
-            id:
-              type: string
-            attributes:
-              type: object
-              properties:
-                name:
-                  type: string
-                client_id:
-                  type: string
-                client_secret:
-                  type: string
-                auth_uri:
-                  type: string
-                  format: uri
-                token_uri:
-                  type: string
-                  format: uri
-                scopes:
-                  type: array
-                  items:
-                    type: string
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
     AuthClient:
       type: object
       properties:
@@ -250,42 +286,11 @@ components:
               $ref: '#/components/schemas/JsonApiRelationship'
             component:
               $ref: '#/components/schemas/JsonApiRelationship'
-    AuthClientListResponse:
+    AuthClientResponse:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AuthClient'
-        meta:
-          $ref: '#/components/schemas/JsonApiMeta'
-        links:
-          $ref: '#/components/schemas/JsonApiLinks'
-    JsonApiMeta:
-      type: object
-      properties:
-        page:
-          type: integer
-        per_page:
-          type: integer
-        total:
-          type: integer
-        total_pages:
-          type: integer
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
+          $ref: '#/components/schemas/AuthClient'
     JsonApiRelationship:
       type: object
       properties:
@@ -314,26 +319,20 @@ components:
         last:
           type: string
           format: uri
-    AuthClientResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/AuthClient'
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    AuthClientId:
-      name: auth_client_id
-      in: path
-      required: true
-      description: The unique identifier of the auth client
-      schema:
-        type: string
-    PageNumber:
-      name: page[number]
-      in: query
-      description: Page number to retrieve
-      schema:
-        type: integer
-        default: 1
     PageSize:
       name: page[size]
       in: query
@@ -341,19 +340,20 @@ components:
       schema:
         type: integer
         default: 20
-  responses:
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    AuthClientId:
+      name: auth_client_id
+      in: path
+      required: true
+      description: The unique identifier of the auth client
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

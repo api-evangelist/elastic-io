@@ -136,15 +136,54 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    TenantId:
-      name: tenant_id
-      in: path
-      required: true
-      description: The unique identifier of the tenant
-      schema:
-        type: string
   schemas:
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
+    RoleUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - role
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                permissions:
+                  type: object
     RoleListResponse:
       type: object
       properties:
@@ -192,53 +231,6 @@ components:
                   - workspaces
                 permissions:
                   type: object
-    JsonApiMeta:
-      type: object
-      properties:
-        page:
-          type: integer
-        per_page:
-          type: integer
-        total:
-          type: integer
-        total_pages:
-          type: integer
-    RoleUpdateRequest:
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          type: object
-          required:
-          - type
-          - id
-          properties:
-            type:
-              type: string
-              enum:
-              - role
-            id:
-              type: string
-            attributes:
-              type: object
-              properties:
-                permissions:
-                  type: object
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
     RoleCreateRequest:
       type: object
       required:
@@ -271,18 +263,26 @@ components:
                 permissions:
                   type: object
   responses:
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication required or token is invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    TenantId:
+      name: tenant_id
+      in: path
+      required: true
+      description: The unique identifier of the tenant
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

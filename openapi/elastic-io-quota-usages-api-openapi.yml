@@ -60,19 +60,21 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    ContractId:
+      name: contract_id
+      in: path
+      required: true
+      description: The unique identifier of the contract
+      schema:
+        type: string
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      description: The unique identifier of the workspace
+      schema:
+        type: string
   schemas:
     QuotaUsageResponse:
       type: object
@@ -117,21 +119,19 @@ components:
                 type: string
               detail:
                 type: string
-  parameters:
-    WorkspaceId:
-      name: workspace_id
-      in: path
-      required: true
-      description: The unique identifier of the workspace
-      schema:
-        type: string
-    ContractId:
-      name: contract_id
-      in: path
-      required: true
-      description: The unique identifier of the contract
-      schema:
-        type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http

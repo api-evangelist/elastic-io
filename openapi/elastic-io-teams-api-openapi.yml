@@ -101,20 +101,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
-    TeamId:
-      name: team_id
-      in: path
-      required: true
-      description: The unique identifier of the team
-      schema:
-        type: string
-    PageNumber:
-      name: page[number]
-      in: query
-      description: Page number to retrieve
-      schema:
-        type: integer
-        default: 1
     PageSize:
       name: page[size]
       in: query
@@ -122,12 +108,46 @@ components:
       schema:
         type: integer
         default: 20
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    TeamId:
+      name: team_id
+      in: path
+      required: true
+      description: The unique identifier of the team
+      schema:
+        type: string
   schemas:
-    TeamResponse:
+    JsonApiMeta:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/Team'
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
     TeamCreateRequest:
       type: object
       required:
@@ -157,6 +177,11 @@ components:
               properties:
                 contract:
                   $ref: '#/components/schemas/JsonApiRelationship'
+    TeamResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Team'
     Team:
       type: object
       properties:
@@ -182,42 +207,6 @@ components:
           properties:
             contract:
               $ref: '#/components/schemas/JsonApiRelationship'
-    JsonApiMeta:
-      type: object
-      properties:
-        page:
-          type: integer
-        per_page:
-          type: integer
-        total:
-          type: integer
-        total_pages:
-          type: integer
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
-    TeamListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Team'
-        meta:
-          $ref: '#/components/schemas/JsonApiMeta'
-        links:
-          $ref: '#/components/schemas/JsonApiLinks'
     JsonApiRelationship:
       type: object
       properties:
@@ -246,15 +235,26 @@ components:
         last:
           type: string
           format: uri
+    TeamListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Team'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
   responses:
-    NotFound:
-      description: The requested resource was not found
+    Unauthorized:
+      description: Authentication required or token is invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required or token is invalid
+    NotFound:
+      description: The requested resource was not found
       content:
         application/json:
           schema:

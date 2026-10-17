@@ -122,37 +122,42 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    FlowDraft:
+    FlowDraftListResponse:
       type: object
       properties:
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - flow-draft
-        attributes:
-          type: object
-          properties:
-            name:
-              type: string
-            graph:
-              type: object
-            cron:
-              type: string
-            created_at:
-              type: string
-              format: date-time
-            updated_at:
-              type: string
-              format: date-time
-        relationships:
-          type: object
-          properties:
-            workspace:
-              $ref: '#/components/schemas/JsonApiRelationship'
-            flow:
-              $ref: '#/components/schemas/JsonApiRelationship'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlowDraft'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    JsonApiMeta:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+              title:
+                type: string
+              detail:
+                type: string
     FlowDraftCreateRequest:
       type: object
       required:
@@ -186,17 +191,6 @@ components:
                   $ref: '#/components/schemas/JsonApiRelationship'
                 flow:
                   $ref: '#/components/schemas/JsonApiRelationship'
-    JsonApiMeta:
-      type: object
-      properties:
-        page:
-          type: integer
-        per_page:
-          type: integer
-        total:
-          type: integer
-        total_pages:
-          type: integer
     FlowDraftUpdateRequest:
       type: object
       required:
@@ -223,36 +217,37 @@ components:
                   type: object
                 cron:
                   type: string
-    FlowDraftResponse:
+    FlowDraft:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/FlowDraft'
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              status:
-                type: integer
-              title:
-                type: string
-              detail:
-                type: string
-    FlowDraftListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/FlowDraft'
-        meta:
-          $ref: '#/components/schemas/JsonApiMeta'
-        links:
-          $ref: '#/components/schemas/JsonApiLinks'
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - flow-draft
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            graph:
+              type: object
+            cron:
+              type: string
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            workspace:
+              $ref: '#/components/schemas/JsonApiRelationship'
+            flow:
+              $ref: '#/components/schemas/JsonApiRelationship'
     JsonApiRelationship:
       type: object
       properties:
@@ -281,40 +276,12 @@ components:
         last:
           type: string
           format: uri
-  responses:
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required or token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    FlowDraftResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/FlowDraft'
   parameters:
-    FlowDraftId:
-      name: flow_draft_id
-      in: path
-      required: true
-      description: The unique identifier of the flow draft
-      schema:
-        type: string
-    PageNumber:
-      name: page[number]
-      in: query
-      description: Page number to retrieve
-      schema:
-        type: integer
-        default: 1
-    WorkspaceFilter:
-      name: filter[workspace_id]
-      in: query
-      description: Filter by workspace ID
-      schema:
-        type: string
     PageSize:
       name: page[size]
       in: query
@@ -322,6 +289,39 @@ components:
       schema:
         type: integer
         default: 20
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    FlowDraftId:
+      name: flow_draft_id
+      in: path
+      required: true
+      description: The unique identifier of the flow draft
+      schema:
+        type: string
+    WorkspaceFilter:
+      name: filter[workspace_id]
+      in: query
+      description: Filter by workspace ID
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http

@@ -183,69 +183,47 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    PageSize:
+      name: page[size]
+      in: query
+      description: Number of items per page
+      schema:
+        type: integer
+        default: 20
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      description: The unique identifier of the workspace
+      schema:
+        type: string
+    PageNumber:
+      name: page[number]
+      in: query
+      description: Page number to retrieve
+      schema:
+        type: integer
+        default: 1
+    UserId:
+      name: user_id
+      in: path
+      required: true
+      description: The unique identifier of the user
+      schema:
+        type: string
   schemas:
-    WorkspaceResponse:
+    JsonApiMeta:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/Workspace'
-    MemberCreateRequest:
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          type: object
-          required:
-          - type
-          - id
-          properties:
-            type:
-              type: string
-              enum:
-              - member
-            id:
-              type: string
-              description: The user ID to add as member
-            attributes:
-              type: object
-              properties:
-                roles:
-                  type: array
-                  items:
-                    type: string
-    Workspace:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - workspace
-        attributes:
-          type: object
-          properties:
-            name:
-              type: string
-            type:
-              type: string
-              enum:
-              - full
-              - limited
-            flow_count:
-              type: integer
-            created_at:
-              type: string
-              format: date-time
-            updated_at:
-              type: string
-              format: date-time
-        relationships:
-          type: object
-          properties:
-            contract:
-              $ref: '#/components/schemas/JsonApiRelationship'
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+        total_pages:
+          type: integer
     MemberResponse:
       type: object
       properties:
@@ -270,39 +248,6 @@ components:
               properties:
                 user:
                   $ref: '#/components/schemas/JsonApiRelationship'
-    JsonApiMeta:
-      type: object
-      properties:
-        page:
-          type: integer
-        per_page:
-          type: integer
-        total:
-          type: integer
-        total_pages:
-          type: integer
-    WorkspaceUpdateRequest:
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          type: object
-          required:
-          - type
-          - id
-          properties:
-            type:
-              type: string
-              enum:
-              - workspace
-            id:
-              type: string
-            attributes:
-              type: object
-              properties:
-                name:
-                  type: string
     ErrorResponse:
       type: object
       properties:
@@ -317,34 +262,6 @@ components:
                 type: string
               detail:
                 type: string
-    JsonApiLinks:
-      type: object
-      properties:
-        self:
-          type: string
-          format: uri
-        first:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-        next:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-    JsonApiRelationship:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
     WorkspaceCreateRequest:
       type: object
       required:
@@ -380,17 +297,6 @@ components:
               properties:
                 contract:
                   $ref: '#/components/schemas/JsonApiRelationship'
-    WorkspaceListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Workspace'
-        meta:
-          $ref: '#/components/schemas/JsonApiMeta'
-        links:
-          $ref: '#/components/schemas/JsonApiLinks'
     MemberListResponse:
       type: object
       properties:
@@ -417,44 +323,138 @@ components:
                     $ref: '#/components/schemas/JsonApiRelationship'
         meta:
           $ref: '#/components/schemas/JsonApiMeta'
-  parameters:
-    UserId:
-      name: user_id
-      in: path
-      required: true
-      description: The unique identifier of the user
-      schema:
-        type: string
-    WorkspaceId:
-      name: workspace_id
-      in: path
-      required: true
-      description: The unique identifier of the workspace
-      schema:
-        type: string
-    PageNumber:
-      name: page[number]
-      in: query
-      description: Page number to retrieve
-      schema:
-        type: integer
-        default: 1
-    PageSize:
-      name: page[size]
-      in: query
-      description: Number of items per page
-      schema:
-        type: integer
-        default: 20
+    WorkspaceUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - workspace
+            id:
+              type: string
+            attributes:
+              type: object
+              properties:
+                name:
+                  type: string
+    WorkspaceResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Workspace'
+    MemberCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - id
+          properties:
+            type:
+              type: string
+              enum:
+              - member
+            id:
+              type: string
+              description: The user ID to add as member
+            attributes:
+              type: object
+              properties:
+                roles:
+                  type: array
+                  items:
+                    type: string
+    JsonApiRelationship:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+    JsonApiLinks:
+      type: object
+      properties:
+        self:
+          type: string
+          format: uri
+        first:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+        next:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+    WorkspaceListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Workspace'
+        meta:
+          $ref: '#/components/schemas/JsonApiMeta'
+        links:
+          $ref: '#/components/schemas/JsonApiLinks'
+    Workspace:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - workspace
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            type:
+              type: string
+              enum:
+              - full
+              - limited
+            flow_count:
+              type: integer
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+        relationships:
+          type: object
+          properties:
+            contract:
+              $ref: '#/components/schemas/JsonApiRelationship'
   responses:
-    NotFound:
-      description: The requested resource was not found
+    Unauthorized:
+      description: Authentication required or token is invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication required or token is invalid
+    NotFound:
+      description: The requested resource was not found
       content:
         application/json:
           schema:
