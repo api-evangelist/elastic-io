@@ -1,4 +1,4 @@
-# Elastic.io (elastic-io)
+# Elastic.io
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,76 +66,209 @@
 
 Elastic IO is a cloud-based integration platform that helps businesses effortlessly connect their various applications, systems, and services. By providing a user-friendly interface and a wide range of pre-built connectors, elastic.io allows organizations to automate and streamline their data integration processes.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/elastic-io/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/elastic-io/refs/heads/main/apis.yml)
+**Areas:** Integration · iPaaS · SaaS Integration · Real-Time
 
-## Scope
+## Elastic.io on APIs.io
 
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Elastic.io is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/elastic-io/](https://apis.io/providers/elastic-io/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (22)
 
-- Integrations
-- iPaaS
-- SaaS Integration
+- [Elastic.io Agents API](https://apis.io/apis/elastic-io/elastic-io-agents-api/) — Manage on-premises integration agents
+- [Elastic.io Auth Clients API](https://apis.io/apis/elastic-io/elastic-io-auth-clients-api/) — Manage OAuth authentication clients
+- [Elastic.io Auth Secrets API](https://apis.io/apis/elastic-io/elastic-io-auth-secrets-api/) — Manage authentication secrets
+- [Elastic.io Components API](https://apis.io/apis/elastic-io/elastic-io-components-api/) — Manage integration components
+- [Elastic.io Contracts API](https://apis.io/apis/elastic-io/elastic-io-contracts-api/) — Manage contracts (tenants)
+- [Elastic.io Credentials API](https://apis.io/apis/elastic-io/elastic-io-credentials-api/) — Manage authentication credentials for components
+- [Elastic.io Data Samples API](https://apis.io/apis/elastic-io/elastic-io-data-samples-api/) — Manage data samples for component steps
+- [Elastic.io Executions API](https://apis.io/apis/elastic-io/elastic-io-executions-api/) — Manage flow executions and logs
+- [Elastic.io Flow Drafts API](https://apis.io/apis/elastic-io/elastic-io-flow-drafts-api/) — Manage flow drafts before publishing
+- [Elastic.io Flow Versions API](https://apis.io/apis/elastic-io/elastic-io-flow-versions-api/) — Manage flow version history
+- [Elastic.io Flows API](https://apis.io/apis/elastic-io/elastic-io-flows-api/) — Manage integration flows
+- [Elastic.io Logs API](https://apis.io/apis/elastic-io/elastic-io-logs-api/) — Access execution and platform logs
+- [Elastic.io Quota Usages API](https://apis.io/apis/elastic-io/elastic-io-quota-usages-api/) — View quota usage statistics
+- [Elastic.io Recipes API](https://apis.io/apis/elastic-io/elastic-io-recipes-api/) — Manage reusable integration recipes
+- [Elastic.io Roles API](https://apis.io/apis/elastic-io/elastic-io-roles-api/) — Manage user roles and permissions
+- [Elastic.io Snapshots API](https://apis.io/apis/elastic-io/elastic-io-snapshots-api/) — Manage flow step snapshots
+- [Elastic.io SSH Keys API](https://apis.io/apis/elastic-io/elastic-io-ssh-keys-api/) — Manage SSH keys for component repositories
+- [Elastic.io Subscriptions API](https://apis.io/apis/elastic-io/elastic-io-subscriptions-api/) — Manage topic subscriptions
+- [Elastic.io Teams API](https://apis.io/apis/elastic-io/elastic-io-teams-api/) — Manage developer teams
+- [Elastic.io Topics API](https://apis.io/apis/elastic-io/elastic-io-topics-api/) — Manage pub/sub topics
+- [Elastic.io Users API](https://apis.io/apis/elastic-io/elastic-io-users-api/) — Manage platform users
+- [Elastic.io Workspaces API](https://apis.io/apis/elastic-io/elastic-io-workspaces-api/) — Manage workspaces within contracts
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-06-06
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### Elastic.io
+Event-driven and webhook contracts.
 
-elastic.io iPaaS platform gives you the tools for integration visualisation, intuitive data mapping and easy troubleshooting, so that you can generate more value from your data with less distraction from your core business.
+- [elastic.io Platform Events API](https://apis.io/asyncapis/elastic-io/elastic-io-platform-events-asyncapi/)
 
-- **Human URL:** [ https://www.elastic.io/]( https://www.elastic.io/)
+#### Event channels (5)
 
-#### Tags
+Individual events and webhooks the provider emits.
 
-- Integrations
-- iPaaS
-- SaaS Integration
+- [flow/{flowId}/error](https://apis.io/channels/elastic-io/flow-flowid-error/)
+- [flow/{flowId}/execution](https://apis.io/channels/elastic-io/flow-flowid-execution/)
+- [topic/{topicName}](https://apis.io/channels/elastic-io/topic-topicname/)
+- [webhook/flow/{flowId}](https://apis.io/channels/elastic-io/webhook-flow-flowid/)
+- [workspace/{workspaceId}/activity](https://apis.io/channels/elastic-io/workspace-workspaceid-activity/)
 
-#### Properties
+#### GraphQL (1)
 
-- [Documentation]( https://www.elastic.io/)
-- [Documentation](https://api.elastic.io/docs/v2/)
-- [OpenAPI](openapi/elastic-io-platform-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/elastic-io-platform-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/elastic-io-platform-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/elastic-io-platform-events-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [JSON Schema](json-schema/elastic-io-flow.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/elastic-io-workspace.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/elastic-io-contract.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/elastic-io-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+GraphQL schemas.
 
-## Common Properties
+- [Moved to /providers/elastic-io/](https://apis.io/graphqls/elastic-io/elastic-io-graphql/)
 
-- [GitHub Organization](https://github.com/elasticio)
-- [LinkedIn](https://www.linkedin.com/company/elastic-io-gmbh)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](https://www.elastic.io/enterprise-integration-platform/)
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Elastic Io Agentic Access](https://apis.io/agentic-access/elastic-io/elastic-io-agentic-access/)
+
+#### JSON Schema (3)
+
+The data models the API reads and writes.
+
+- [elastic.io Contract](https://apis.io/schemas/elastic-io/elastic-io-contract/)
+- [elastic.io Flow](https://apis.io/schemas/elastic-io/elastic-io-flow/)
+- [elastic.io Workspace](https://apis.io/schemas/elastic-io/elastic-io-workspace/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Elastic Io Context](https://apis.io/jsonld/elastic-io/elastic-io-context/)
+
+#### Collections (45)
+
+Postman and Open Collection request collections.
+
+- [elastic.io Platform REST Agents API](https://apis.io/collections/elastic-io/open-elastic-io-agents-api/)
+- [elastic.io Platform REST Agents Auth Clients API](https://apis.io/collections/elastic-io/open-elastic-io-auth-clients-api/)
+- [elastic.io Platform REST Agents Auth Secrets API](https://apis.io/collections/elastic-io/open-elastic-io-auth-secrets-api/)
+- [elastic.io Platform REST Agents Components API](https://apis.io/collections/elastic-io/open-elastic-io-components-api/)
+- [elastic.io Platform REST Agents Contracts API](https://apis.io/collections/elastic-io/open-elastic-io-contracts-api/)
+- [elastic.io Platform REST Agents Credentials API](https://apis.io/collections/elastic-io/open-elastic-io-credentials-api/)
+- [elastic.io Platform REST Agents Data Samples API](https://apis.io/collections/elastic-io/open-elastic-io-data-samples-api/)
+- [elastic.io Platform REST Agents Executions API](https://apis.io/collections/elastic-io/open-elastic-io-executions-api/)
+- [elastic.io Platform REST Agents Flow Drafts API](https://apis.io/collections/elastic-io/open-elastic-io-flow-drafts-api/)
+- [elastic.io Platform REST Agents Flow Versions API](https://apis.io/collections/elastic-io/open-elastic-io-flow-versions-api/)
+- [elastic.io Platform REST Agents Flows API](https://apis.io/collections/elastic-io/open-elastic-io-flows-api/)
+- [elastic.io Platform REST Agents Logs API](https://apis.io/collections/elastic-io/open-elastic-io-logs-api/)
+- [elastic.io Platform REST API](https://apis.io/collections/elastic-io/open-elastic-io-platform-api/)
+- [elastic.io Platform REST Agents Quota Usages API](https://apis.io/collections/elastic-io/open-elastic-io-quota-usages-api/)
+- [elastic.io Platform REST Agents Recipes API](https://apis.io/collections/elastic-io/open-elastic-io-recipes-api/)
+- [elastic.io Platform REST Agents Roles API](https://apis.io/collections/elastic-io/open-elastic-io-roles-api/)
+- [elastic.io Platform REST Agents Snapshots API](https://apis.io/collections/elastic-io/open-elastic-io-snapshots-api/)
+- [elastic.io Platform REST Agents SSH Keys API](https://apis.io/collections/elastic-io/open-elastic-io-ssh-keys-api/)
+- [elastic.io Platform REST Agents Subscriptions API](https://apis.io/collections/elastic-io/open-elastic-io-subscriptions-api/)
+- [elastic.io Platform REST Agents Teams API](https://apis.io/collections/elastic-io/open-elastic-io-teams-api/)
+- [elastic.io Platform REST Agents Topics API](https://apis.io/collections/elastic-io/open-elastic-io-topics-api/)
+- [elastic.io Platform REST Agents Users API](https://apis.io/collections/elastic-io/open-elastic-io-users-api/)
+- [elastic.io Platform REST Agents Workspaces API](https://apis.io/collections/elastic-io/open-elastic-io-workspaces-api/)
+- [elastic.io Platform REST Agents API](https://apis.io/collections/elastic-io/postman-elastic-io-agents-api/)
+- [elastic.io Platform REST Agents Auth Clients API](https://apis.io/collections/elastic-io/postman-elastic-io-auth-clients-api/)
+- …and 20 more published on APIs.io
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Elastic.io — asyncapi rules](https://apis.io/rules/elastic-io/elastic-io-asyncapi-spectral-rules/)
+- [Elastic.io — jsonschema rules](https://apis.io/rules/elastic-io/elastic-io-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Elastic Io Authentication](https://apis.io/security/elastic-io/elastic-io-authentication/)
+- [Elastic Io Domain Security](https://apis.io/security/elastic-io/elastic-io-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Elastic Io Plans Pricing](https://apis.io/plans/elastic-io/elastic-io-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Elastic Io Rate Limits](https://apis.io/rate-limits/elastic-io/elastic-io-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Elastic Io Finops](https://apis.io/finops/elastic-io/elastic-io-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.elastic.io/)
-- [Pricing](https://www.elastic.io/plans/)
-- [Getting Started](https://docs.elastic.io/getting-started/)
-- [Rate Limits](https://docs.elastic.io/getting-started/quota-overview.html)
-- [Open I D Connect](https://docs.elastic.io/getting-started/openid.html)
 - [Documentation](https://docs.elastic.io/)
+- [Getting started](https://docs.elastic.io/getting-started/)
+- [Pricing](https://www.elastic.io/plans/)
 - [Support](https://docs.elastic.io/admin/)
-- [Case Studies](https://www.elastic.io/resources/#casestudies)
-- [Partners](https://www.elastic.io/integration-partner-program/)
-- [Customers](https://www.elastic.io/customers/)
 - [Blog](https://www.elastic.io/blog/)
-- [About](https://www.elastic.io/team/)
-- [Login](https://app.elastic.io/login)
-- [Sign Up](https://app.elastic.io/register)
-- [Request Demo](https://www.elastic.io/book-demo-elasticio-ipaas/)
-- [S D Ks](https://docs.elastic.io/developers/sdk.html)
+- [GitHub](https://github.com/elasticio)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 41.6** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 48.2 |
+| Contract quality | 72.8 |
+| Contract governance | 13.6 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 48.8 |
+| Access clarity | 31.6 |
+
+**Agent readiness 23.5** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/elastic-io/](https://apis.io/providers/elastic-io/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Elastic.io: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/elastic-io/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
